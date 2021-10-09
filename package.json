@@ -1,0 +1,41 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@mdi/font": "^5.9.55",
+        "axios": "^0.21",
+        "deepmerge": "^4.2.2",
+        "laravel-mix": "^6.0.20",
+        "lodash": "^4.17.21",
+        "postcss": "^8.3.4",
+        "sass": "^1.32.13",
+        "sass-loader": "^12.1.0",
+        "vue-loader": "^15.9.6",
+        "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "@inertiajs/inertia": "^0.8.5",
+        "@inertiajs/inertia-vue": "^0.5.5",
+        "@inertiajs/progress": "^0.2.4",
+        "apexcharts": "^3.26.0",
+        "file-saver": "^2.0.5",
+        "fs": "0.0.1-security",
+        "moment": "^2.29.1",
+        "qrious": "^4.0.2",
+        "tiptap-vuetify": "^2.24.0",
+        "vue": "^2.6.12",
+        "vue-apexcharts": "^1.6.0",
+        "vue-capture": "^0.1.7",
+        "vue-qrious": "^1.6.0",
+        "vuetify": "^2.4.6",
+        "xlsx": "^0.16.9"
+    }
+}
