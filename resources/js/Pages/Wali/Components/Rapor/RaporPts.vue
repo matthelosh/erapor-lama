@@ -53,7 +53,7 @@
 							<td class="pl-5">{{ mapel.label }}</td>
 							<td class="text-center">{{ Math.round(mapel.nilai.nilai,0) }}</td>
 							<td class="text-center">{{ mapel.nilai.predikat }}</td>
-							<td class="p-5">{{ mapel.nilai.deskripsi }}</td>
+							<td class="p-5">{{ (mapel.nilai.nilai > 0 ) ? mapel.nilai.deskripsi : '-' }}</td>
 						</tr>
 						<tr>
 							<td colspan="5" style="padding-left:20px;"><b>Muatan Lokal</b></td>
@@ -63,7 +63,7 @@
 							<td class="pl-5">{{ mapel.label }}</td>
 							<td class="text-center">{{ Math.round(mapel.nilai.nilai,0) }}</td>
 							<td class="text-center">{{ mapel.nilai.predikat }}</td>
-							<td class="p-5">{{ mapel.nilai.deskripsi }}</td>
+							<td class="p-5">{{ (mapel.nilai.nilai > 0 ) ? mapel.nilai.deskripsi : '-' }}</td>
 						</tr>
 					</tbody>
 				</table>

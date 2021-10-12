@@ -31,7 +31,7 @@
 						</thead>
 						<tbody>
 							<tr v-for="(nilai,i) in rapor.pas.sikap" :key="i">
-								<td class="p-5 text-center">{{nilai.id}}</td><td class="p-5">{{ nilai.label }}</td><td class="p-5">Ananda {{ siswa.nama }} {{ nilai.deskripsi }}</td>
+								<td class="p-5 text-center">{{nilai.id}}</td><td class="p-5">{{ nilai.label }}</td><td class="p-5"><span v-show="nilai.deskripsi">Ananda {{ siswa.nama }} {{ nilai.deskripsi }}</span></td>
 							</tr>
 							<!-- <tr>
 								<td class="p-5 text-center">2</td><td class="p-5">Sikap Sosial</td><td class="p-5">Ananda {{ siswa.nama }} ...</td>
@@ -67,10 +67,10 @@
 								<td class="px-5">{{ mapel.label }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ Math.round(mapel.nilai.k3.nilai,0) }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ mapel.nilai.k3.predikat }}</td>
-								<td class="p-5">Ananda {{ siswa.nama }} {{ mapel.nilai.k3.deskripsi }}</td>
+								<td class="p-5"><span v-show="mapel.nilai.k3.nilai > 0">Ananda {{ siswa.nama }} {{ mapel.nilai.k3.deskripsi }}</span></td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k4.nilai)">{{ Math.round(mapel.nilai.k4.nilai,0) }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k4.nilai)">{{ mapel.nilai.k4.predikat }}</td>
-								<td class="p-5">Ananda {{ siswa.nama }} {{ mapel.nilai.k4.deskripsi }}</td>
+								<td class="p-5"><span v-show="mapel.nilai.k4.nilai > 0"> >Ananda {{ siswa.nama }} {{ mapel.nilai.k4.deskripsi }}</span></td>
 								
 							</tr>
 							<tr>
@@ -81,10 +81,10 @@
 								<td class="pl-5">{{ mapel.label }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ Math.round(mapel.nilai.k3.nilai,0) }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ mapel.nilai.k3.predikat }}</td>
-								<td class="p-5">Ananda {{ siswa.nama }} {{ mapel.nilai.k3.deskripsi }}</td>
+								<td class="p-5"><span v-show="mapel.nilai.k3.nilai > 0">Ananda {{ siswa.nama }} {{ mapel.nilai.k3.deskripsi }}</span></td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k4.nilai)">{{ Math.round(mapel.nilai.k4.nilai,0) }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k4.nilai)">{{ mapel.nilai.k4.predikat }}</td>
-								<td class="p-5">Ananda {{ siswa.nama }} {{ mapel.nilai.k4.deskripsi }}</td>
+								<td class="p-5"><span v-show="mapel.nilai.k4.nilai > 0">Ananda {{ siswa.nama }} {{ mapel.nilai.k4.deskripsi }}</span></td>
 								
 							</tr>
 						</tbody>

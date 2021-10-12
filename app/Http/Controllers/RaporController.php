@@ -49,8 +49,8 @@ class RaporController extends Controller
            
             $rombel = Rombel::where('kode_rombel', $request->rombel)->with('walis')->first();
             // dd($rombel);
-            $kelas = Kelas::where('kode_kelas', substr($request->rombel, -1))->with('mapels')->first();
-            $pts = $this->getPTS($request, $kelas,$siswa);
+            $kelas = Kelas::where('kode_kelas', substr($request->rombel, 6,1))->with('mapels')->first();
+            $pts = $this->getPTS($request, $kelas, $siswa);
             $tanggal_rapor = TanggalRapor::where('periode_id', $request->session()->get('periode'))->where('jenis_rapor','pts')->first();
             $saran = Saran::where([
                  ['periode_id','=', $request->session()->get('periode')],
@@ -81,7 +81,7 @@ class RaporController extends Controller
             $sekolah = Sekolah::find(1)->with('ks')->first();
             $siswa = Siswa::where('nisn', $request->siswa_id)->first();
             $rombel = Rombel::where('kode_rombel', $request->rombel)->with('walis')->first();
-            $kelas = Kelas::where('kode_kelas', substr($request->rombel, -1))->with('mapels')->first();
+            $kelas = Kelas::where('kode_kelas', substr($request->rombel, 6,1))->with('mapels')->first();
             $pas = $this->getPAS($request, $kelas,$siswa);
             $query = [
                  ['periode_id','=', $request->session()->get('periode')],
