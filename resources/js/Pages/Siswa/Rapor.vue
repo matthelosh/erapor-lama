@@ -129,7 +129,7 @@ export default {
                 
                 axios({
                     method: 'post',
-                    url: '/dashboard/rapor/'+this.$page.props.rombel.kode_rombel
+                    url: '/siswa/rapor/'+this.$page.props.rombel.kode_rombel
                 }).then(res => {
                     let siswas = []
                     res.data.siswas.forEach((siswa,index) => {

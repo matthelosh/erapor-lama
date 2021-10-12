@@ -24,7 +24,7 @@ class PageController extends Controller
                 return $this->adminPage($request);
             break;
             case 'siswa':
-
+                return $this->adminPage($request);
             break;
             default:
 

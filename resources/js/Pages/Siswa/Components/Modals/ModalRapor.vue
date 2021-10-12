@@ -210,7 +210,7 @@
 				this.progress = true
 				axios({
 					method: 'post',
-					url: '/wali/rapor/pts',
+					url: '/siswa/rapor/pts',
 					data: {
 						rombel: this.$page.props.rombel.kode_rombel,
 						periode: this.$page.props.periode,
@@ -228,7 +228,7 @@
 				this.progress = true
 				axios({
 					method: 'post',
-					url: '/wali/rapor/pas',
+					url: '/siswa/rapor/pas',
 					data: {
 						rombel: this.$page.props.rombel.kode_rombel,
 						periode: this.$page.props.periode,
@@ -260,8 +260,8 @@
 		},
 		computed: {
 			selectedSiswa() {
-				let siswas =  this.dialog.siswas.filter( item => (item.nisn == this.siswa))
-				return siswas[0]
+				// let siswas =  this.dialog.siswas.filter( item => (item.nisn == this.siswa))
+				return this.dialog.siswa
 			}
 		},
 		created() {

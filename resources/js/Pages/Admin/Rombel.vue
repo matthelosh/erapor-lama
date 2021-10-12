@@ -129,7 +129,7 @@ export default {
         },
         manajemenrombel: {show:false},
         rawrombels: [],
-        periodes: [],
+        periodes: [], 
         periode: null
         
     }),

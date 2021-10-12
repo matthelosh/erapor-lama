@@ -17,8 +17,11 @@
                     </v-col>
                     <v-col cols="12" sm="8" class="d-none d-sm-flex">
                        <v-card width="100%">
-                            <v-card-text>
-                                <h1>SELAMAT DATANG !</h1>
+                            <v-card-text class="d-flex justify-center align-center py-10">
+                                <div>
+                                    <h1 class="mb-10">SELAMAT DATANG !</h1>
+                                    <p>Bapak / Ibu yang terhormat. Selamat datang di aplikasi rapor SD Negeri 1 Bedalisodo. Masukkan Username dan Password di Formulir Login untuk mengakses aplikasi. Selamat Berkarya!</p>
+                                </div>
                             </v-card-text>
                        </v-card>
                     </v-col>
@@ -175,14 +178,17 @@ export default {
 
 <style>
     #app {
-        background-image: linear-gradient(127deg, rgb(58, 40, 52), rgb(75, 35, 63));
+        
+        background-color: #8EC5FC;
+        background-image: linear-gradient( 64.5deg,  rgba(245,116,185,1) 14.7%, rgba(89,97,223,1) 88.7% );
+
     }
     .media {
         position: absolute;
         width:  100%;
         height: 100%;
         content:  '';
-        background: #98654366;
+        background: teal;
     }
     #app > div > div.container.fill-height.bg-body.fluid > div.row.d-sm-none > div > div.v-responsive__sizer {
         padding-bottom:  0!important;

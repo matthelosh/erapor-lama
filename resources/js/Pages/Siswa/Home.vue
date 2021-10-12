@@ -10,6 +10,11 @@
                         </v-toolbar>
                         <v-card-text>
                             <v-container>
+                                <v-row>
+                                    <v-col cols="12">
+                                        <v-select v-model="periode" :items="periodes" rounded item-key="value" item-text="text" outlined label="Periode" dense hide-details @change="initialize"></v-select>
+                                    </v-col>
+                                </v-row>
                                 <v-row v-if="!$page.props.user.role">
                                     <v-col  cols="6" v-for=" (item,index) in siswasItem" class="d-flex justify-center align-center" :key="index">
                                         <v-btn class="text-center" rounded :color="item.color" @click="show(item.modal)">
@@ -33,7 +38,7 @@
 
 <script>
 import Layout from '../../Layout/Dashboard'
-import Rapor from '../../Components/Modals/Siswa/ModalRapor'
+import Rapor from './Components/Modals/ModalRapor'
 export default {
     components: {
         Layout, Rapor
@@ -48,7 +53,9 @@ export default {
         ],
         raporku: {
             show: false
-        }
+        },
+        periodes: [],
+        periode: null
     }),
     computed: {
         user() {
@@ -64,7 +71,23 @@ export default {
                 case "nilai":
                     break;
             }
-        }
+        },
+        initialize() {
+            axios({
+                method: 'post',
+                url: '/siswa/periode'
+            }).then(res => {
+                res.data.periode.forEach(item => {
+                    this.periodes.push( {value:item.kode_periode, text: item.deskripsi} )
+                })
+            }).catch ( err => {
+                console.log(err.response)
+            })
+        },
+    },
+    mounted() {
+        this.periode = this.$page.props.periode
+        this.initialize()
     }
 }
 </script>
