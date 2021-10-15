@@ -127,7 +127,7 @@
 				this.loading = true
 				axios({
 					method: 'post',
-					url: '/dashboard/admin/pengaturan/menu'
+					url: '/admin/pengaturan/menu'
 				}).then( res => {
 					var menus = []
 					res.data.menus.forEach((item,index) => {
@@ -156,7 +156,7 @@
                     if(lanjut) {
                         axios({
                             method: 'delete',
-                            url: '/dashboard/admin/pengaturan/menu/'+item.id,
+                            url: '/admin/pengaturan/menu/'+item.id,
                             // data: {users : users}
                         }).then( res => {
                             // this.snackbar = { show: true, color: 'success', text: res.data.msg }
@@ -183,7 +183,7 @@
 				console.log(clean)
 				axios({
 					method: 'post',
-					url: '/dashboard/admin/pengaturan/menu/store',
+					url: '/admin/pengaturan/menu/store',
 					data: this.selectedmenu
 				}).then( res => {
 					this.getMenus()

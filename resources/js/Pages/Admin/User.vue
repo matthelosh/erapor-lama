@@ -263,7 +263,7 @@ export default {
             {value: 'wali',text: 'Wali Kelas'},
             {value:'gpai',text:'Guru PAI'}, 
             {value:'gor', text: 'Guru Olah Raga'}, 
-            {value:'gbig', text: 'Guru Bahasa Inggris'},
+            {value:'gben', text: 'Guru Bahasa Inggris'},
             {value:'siswa', text: 'Siswa'}
             ],
         dialog: false,

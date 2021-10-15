@@ -195,7 +195,7 @@
 	            {value: 'wali',text: 'Wali Kelas'},
 	            {value:'gpai',text:'Guru PAI'}, 
 	            {value:'gor', text: 'Guru Olah Raga'}, 
-	            {value:'gbig', text: 'Guru Bahasa Inggris'},
+	            {value:'gben', text: 'Guru Bahasa Inggris'},
 	            {value:'gkr', text: 'Guru Agama Kristen'},
 	            {value:'gkt', text: 'Guru Agama Katolik'},
 	            {value:'ghd', text: 'Guru Agama Hindu'},
