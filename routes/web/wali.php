@@ -50,14 +50,6 @@ Route::group(['prefix' => 'nilai'], function() {
     Route::post('/', [RombelController::class, 'index'])->name('rombel.index');
 });
 
-// Mapel
-Route::group(['prefix' => 'mapel'], function() {
-    Route::get('/', [PageController::class, 'mapel'])->name('dashboard.mapel'); 
-    Route::post('/', [MapelController::class, 'index'])->name('mapel.index'); 
-    Route::post('/store', [MapelController::class, 'store'])->name('mapel.store')->middleware('admin'); 
-    Route::post('/tanpakelas', [MapelController::class, 'noGrade'])->name('mapel.nograde');
-});
-
 // Rapor
 Route::group(['prefix' => 'rapor'], function() {
     Route::get('/', [PageController::class, 'page'])->name('wali.rapor'); 

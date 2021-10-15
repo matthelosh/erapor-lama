@@ -26,8 +26,9 @@ class PageController extends Controller
             case 'siswa':
                 return $this->adminPage($request);
             break;
-            default:
 
+            default:
+                return $this->adminPage($request);
             break;
             
         }

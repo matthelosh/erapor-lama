@@ -14,6 +14,7 @@ trait AdminPage
 		$dir = array_reduce($name, function($a, $c) {
 			return $a .= ucfirst($c).'/';
 		});
+		// dd($name);
 		return Inertia::render(rtrim($dir, '/'), ['page' => end($name), 'page_title' => ucfirst(end($name))]);
 	}
 }
