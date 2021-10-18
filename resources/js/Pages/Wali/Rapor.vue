@@ -4,16 +4,21 @@
 			<v-row>
 				<v-col cols="12">
 					<v-card>
-						<v-toolbar dense color="secondary">
-							<v-toolbar-title>
+						<v-toolbar dense color="primary" dark>
+							<v-toolbar-title class="white--text">
 								<v-icon>mdi-microsoft-word</v-icon>
 								Rapor Siswa
 							</v-toolbar-title>
 							<v-spacer></v-spacer>
-							<v-btn rounded color="success" @click="ledger">
+							<v-btn rounded color="warning" @click="generatePdf">
+                                <v-icon>mdi-file-pdf</v-icon>
+                                Buat Arsip
+                            </v-btn>
+                            <v-btn rounded color="success" @click="ledger">
                                 <v-icon>mdi-table</v-icon>
                                 Rekap
                             </v-btn>
+                            
 							<v-text-field label="Cari" v-model="cari" prepend-inner-icon="mdi-magnify" hide-details rounded outlined dense color="primary" style="width:10px" clearable class="ml-5"></v-text-field>
 						</v-toolbar>
 						<v-card-text>
@@ -62,6 +67,8 @@
 		<modal-rapor v-if="modalRapor.show" :dialog="modalRapor" @hide="modalRapor.show = false"></modal-rapor>
 		<data-rapor v-if="modalDataRapor.show" :dialog="modalDataRapor" @hide="modalDataRapor.show = false"></data-rapor>
 		<ledger v-if="modalLedger.show" :dialog="modalLedger" @hide="modalLedger.show = false"></ledger>
+		<all-rapors v-if="modalAllRapors.show" :dialog="modalAllRapors" @hide="modalAllRapors.show = false">
+		</all-rapors>
 	</Layout>
 </template>
 
@@ -70,15 +77,19 @@ import Layout from '../../Layout/Dashboard'
 import ModalRapor from './Modals/ModalRapor'
 import DataRapor from './Modals/DataRapor'
 import Ledger from './Modals/Ledger'
+import AllRapors from './Modals/AllRapors'
 export default {
 	name: 'Rapor',
 	props: {
 		page: String,
 		page_title: String
 	},
-	components: { Layout, ModalRapor, DataRapor, Ledger },
+	components: { Layout, ModalRapor, DataRapor, Ledger, AllRapors },
 	data: () =>({
 		cari: '',
+		modalAllRapors: {
+			show: false,
+		},
 		modalRapor: {
 			show: false,
 			
@@ -102,6 +113,9 @@ export default {
             ],
 	}),
 	methods:{
+		generatePdf(){
+			this.modalAllRapors = { show: true }
+		},
 		ledger() {
 			this.modalLedger = {
 				show: true,

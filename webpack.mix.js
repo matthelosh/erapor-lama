@@ -19,6 +19,9 @@ mix
     //         port: 8080
     //     }    
     // })
+    .options({
+        legacyNodePolyfills: false
+    })
     .js('resources/js/app.js', 'public/js').vue()
     .postCss('resources/css/app.css', 'public/css', [
         //

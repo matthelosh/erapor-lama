@@ -20,8 +20,12 @@ use App\Models\Kesehatan;
 use App\Models\Prestasi;
 use App\Models\Absensi;
 use App\Models\TanggalRapor;
+use App\Models\Arsip;
 use Illuminate\Support\Facades\DB;
 use App\Traits\RaporTrait;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+
 
 class RaporController extends Controller
 {
@@ -136,6 +140,34 @@ class RaporController extends Controller
                 ]
             ],200);
         } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    public function savepdf(Request $request)
+    {
+        try {
+            // dd($request->all());
+            $filename = $request->file('file')->getClientOriginalName();
+            $pecah = explode('-', $filename);
+            $siswa = explode('.', $pecah[3]);
+            Arsip::updateOrCreate([
+                'kode_rapor' => $pecah[1].$pecah[2].$siswa[0], 
+                
+                'jenis' => $pecah[0]
+
+            ],
+            [
+                'periode_id' =>$pecah[1], 
+                'semester' => substr($pecah[1], -1),
+                'rombel_id' => $pecah[1].'-'.$pecah[2], 
+                'siswa_id' => $siswa[0], 
+            ]
+        );
+
+            Storage::putFileAs('public/arsip/'.$pecah[1].'/'.$pecah[1].'-'.$pecah[2].'/', $request->file('file'), $filename);
+            dd('Sukses');
+        } catch (Exception $e) {
             dd($e);
         }
     }

@@ -1,5 +1,5 @@
 <template>
-	<div id="print">
+	<div id="print" ref="print" >
 		<v-sheet class="page elevation-2">
 			<div class="tutwuri text-center">
 				<img src="/img/tutwuri.png" width="200px">
@@ -57,6 +57,7 @@
 		margin-bottom:  0!important;
 		padding:  0;
 		font-weight: 400;
+		color:  black;
 	}
 
 	.box-name, .box-nis {
@@ -67,6 +68,7 @@
 		font-weight: 900;
 		font-size: 1.2em;
 		box-sizing: border-box;
+		color:  black;
 	}
 	.title {
 		margin:  3cm ; 

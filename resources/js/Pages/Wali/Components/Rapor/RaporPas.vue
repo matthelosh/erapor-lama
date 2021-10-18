@@ -1,8 +1,8 @@
 <template>
-	<div id="print" v-if="rapor">
-		<v-sheet class="page elevataion-2">
+	<div id="print" v-if="rapor" class="rapor-pas">
+		<v-sheet class="page elevation-2">
 			<div class="title section">
-				<h2 class="text-center">PROFIL DAN RAPOR PESERTA DIDIK</h2>
+				<h2 class="text-center mt-0" >PROFIL DAN RAPOR PESERTA DIDIK</h2>
 			</div>
 			<div class="biodata section">
 				<table width="100%">
@@ -31,7 +31,7 @@
 						</thead>
 						<tbody>
 							<tr v-for="(nilai,i) in rapor.pas.sikap" :key="i">
-								<td class="p-5 text-center">{{nilai.id}}</td><td class="p-5">{{ nilai.label }}</td><td class="p-5"><span v-show="nilai.deskripsi">Ananda {{ siswa.nama }} {{ nilai.deskripsi }}</span></td>
+								<td class="p-5 text-center">{{nilai.id}}</td><td class="p-5">{{ nilai.label ? nilai.label : '-' }}</td><td class="p-5"><span v-show="nilai.deskripsi">Ananda {{ siswa.nama }} {{ nilai.deskripsi }}</span></td>
 							</tr>
 							<!-- <tr>
 								<td class="p-5 text-center">2</td><td class="p-5">Sikap Sosial</td><td class="p-5">Ananda {{ siswa.nama }} ...</td>
@@ -131,6 +131,7 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="html2pdf__page-break"></div>
 			<div class="kesehatan section">
 				<h3>F. Kondisi Kesehatan</h3>
 				<table width="100%" border="1">
@@ -363,7 +364,7 @@
 		margin-left:  20px;
 	}
 	.title {
-		margin-top:  20px;
+		/*margin-top:  20px;*/
 	}
 	.box-saran {
 		border:  1px solid black;

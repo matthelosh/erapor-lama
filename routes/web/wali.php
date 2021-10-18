@@ -56,6 +56,7 @@ Route::group(['prefix' => 'rapor'], function() {
     Route::post('/cetak', [RaporController::class, 'cetak'])->name('wali.rapor.cetak'); 
     Route::post('/pts', [RaporController::class, 'pts'])->name('wali.rapor.pts'); 
     Route::post('/pas', [RaporController::class, 'pas'])->name('wali.rapor.pas'); 
+    Route::post('/savepdf', [RaporController::class, 'savepdf'])->name('wali.rapor.savepdf');
     Route::post('/{rombel}', [RaporController::class, 'index'])->name('walirapor.index');
 });
 // Data Rapor

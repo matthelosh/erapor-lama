@@ -15,16 +15,16 @@
                         contain
                         />
                     </v-col>
-                    <v-col cols="12" sm="8" class="d-none d-sm-flex">
+                   <!--  <v-col cols="12" sm="8" class="d-none d-sm-flex">
                        <v-card width="100%">
                             <v-card-text class="d-flex justify-center align-center py-10">
                                 <div>
                                     <h1 class="mb-10">SELAMAT DATANG !</h1>
-                                    <p>Bapak / Ibu yang terhormat. Selamat datang di aplikasi rapor SD Negeri 1 Bedalisodo. Masukkan Username dan Password di Formulir Login untuk mengakses aplikasi. Selamat Berkarya!</p>
+                                    <p></p>
                                 </div>
                             </v-card-text>
                        </v-card>
-                    </v-col>
+                    </v-col> -->
                     <v-col cols="12" sm="4">
                         <v-card  class="mx-auto ">
                             <v-img 
@@ -43,7 +43,7 @@
                                 <v-form @submit="login">
                                     <v-text-field
                                         solo
-                                        label="Username"
+                                        label="Username / NISN"
                                         prepend-inner-icon="mdi-qrcode"
                                         v-model="auth.username"
                                         :error="salah"
@@ -51,7 +51,7 @@
                                     />
                                     <v-text-field 
                                         solo
-                                        label="Password"
+                                        label="Sandi / Th-Bln-Tgl (lahir siswa)"
                                         :type="password"
                                         prepend-inner-icon="mdi-key"
                                         v-model="auth.password"

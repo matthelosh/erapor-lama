@@ -23,7 +23,7 @@ export default new Vuetify({
         iconfont: 'mdi'
     },
     theme: {
-        dark: dark,
+        // dark: dark,
         themes: {
             // light: {
             //     primary: '#102542',

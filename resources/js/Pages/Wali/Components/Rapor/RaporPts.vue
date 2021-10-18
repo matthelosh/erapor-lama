@@ -4,10 +4,10 @@
 			
 			<div class="kop section"> 
 				<img src="/img/malangkab.png" alt="" class="logo">
-				<h3 class="text-center">PEMERINTAH KABUPATEN {{ rapor.sekolah.kab }}</h3>
+				<h3 class="text-center">PEMERINTAH KABUPATEN {{ rapor.sekolah.kab.toUpperCase() }}</h3>
 				<h3 class="text-center">DINAS PENDIDIKAN</h3>
-				<h4 class="text-center">KOORDINATOR WILAYAH DINAS PENDIDIKAN KECAMATAN {{ rapor.sekolah.kec }}</h4>
-				<h2 class="text-center">{{ rapor.sekolah.nama_sekolah }}</h2>
+				<h4 class="text-center">KOORDINATOR WILAYAH DINAS PENDIDIKAN KECAMATAN {{ rapor.sekolah.kec.toUpperCase() }}</h4>
+				<h2 class="text-center">{{ rapor.sekolah.nama_sekolah.toUpperCase() }}</h2>
 				<p class="text-center  alamat">{{ rapor.sekolah.alamat }} {{ rapor.sekolah.desa }} KECAMATAN {{ rapor.sekolah.kec }} KABUPATEN {{ rapor.sekolah.kab }} - {{ rapor.sekolah.kode_pos }}</p>
 				<p class="text-center ">Email: {{ rapor.sekolah.email }}, Website: {{ rapor.sekolah.website }}</p>
 			</div>

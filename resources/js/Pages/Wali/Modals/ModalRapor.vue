@@ -38,7 +38,7 @@
 									<v-tab-item>
 										<v-card color="basil" flat v-if="tab == 0">
 											<v-card-text>
-												<cover :siswa="selectedSiswa" ></cover>
+												<cover :siswa="selectedSiswa" ref="cover"></cover>
 											</v-card-text>
 										</v-card>
 									</v-tab-item>
@@ -131,6 +131,9 @@
 	import Biodata from '../Components/Rapor/BiodataRapor'
 	import Pts from '../Components/Rapor/RaporPts'
 	import Pas from '../Components/Rapor/RaporPas'
+	import {jsPDF} from 'jspdf'
+	import html2canvas from "html2canvas"
+	import html2pdf from "html2pdf.js"
 	export default {
 		name: 'ModalRapor',
 		props: {
@@ -176,7 +179,9 @@
 				WinPrint.document.close()
 				WinPrint.focus()
 				WinPrint.print()
+
 				WinPrint.close()
+				this.arsipkan()
 			},
 			onSiswaChanged(nisn){
 				 switch(this.tab){
@@ -187,6 +192,47 @@
 				 		this.getPAS()
 				 		break
 				 }
+			},
+			arsipkan() {
+				// var doc = new jsPDF('p','mm',[330, 216])
+				const content = document.getElementById('print')
+				// const content = document.getElementById('print').innerHTML
+				let tab = (this.tab == 0 ? 'cover' : (this.tab == 1) ? 'biodata' : (this.tab == 2) ? 'pts' : 'pas')
+				var opt = {
+					margin: [0,0,(content.classList.contains('rapor-pas') ? 0.3 : 0),0],
+					filename: `${tab}-${this.$page.props.rombel.kode_rombel}-${this.siswa}.pdf`,
+					image: { type: 'jpeg', quality: 1},
+					html2canvas: { scale: 2},
+					jsPDF: { unit: 'in', format: [8.5, 13], orientation: 'portrait'}
+				}
+				// html2pdf().set(opt).from(content).save()
+				// let worker = html2pdf().set(options).from(content).toPdf().output('blob').then( (data: Blob) => {
+    //   							return data
+    // 						})
+
+    			
+
+				html2pdf().set(opt).from(content).toPdf().get('pdf').then(function(pdfObj) {
+					const perBlob = pdfObj.output('blob')
+
+					var formData = new FormData();
+					formData.append('file', perBlob, opt.filename)
+
+
+					axios({
+					method: 'post',
+					url: '/wali/rapor/savepdf',
+					data: formData,
+					headers: {
+					      'Content-Type': 'multipart/form-data'
+					    }
+					// processData: false,
+					// contentType: false
+				}).then( res => {
+					console.log(res)
+				})
+				})
+				
 			},
 			getRapor(){
 				// // console.log(this.dialog.siswa.nisn)
