@@ -179,9 +179,9 @@
 				WinPrint.document.close()
 				WinPrint.focus()
 				WinPrint.print()
-
-				WinPrint.close()
 				this.arsipkan()
+				WinPrint.close()
+				
 			},
 			onSiswaChanged(nisn){
 				 switch(this.tab){
