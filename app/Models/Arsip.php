@@ -9,7 +9,7 @@ class Arsip extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['kode_rapor', 'periode_id', 'semester', 'rombel_id', 'siswa_id', 'jenis'];
+    protected $fillable = ['kode_rapor', 'periode_id', 'semester', 'rombel_id', 'siswa_id', 'jenis', 'filename'];
 
     public function siswas()
     {

@@ -153,7 +153,7 @@ class RaporController extends Controller
             $siswa = explode('.', $pecah[3]);
             Arsip::updateOrCreate([
                 'kode_rapor' => $pecah[1].$pecah[2].$siswa[0], 
-                
+                'filename' => $filename,
                 'jenis' => $pecah[0]
 
             ],
