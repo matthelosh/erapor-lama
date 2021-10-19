@@ -22,6 +22,12 @@
 						<td>{{ (siswa.jk == 'l') ? 'Laki-laki' : 'Perempuan' }}</td>
 					</tr>
 					<tr>
+						<td>Tempat, Tanggal Lahir:</td>
+						<td>:</td>
+						<td>{{ siswa.tempat_lahir }}, {{ siswa.tanggal_lahir }}</td>
+					</tr>
+					
+					<tr>
 						<td>Agama</td>
 						<td>:</td>
 						<td>{{ siswa.agama }}</td>

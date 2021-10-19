@@ -34,18 +34,23 @@
 														active-class="deep-purple--text text--accent-4"
 													>
 														<template v-slot:default="{ active }">
-															<v-list-item-content dense>
-																<v-list-item-title v-text="item.label"></v-list-item-title>
-															</v-list-item-content>
 															<v-list-item-action>
 																<v-checkbox
 																	:input-value="active"
 																	color="deep-purple accent-4"
 																></v-checkbox>
 															</v-list-item-action>
+															<v-list-item-content dense>
+																<v-list-item-title v-text="item.label"></v-list-item-title>
+															</v-list-item-content>
+															
 															<v-list-item-action>
-																<v-btn text color="info" @click="kd(item)">KD</v-btn>
+																<v-btn text color="info" @click="editKKM(item)">KKM {{item.pivot.kkm}}</v-btn>
 															</v-list-item-action>
+															<v-list-item-action>
+																<v-btn text color="info" @click="kd(item)">LIHAT KD</v-btn>
+															</v-list-item-action>
+															
 														</template>
 													</v-list-item>
 												</template>
@@ -221,6 +226,9 @@
 				}).catch( err => {
                     this.snackbar = { show: true, color: 'error', text: err.response.data.msg }
                 })
+			},
+			editKKM(item){
+				alert(item.pivot.kkm)
 			},
 			edit(item) {
 				this.formKd = { show: true, kd: item}
