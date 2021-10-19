@@ -164,7 +164,7 @@
         <modal-siswa v-if="dialogSiswa.show" :modal="dialogSiswa" @hide="closeDialogSiswa" :siswa="siswa"></modal-siswa>
         <modal-import-siswa v-if="importSiswa" :modal="importSiswa" @hide="importSiswa = false; getSiswas()"></modal-import-siswa>
         <confirm-dialog ref="confirm"></confirm-dialog>
-        <ortu-siswa v-if="dialogortu.show" :modal="dialogortu" @hide="dialogortu.show = false"></ortu-siswa>
+        <ortu-siswa v-if="dialogortu.show" :modal="dialogortu" @hide="closeOrtu"></ortu-siswa>
         <kartu-siswa v-if="dialogKartu.show" :dialog="dialogKartu" @hide="dialogKartu.show = false"></kartu-siswa>
         <v-snackbar v-model="snackbar.show" :color="snackbar.color" top right multi-line>
             {{snackbar.text}}
@@ -223,11 +223,17 @@
         }),
         methods: {
             closeImporOrtu() {
+                // alert('ji')
                 this.dialogImporOrtu = {
                     show: false,
                     e: null
                 }
                 this.$refs.fileortu.value = null
+                
+            },
+            closeOrtu(){
+                this.dialogortu = { show: false }
+                this.getSiswas()
             },
             imporOrtu() {
                 this.dialogImporOrtu.loading = true

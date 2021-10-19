@@ -120,7 +120,6 @@ export default {
 	}),
 	methods: {
 		simpan() {
-			alert('hi')
 			axios({
 				method: 'post',
 				url: '/admin/ortu/simpan',
