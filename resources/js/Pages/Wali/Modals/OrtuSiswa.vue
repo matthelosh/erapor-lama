@@ -107,19 +107,20 @@ export default {
 			alamat_wali: ''
 		},
 		ortu_field: {
-			nik_ayah: '',
+			nik_ayah: '-',
 			nama_ayah: '',
 			job_ayah: '',
 			nama_ibu: '',
 			job_ibu: '',
-			nama_wali: '',
-			job_wali: '',
-			alamat_wali: ''
+			nama_wali: '-',
+			job_wali: '-',
+			alamat_wali: '-'
 		}
 		
 	}),
 	methods: {
 		simpan() {
+			alert('hi')
 			axios({
 				method: 'post',
 				url: '/admin/ortu/simpan',
