@@ -535,19 +535,16 @@ trait RaporTrait
     public function huruf($nilai, $kkm)
     {
         $kkm = ($kkm != 0) ? $kkm : 70;
-        switch ($nilai) {
-            case ($nilai > 0 && $nilai < $kkm):
-                return "D ".$kkm;
-                break;
-            case ($nilai == $kkm && $nilai < ($nilai + 5)):
-                return "C ".$kkm;
-                break;
-            case ($nilai > $kkm && $nilai < 90):
-                return "B ".$kkm;
-                break;
-            case ($nilai > $kkm && $nilai >= 90):
-                return "A ".$kkm;
-                break;
+        if (is_null($nilai) || ($nilai >=0 && $nilai < $kkm)){
+            return "D";
+        } else if ($nilai >= $kkm && $nilai <= 79) {
+            return "C";
+        } else if ($nilai >= 80 && $nilai <= 89) {
+            return "B";
+        } else if ($nilai >= 90 && $nilai <= 100) {
+            return "A";
+        } else {
+            return "X";
         }
     }
 }
