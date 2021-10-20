@@ -77,3 +77,15 @@ Route::group(['prefix' => 'datarapor'], function() {
     Route::post('/absensi/create', [DataRaporController::class, 'absensiCreate'])->name('absensi.create');
     
 });
+
+Route::group(['prefix' => 'jadwal'], function() {
+    Route::get('/', [PageController::class, 'page'])->name('wali.jadwal');
+    Route::post('/', [JadwalController::class, 'index'])->name('jadwal.index');
+});
+
+// Pekan Efektif
+Route::group(['prefix' => 'pe'], function() {
+   Route::get('/', [PageController::class, 'page'])->name('wali.pekan');
+   Route::post('/', [PekanController::class, 'index'])->name('pe.index');
+   Route::post('/store', [PekanController::class, 'store'])->name('pe.store');
+});

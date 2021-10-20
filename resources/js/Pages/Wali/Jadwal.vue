@@ -49,7 +49,7 @@
 			getJadwals() {
 				axios({
 					method: 'post',
-					url: '/dashboard/jadwal',
+					url: '/wali/jadwal',
 					data: {
 						periode: this.$page.props.periode,
 						guru: this.$page.props.user.nip,
