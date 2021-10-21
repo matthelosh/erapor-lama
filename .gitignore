@@ -5,3 +5,4 @@
 .env
 .DS_Store
 .editorconfig
+/public/js/app.js
