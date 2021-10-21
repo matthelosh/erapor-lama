@@ -49,7 +49,7 @@
                                     <v-col cols="12">
                                         <v-data-table :items="rombels" :headers="headers" :search="search" dense class="elevation-5">
                                             <template v-slot:item.jmlSiswa="{item}">
-                                                {{ lk(item) }}, {{pr(item)}}, {{ item.siswas.length }}
+                                                L={{ lk(item) }}, P={{pr(item)}}, JML={{ item.siswas.length }}
                                             </template>
                                             <template v-slot:item.options="{item}"> 
                                                 <span>

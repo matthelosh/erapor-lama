@@ -113,7 +113,7 @@
             },
             menu() {
                 let items = this.menus
-                var role = this.$page.props.user.role
+                var role = this.$page.props.role
                 items.forEach(item => {
                     // if (item.role.includes(role)) {
                     //     console.log('ok')
@@ -161,7 +161,7 @@
             },
             showMenus() {
                 let items = this.menus
-                var role = this.$page.props.user.role
+                var role = this.$page.props.role
                 items.forEach(item => {
                     return item
                     console.log(item)

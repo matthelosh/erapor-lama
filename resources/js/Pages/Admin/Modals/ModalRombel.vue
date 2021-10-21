@@ -12,7 +12,7 @@
                                 <v-select v-model="rombel.periode_id" :items="periodes" item-key="value" item-text="text" label="Periode" dense hide-details outlined></v-select>
                             </v-col>
                             <v-col cols="12" sm="3">
-                                <v-select v-model="rombel.kelas_id" :items="kelas" item-key="value" item-text="text" label="Kelas" dense hide-details outlined @change="onChange"></v-select>
+                                <v-select v-model="rombel.kelas_id" :items="kelas" item-key="value" item-text="text" label="Kelas" dense hide-details outlined ></v-select>
                             </v-col>
                             <v-col cols="12" sm="3">
                                 <v-select v-model="rombel.abjad" :items="[{text:'0', value:''},{text: 'A', value: 'a'},{text: 'B', value: 'b'}]" item-key="value" item-text="text" label="Pararel" dense hide-details outlined></v-select>
@@ -57,7 +57,7 @@
                 e.preventDefault()
                 let data = Object.assign({}, this.rombel)
                 if (this.dialog.mode == 'edit' ) data._method = 'put'
-                let url = (this.dialog.mode == 'create') ? '/admin/rombel/store' : '/dashboard/rombel/'+this.rombel.id
+                let url = (this.dialog.mode == 'create') ? '/admin/rombel/store' : '/admin/rombel/'+this.rombel.id
                 data.kode_rombel = this.rombel.periode_id+'-'+this.rombel.kelas_id+this.rombel.abjad
                 console.log(data)
                 axios({

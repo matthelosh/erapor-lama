@@ -12,20 +12,23 @@
                             <v-container>
                                 <v-row>
                                     <v-col cols="12">
-                                        <v-select v-model="periode" :items="periodes" rounded item-key="value" item-text="text" outlined label="Periode" dense hide-details @change="initialize"></v-select>
+                                        <h3 class="text-center">Selamat Datang Ananda <br>{{ $page.props.user.nama }}</h3>
                                     </v-col>
-                                </v-row>
-                                <v-row v-if="!$page.props.user.role">
-                                    <v-col  cols="6" v-for=" (item,index) in siswasItem" class="d-flex justify-center align-center" :key="index">
-                                        <v-btn class="text-center" rounded :color="item.color" @click="show(item.modal)">
-                                            <v-icon>{{ item.icon }}</v-icon>
-                                            <h4 class="text-center">{{ item.label }}</h4>
-                                        </v-btn>
+                                    <v-col cols="12">
+                                        <v-btn block color="info" inertia-link="/profil"><v-icon>mdi-card-account-details-outline</v-icon> Profil</v-btn>
                                     </v-col>
+                                    <v-col cols="12">
+                                        <v-btn block color="primary" href="/fisik"><v-icon>mdi-human</v-icon> Fisik</v-btn>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-btn block color="success" href="/ortu"><v-icon>mdi-human-male-female</v-icon> Ortu</v-btn>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-btn block color="warning" href="/akademik"><v-icon>mdi-school</v-icon> Akademik</v-btn>
+                                    </v-col>
+                                    
                                 </v-row>
-                                <v-row v-else>
-                                    <h3>Selamat Datang {{ ($page.props.user.jk == 'l') ? 'Bapak' : 'Ibu' }} {{ $page.props.user.name }}</h3>
-                                </v-row>
+                                
                             </v-container>
                         </v-card-text>
                     </v-card>

@@ -92,6 +92,7 @@ class HandleInertiaRequests extends Middleware
 
     public function menus($koderole)
     {
+        // dd($koderole);
         try {
             if($koderole != null) {
                 $role = Role::where('kode_role', $koderole)->first();
