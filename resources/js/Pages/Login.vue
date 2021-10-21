@@ -51,7 +51,7 @@
                                     />
                                     <v-text-field 
                                         solo
-                                        label="Sandi / Th-Bln-Tgl (lahir siswa)"
+                                        label="Sandi/ThBlnTgl(20100721)"
                                         :type="password"
                                         prepend-inner-icon="mdi-key"
                                         v-model="auth.password"
