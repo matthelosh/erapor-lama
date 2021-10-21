@@ -9,7 +9,7 @@
         <v-list three-line>
             <v-list-item>
                 <v-list-item-avatar>
-                    <img :src="'/storage/img/users/'+$page.props.user.nip+'.jpg'"
+                    <img :src="fotoAvatar"
                                     alt="User"
                                     @error="setDefaultAvatar">
                 </v-list-item-avatar>
@@ -134,7 +134,7 @@
             },
             rute(url) {
                 const roles = ['admin','wali','siswa']
-                var rute = (roles.includes(this.$page.props.user.role)) ? '/'+this.$page.props.user.role+url : '/mapel'+url
+                var rute = (roles.includes(this.$page.props.role)) ? '/'+this.$page.props.role+url : '/mapel'+url
                 return rute
             },
             checkSubmenu(item) {
@@ -151,6 +151,14 @@
                 },
 
             }, 
+            fotoAvatar() {
+                if (this.$page.props.role == 'siswa') {
+                    return '/storage/img/siswas/'+this.$page.props.user.nisn+'.jpg'
+                } else {
+                    return '/storage/img/users/'+this.$page.props.user.nip+'.jpg'
+                }
+                
+            },
             isMini: {
                 get() {
                     return this.mini
@@ -164,7 +172,7 @@
                 var role = this.$page.props.role
                 items.forEach(item => {
                     return item
-                    console.log(item)
+                    // console.log(item)
                 })
             },
             path() {

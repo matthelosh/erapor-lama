@@ -14,6 +14,15 @@ Route::group(['prefix' => 'periode'], function() {
     Route::post('/', [PeriodeController::class, 'index'])->name('periode.index');
 });
 
+// Profil
+Route::group(['prefix' => 'profil'], function() {
+    Route::get('/', [PageController::class, 'page'])->name('siswa.profil');
+    Route::post('/update', [SiswaController::class, 'update_foto'])->name('siswa.update-foto');
+});
+// Akademik
+Route::group(['prefix' => 'akademik'], function() {
+    Route::get('/', [PageController::class, 'page'])->name('siswa.akademik');
+});
 // Rapor
 Route::group(['prefix' => 'rapor'], function() {
     Route::get('/', [PageController::class, 'page'])->name('wali.rapor'); 

@@ -54,7 +54,7 @@
 			simpan() {
 				axios({
 					method: 'post',
-					url: '/dashboard/ortu/impor',
+					url: '/admin/ortu/impor',
 					data: { ortus: this.ortus }
 				}).then( res => {
 					this.$emit('hide')

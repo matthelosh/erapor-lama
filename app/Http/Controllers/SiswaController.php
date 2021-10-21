@@ -203,4 +203,16 @@ class SiswaController extends Controller
         }
         
     }
+
+    public function update_foto(Request $request)
+    {
+        try {
+            $siswa = json_decode($request->siswa);
+            $foto = $request->foto;
+            Storage::putFileAs('public/img/siswas/', $foto, $siswa->nisn.'.jpg');
+            return response()->json(['success' => true, 'msg' => 'Foto Disimpan']);
+        } catch (\Exception $e) {
+            return json(['success' => false, 'msg' => $e->getMessage()], 500);
+        }
+    }
 }

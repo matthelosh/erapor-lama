@@ -175,7 +175,7 @@ export default {
             var formData = new FormData()
             formData.append("foto", foto.files[0])
             formData.append('siswa', data)
-            console.log(formData)
+            // console.log(formData)
             axios({
                 method: 'post',
                 url: '/admin/siswa/store',

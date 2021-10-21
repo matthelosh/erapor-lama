@@ -214,7 +214,7 @@ export default {
                 this.rawrombels = rombels
                 // this.grafik(rombels)
                 let c = document.querySelector(`#chart2`)
-                console.log(c.innerHTML)
+                // console.log(c.innerHTML)
             }).catch( err => {
                 console.log( err )
             })

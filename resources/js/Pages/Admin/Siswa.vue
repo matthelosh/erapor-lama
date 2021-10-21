@@ -165,7 +165,7 @@
         <modal-import-siswa v-if="importSiswa" :modal="importSiswa" @hide="importSiswa = false; getSiswas()"></modal-import-siswa>
         <confirm-dialog ref="confirm"></confirm-dialog>
         <ortu-siswa v-if="dialogortu.show" :modal="dialogortu" @hide="dialogortu.show = false"></ortu-siswa>
-        <kartu-siswa v-if="dialogKartu.show" :dialog="dialogKartu" @hide="dialogKartu.show = false"></kartu-siswa>
+        <!-- <kartu-siswa v-if="dialogKartu.show" :dialog="dialogKartu" @hide="dialogKartu.show = false"></kartu-siswa> -->
         <v-snackbar v-model="snackbar.show" :color="snackbar.color" top right multi-line>
             {{snackbar.text}}
             <template v-slot:action="{ attrs }">
@@ -185,19 +185,19 @@
 
 <script>
     import Layout from '../../Layout/Dashboard';
-    import ModalSiswa from '../../Components/Modals/ModalSiswa';
+    import ModalSiswa from './Modals/ModalSiswa';
     import ModalImportSiswa from './Modals/ModalImportSiswa';
     import ApexCharts from 'apexcharts'
     import Cetak from '../../Plugins/print'
     import Download from '../../Plugins/Download'
     import ConfirmDialog from '../../Components/Modals/ConfirmDialog'
-    import OrtuSiswa from '../../Components/Modals/OrtuSiswa'
-    import KartuSiswa from '../../Components/Modals/KartuSiswa'
-    import ImporOrtu from '../../Components/Modals/ImporOrtu'
+    import OrtuSiswa from './Modals/OrtuSiswa'
+    // import KartuSiswa from './Modals/KartuSiswa'
+    import ImporOrtu from './Modals/ImporOrtu'
 // import CetakTable from '../Plugins/print';
     export default {
         name: 'Siswa',
-        components: { Layout, ModalSiswa, ModalImportSiswa, ConfirmDialog, OrtuSiswa, KartuSiswa, ImporOrtu },
+        components: { Layout, ModalSiswa, ModalImportSiswa, ConfirmDialog, OrtuSiswa, ImporOrtu },
         props: {page: String, page_title: String},
         data: () => ({
             dialogImporOrtu: {
