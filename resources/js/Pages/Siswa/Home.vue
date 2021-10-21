@@ -15,7 +15,7 @@
                                         <h3 class="text-center">Selamat Datang Ananda <br>{{ $page.props.user.nama }}</h3>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-btn block color="info" inertia-link="/profil"><v-icon>mdi-card-account-details-outline</v-icon> Profil</v-btn>
+                                        <v-btn block color="info" href="/siswa/profil"><v-icon>mdi-card-account-details-outline</v-icon> Profil</v-btn>
                                     </v-col>
                                     <v-col cols="12">
                                         <v-btn block color="primary" href="/fisik"><v-icon>mdi-human</v-icon> Fisik</v-btn>
