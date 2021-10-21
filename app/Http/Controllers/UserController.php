@@ -71,13 +71,13 @@ class UserController extends Controller
     				],
     				[
     					'username' => $siswa['nisn'],
-    					'password' => Hash::make((string)$siswa['tanggal_lahir']),
+    					'password' => Hash::make((string)str_replace("-","",$siswa['tanggal_lahir'])),
     					'email' => $siswa['nisn'].'@sdn1-bedalisodo.sch.id',
     				]
 
     			);
     		}
-    		return response()->json(['success' => true, 'msg' => 'Akun siswa diaktifkan dengan username = NISN, password= Tanggal Lahir (Tahun-Bulan-Tanggal; contoh: 2000-02-19).'], 200);
+    		return response()->json(['success' => true, 'msg' => 'Akun siswa diaktifkan dengan username = NISN, password= Tanggal Lahir (TahunBulanTanggal; contoh: 20000219).'], 200);
     	} catch (\Exception $e) {
     		return response()->json(['success' => false, 'msg' => $e->getMessage()], 500);
     	}
