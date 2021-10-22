@@ -8,7 +8,7 @@
         >
             <v-card>
                 <v-toolbar dense>
-                    Daftar Nilai {{dialog.jenis.toUpperCase()}} {{dialog.mapel.text}}
+                    Daftar Nilai {{dialog.jenis.toUpperCase()}} {{ dialog.mapel.text }}
                     <v-spacer></v-spacer>
                     <v-btn rounded color="primary" @click.stop="showImportDialog">
                         <v-icon>mdi-microsoft-excel</v-icon>
@@ -169,7 +169,8 @@
                     show: true,
                     headers: headers.concat(kds),
                     kds: this.kds,
-                    mapel_id: this.dialog.mapel.value,
+                    mapel_id: this.$page.props.mapel.kode_mapel,
+                    rombel_id: this.dialog.mapel.value,
                     aspek: this.dialog.aspek,
                     jenis:this.dialog.jenis,
                     siswas: this.siswas
@@ -188,7 +189,7 @@
                     ppn: this.ppn,
                     nilais: this.nilais
                 }
-                axios.post('/dashboard/nilai/save', {
+                axios.post('/mapel/nilai/save', {
                     data
                 }).then( res => {
                     this.dialogEdit = false
@@ -207,7 +208,7 @@
                 // alert(ppn)
                 var k = kd.split('[')
                 if ( await this.$refs.confirm.open("HAPUS DATA", "Yakin menghapus data nilai "+k[0]+"?")) {
-                    axios.delete('/dashboard/nilai/'+k[0],{
+                    axios.delete('/mapel/nilai/'+k[0],{
                         data: {
                             _method: 'delete',
                             periode: this.$page.props.periode,
@@ -231,7 +232,7 @@
             },
            getNilais() {
                 if(this.$page.props.user.role == 'wali') {
-                   axios.post('/dashboard/nilai?rombel='+this.$page.props.rombel.kode_rombel+'&mapel='+ this.dialog.mapel.value+'&jenis='+this.dialog.jenis+'&ppn='+this.dialog.ppn+'&aspek='+this.dialog.aspek)
+                   axios.post('/mapel/nilai?rombel='+this.$page.props.rombel.kode_rombel+'&mapel='+ this.dialog.mapel.value+'&jenis='+this.dialog.jenis+'&ppn='+this.dialog.ppn+'&aspek='+this.dialog.aspek)
                         .then( res => {
                            
                             var nilais = res.data.nilais
@@ -255,7 +256,7 @@
                 } else {
                     axios({
                         method: 'post',
-                        url: '/dashboard/nilai?rombel='+this.dialog.mapel.value+'&jenis='+this.dialog.jenis+'&ppn='+this.dialog.ppn+'&aspek='+this.dialog.aspek+'&mapel='+this.$page.props.mapel.kode_mapel
+                        url: '/mapel/nilai?rombel='+this.dialog.mapel.value+'&jenis='+this.dialog.jenis+'&ppn='+this.dialog.ppn+'&aspek='+this.dialog.aspek+'&mapel='+this.$page.props.mapel.kode_mapel
                     }).then( res => {
                         var nilais = res.data.nilais
 

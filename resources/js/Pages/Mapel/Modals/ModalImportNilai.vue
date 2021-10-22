@@ -155,12 +155,12 @@
                 // console.log(datas)
 				axios({
 					method: 'post',
-					url: '/dashboard/nilai/import', // Nanti Dinamis sesuai yang diimpor
+					url: '/mapel/nilai/import', // Nanti Dinamis sesuai yang diimpor
 					data: {
                         siswas : datas,
                         periode_id: this.$page.props.periode,
                         semester: this.$page.props.periode_aktif.semester,
-                        rombel_id: this.$page.props.rombel.kode_rombel,
+                        rombel_id: this.dialog.rombel_id,
                         mapel_id: this.dialog.mapel_id,
                         jenis: this.dialog.jenis,
                         aspek: this.dialog.aspek,

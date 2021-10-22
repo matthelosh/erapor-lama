@@ -26,7 +26,7 @@ Route::group(['prefix' => 'siswa'], function() {
 });
 
 Route::group(['prefix' => 'penilaian', 'middleware' => ['guru']], function(){
-    Route::get('/', [PageController::class, 'page'])->name('wali.penilaian');
+    Route::get('/', [PageController::class, 'page'])->name('mapel.penilaian');
     
 });
 

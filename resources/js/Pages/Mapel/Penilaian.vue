@@ -187,7 +187,7 @@
 </template>
 <script>
 import Layout from '../../Layout/Dashboard'
-import ModalNilai from '../../Components/Modals/ModalNilai'
+import ModalNilai from './Modals/ModalNilai'
 // import ModalNilai from '../Components/Modals/ModalNilai.vue';
 export default {
     name: 'Penilaian',
@@ -241,7 +241,7 @@ export default {
         getNilais() {
             this.overlay = true
             if(this.$page.props.mapel == null) {
-                axios.post('/dashboard/nilai?role=wali')
+                axios.post('/wali/nilai?role=wali')
                 .then( res => {
                     var datas = res.data.ikhtisar
                     var items = []
@@ -267,7 +267,7 @@ export default {
             } else {
                 axios({
                     method: 'post',
-                    url: '/dashboard/nilai?role='+this.$page.props.user.role
+                    url: '/mapel/nilai?role='+this.$page.props.user.role
                 }).then( res => {
                     var datas = res.data.ikhtisar
                     var items = []
@@ -293,7 +293,7 @@ export default {
             }
         },
         getRombels(){
-            axios.post('/dashboard/rombel?periode='+this.$page.props.periode_aktif.kode_periode)
+            axios.post('/mapel/rombel?periode='+this.$page.props.periode_aktif.kode_periode)
                 .then( res => {
                     var rombels = []
                     res.data.rombels.forEach(rombel => {
@@ -305,7 +305,7 @@ export default {
                 })
         },
         getMapels(){
-            axios.post('/dashboard/mapel?tingkat='+this.$page.props.rombel.kelas_id)
+            axios.post('/mapel/mapel?tingkat='+this.$page.props.rombel.kelas_id)
                 .then(res => {
                     var mapels = []
                     res.data.mapels.forEach(mapel => {
