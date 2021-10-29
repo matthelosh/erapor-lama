@@ -123,32 +123,24 @@
             </v-card>
 
         </v-dialog>
-        <v-dialog v-model="dialogEdit" max-width="600">
+        <v-dialog v-model="dialogEdit" max-width="600" scrollable>
             <v-card >
-                <v-toolbar dense>
-                    <v-toolbar-title>Entri Nilai</v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-btn fab small dense  @click.stop="dialogEdit = false" color="error"><v-icon>mdi-close</v-icon></v-btn>
-                </v-toolbar>
-                <v-card-text>
-                    <!-- <v-data-table
-                        dense
-                        :items.sync="nilais"
-                        :headers="nilaiHeaders"
-                        hide-default-footer
-                        disable-pagination
-                    >
-                        <template v-slot:body="{items}">
-                            <tbody>
-                                <tr v-for="(item,i) in items" :key="i">
-                                    <td>{{ item.nisn }}</td>
-                                    <td>{{ item.nama }}</td>
-                                    <td><v-text-field v-model="nilais[i].nilai" dense  hide-details /></td>
-                                </tr>
-                            </tbody>
-                        </template>
+                
+                <v-card-title class="pa-0">
+                    <v-toolbar dense fixed>
+                        <v-toolbar-title>Entri Nilai</v-toolbar-title>
+                        <v-spacer></v-spacer>
+                        <v-btn fab small dense  @click.stop="dialogEdit = false" color="error"><v-icon>mdi-close</v-icon></v-btn>
 
-                    </v-data-table> -->
+                    </v-toolbar>
+                    <v-progress-linear
+                    indeterminate
+                    v-if="progress"
+                    color="blue"
+                    class="mb-0"
+                ></v-progress-linear>
+                </v-card-title>
+                <v-card-text>
                     <v-list dense>
                         <v-list-item>
                             <v-list-item-content>
@@ -228,7 +220,8 @@
             },
             snackbar: {show: false},
             kds: [],
-            nilaimobiles: []
+            nilaimobiles: [],
+            progress : false
         }),
         methods: {
             setnilaim(e){
@@ -280,6 +273,7 @@
             },
             
             save() {
+                this.progress = true
                 var data = {
                     periode_id: this.$page.props.periode,
                     semester: this.$page.props.periode_aktif.semester,
