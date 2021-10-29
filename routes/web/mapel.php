@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 Route::get('/', [PageController::class, 'page'])->name('mapel.home');
@@ -32,12 +34,32 @@ Route::group(['prefix' => 'penilaian', 'middleware' => ['guru']], function(){
 
  // Mapel
  Route::group(['prefix' => 'mapel'], function() {
-    Route::get('/', [PageController::class, 'mapel'])->name('wali.mapel'); 
+    Route::get('/', [PageController::class, 'mapel'])->name('mapel.mapel'); 
     Route::post('/', [MapelController::class, 'index'])->name('mapel.index'); 
     Route::post('/store', [MapelController::class, 'store'])->name('mapel.store')->middleware('admin'); 
     Route::post('/tanpakelas', [MapelController::class, 'noGrade'])->name('mapel.nograde');
 });
 
+// Administrasi
+ // Pembelajaran
+ Route::group(['prefix' => 'pembelajaran'], function() {
+   Route::get('/', [PageController::class, 'page'])->name('mapel.pembelajaran');
+   Route::group(['prefix' => 'ahe'], function() {
+      Route::get('/', [PageController::class, 'page'])->name('mapel.components.ahe');
+   });
+ });
+
+ Route::post('/perangkat/ahe', function(Request $request) {
+   try {
+      $nama = $request->nama;
+      $file = $request->file;
+      $user = $request->user();
+      Storage::putFileAs('public/files/perangkat/'.$user->userid.'/', $file, $nama.'.pdf');
+      return response()->json(['success' => true, 'msg' => 'File terupload']);
+   } catch (\Exception $e) {
+      dd($e);
+   }
+ });
 
 // Nilai
 Route::group(['prefix' => 'nilai'], function() {

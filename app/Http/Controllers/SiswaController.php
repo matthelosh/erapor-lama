@@ -135,7 +135,7 @@ class SiswaController extends Controller
                     'hp'            => $siswa->hp?? null,
                     'email'         => $siswa->email?? null,
                     'sekolah_asal'  => $siswa->sekolah_asal,
-                    'ortu_id'       => null
+                    'ortu_id'       => $siswa->ortu_id ?? null
                 ]);
                 if ( $create ) {
                     $withFoto = '';

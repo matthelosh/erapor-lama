@@ -46,7 +46,7 @@ class OrtuController extends Controller
                 Siswa::where('nisn', $data->nisn)->update(['ortu_id' => $ortu->id]);
 
             }
-            return response()->json(['success' => true, 'msg' => 'Data Prtu Disimpan'], 200);
+            return response()->json(['success' => true, 'msg' => 'Data Orang Tua Disimpan'], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'msg' => $e->getMessage()], 500);
         }
@@ -64,19 +64,19 @@ class OrtuController extends Controller
             $nisn = $request->siswa;
             $or = (object)$request->ortu;
             $ortu = new Ortu();
-            $ortu->nik_ayah = $or->nik_ayah;
+            $ortu->nik_ayah = $or->nik_ayah ?? '-';
             $ortu->nama_ayah = $or->nama_ayah;
             $ortu->job_ayah = $or->job_ayah;
             $ortu->nama_ibu = $or->nama_ibu;
             $ortu->job_ibu = $or->job_ibu;
-            $ortu->nama_wali = $or->nama_wali;
-            $ortu->job_wali = $or->job_wali;
-            $ortu->alamat_wali = $or->alamat_wali;
+            $ortu->nama_wali = $or->nama_wali ?? '-';
+            $ortu->job_wali = $or->job_wali ?? '-';
+            $ortu->alamat_wali = $or->alamat_wali ?? '-';
             $ortu->save();
 
             Siswa::where('nisn', $nisn)->update(['ortu_id' => $ortu->id]);
 
-            return response()->json(['success' => true, 'msg' => 'Data Prtu Disimpan', 'ortu_id' => $ortu->id], 200);
+            return response()->json(['success' => true, 'msg' => 'Data Orang Tua Disimpan', 'ortu_id' => $ortu->id], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'msg' => $e->getMessage()], 500);
         }

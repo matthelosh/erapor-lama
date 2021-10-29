@@ -86,6 +86,9 @@
 	            </v-card-text>
 			</v-card>
 		</v-dialog>
+		<v-snackbar v-model="snackbar.show" :color="snackbar.color" right>
+			{{ snackbar.teks }}
+		</v-snackbar>
 	</div>
 </template>
 
@@ -96,6 +99,11 @@ export default {
 		modal: Object
 	},
 	data: () => ({
+		snackbar: {
+			show:false,
+			color: 'success',
+			teks: 'Sukses'
+		},
 		ortu: {
 			nik_ayah: '',
 			nama_ayah: '',
@@ -122,21 +130,24 @@ export default {
 		simpan() {
 			axios({
 				method: 'post',
-				url: '/admin/ortu/simpan',
+				url: '/wali/ortu/simpan',
 				data: {
 					siswa: this.modal.siswa.nisn,
 					ortu: this.ortu
 				}
 			}).then( res => {
+				this.snackbar = { show: true, color: 'success', teks: res.data.msg}
 				this.getOrtu(res.data.ortu_id)
+				this.$emit('hide')
 			}).catch( err => {
+				this.snackbar = { show: true, color: 'error', teks: err.response.data.msg}
 				console.log( err .response )
 			})
 		},
 		getOrtu(ortu_id = null) {
 			axios({
 				method: 'post',
-				url: '/admin/ortu/'+(ortu_id ? ortu_id : this.modal.siswa.ortu_id)
+				url: '/wali/ortu/'+(ortu_id ? ortu_id : this.modal.siswa.ortu_id)
 			}).then( res => {
 				this.ortu = res.data.ortu ? res.data.ortu : Object.assign(this.ortu, this.ortu_field)
 			}).catch( err => {

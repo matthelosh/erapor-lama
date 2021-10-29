@@ -21,6 +21,16 @@ Route::group(['prefix' => 'siswa'], function() {
     Route::delete('/{id}', [SiswaController::class, 'destroy'])->name('wali.siswa.delete');
 });
 
+// Ortu
+
+Route::group(['prefix' => 'ortu'], function() {
+   Route::post('/simpan', [OrtuController::class, 'store'])->name('admin.ortu.store');
+   Route::post('/impor', [OrtuController::class, 'impor'])->name('admin.ortu.impor');
+   Route::post('/{id}', [OrtuController::class, 'show'])->name('admin.ortu.show');
+    // response('hi');
+});
+
+
 Route::group(['prefix' => 'penilaian', 'middleware' => ['guru']], function(){
     Route::get('/', [PageController::class, 'page'])->name('wali.penilaian');
     

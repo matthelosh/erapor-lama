@@ -178,16 +178,17 @@ export default {
             console.log(formData)
             axios({
                 method: 'post',
-                url: '/admin/siswa/store',
+                url: '/wali/siswa/store',
                 data: formData,
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
             }).then(response => {
                 this.snackbar = { show: true, color: 'success', text: response.data.msg }
-                this.newsiswa = {}
-                this.fotoUrl = '/img/siswi-avatar.png'
-                this.fotoname = 'Klik gambar untuk ambil file foto'
+                this.$emit('hide')
+                // this.newsiswa = {}
+                // this.fotoUrl = '/img/siswi-avatar.png'
+                // this.fotoname = 'Klik gambar untuk ambil file foto'
             }).catch(err => {
                 this.snackbar = { show: true, color: 'error', text: err.response.data.msg }
             })
