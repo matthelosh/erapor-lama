@@ -499,17 +499,20 @@ trait RaporTrait
     {
         $kkm = ($kkm != 0) ? $kkm : 75;
         switch ($nilai) {
-            case ($nilai < $kkm):
+            case ($this->huruf($nilai, $kkm) == "D"):
                 return "Perlu Bimbingan Dalam ";
                 break;
-            case ($nilai > $kkm):
-                return "Cukup Baik Dalam ";
+            case ($this->huruf($nilai, $kkm) == "C"):
+                return "Cukup Dalam ";
                 break;
-            case ($nilai > ($kkm+5)):
+            case ($this->huruf($nilai, $kkm) == "B"):
                 return "Baik Dalam ";
                 break;
-            case ($nilai > ($kkm + 10)):
+            case ($this->huruf($nilai, $kkm) == "A"):
                 return "Sangat Baik Dalam ";
+                break;
+            default:
+                return "Tes";
                 break;
         }
     }
