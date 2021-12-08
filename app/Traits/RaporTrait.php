@@ -537,9 +537,9 @@ trait RaporTrait
         $kkm = ($kkm != 0) ? $kkm : 70;
         if (is_null($nilai) || ($nilai >=0 && $nilai < $kkm)){
             return "D";
-        } else if ($nilai >= $kkm && $nilai <= 79) {
+        } else if ($nilai >= $kkm && $nilai <= 79.99) {
             return "C";
-        } else if ($nilai >= 80 && $nilai <= 89) {
+        } else if ($nilai >= 80 && $nilai <= 89.99) {
             return "B";
         } else if ($nilai >= 90 && $nilai <= 100) {
             return "A";

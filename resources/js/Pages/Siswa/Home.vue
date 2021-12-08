@@ -18,13 +18,13 @@
                                         <v-btn block color="info" href="/siswa/profil"><v-icon>mdi-card-account-details-outline</v-icon> Profil</v-btn>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-btn block color="primary" href="/fisik"><v-icon>mdi-human</v-icon> Fisik</v-btn>
+                                        <v-btn block color="primary" href="/siswa/fisik"><v-icon>mdi-human</v-icon> Fisik</v-btn>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-btn block color="success" href="/ortu"><v-icon>mdi-human-male-female</v-icon> Ortu</v-btn>
+                                        <v-btn block color="success" href="/siswa/ortu"><v-icon>mdi-human-male-female</v-icon> Ortu</v-btn>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-btn block color="warning" href="/akademik"><v-icon>mdi-school</v-icon> Akademik</v-btn>
+                                        <v-btn block color="warning" href="/siswa/akademik"><v-icon>mdi-school</v-icon> Akademik</v-btn>
                                     </v-col>
                                     
                                 </v-row>
