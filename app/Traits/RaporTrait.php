@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 
 trait RaporTrait
 {
-	public function getPTS($request,$kelas, $siswa)
+	public function getPTS($request, $kelas, $siswa)
 	{
         // dd($siswa);
 		$pts = [];
@@ -146,6 +146,18 @@ trait RaporTrait
 
 	   public function getPAS($request, $kelas, $siswa)
     {
+        // dd($siswa->nisn);
+        // $nilais = Nilai::find(7857);
+
+        // $nilais = Nilai::where([
+        //     ['siswa_id','=',$siswa->nisn],
+        //         ['periode_id','=',$request->periode],
+        //         ['rombel_id','=', $request->rombel],
+        //         ['mapel_id','=', 'bid'],
+        //         ['jenis','!=', 'pts'],
+        //         ['aspek','=','k3']
+        // ])->get();
+        // dd($nilais);
         $pas = [];
         foreach ($kelas->mapels as $mapel)
         {
@@ -160,19 +172,35 @@ trait RaporTrait
         foreach ($pas['wajib'] as $mapel)
         {
             // K3
-            $nilai3 = Nilai::where([
-                ['siswa_id','=',$request->siswa_id],
-                ['periode_id','=',$request->periode],
-                ['rombel_id','=', $request->rombel],
-                ['mapel_id','=',$mapel->kode_mapel],
-                ['jenis','<>', 'pts'],
-                ['aspek','=','k3']
-            ])->groupBy('kd_id')->get(['kd_id', DB::raw('AVG(nilai) AS nilai')]);
-
+            // $nilai3 = Nilai::where([
+            //     ['siswa_id','=',$siswa->nisn],
+            //     ['periode_id','=',$request->periode],
+            //     ['rombel_id','=', $request->rombel],
+            //     ['mapel_id','=',$mapel->kode_mapel],
+            //     ['jenis','!=', 'pts'],
+            //     ['aspek','=','k3']
+            // ])->groupBy('kd_id')->get(['kd_id', DB::raw('AVG(nilai) AS nilai')]);
+            
+                $nilai3 = DB::table('nilais')
+                            ->where([
+                                    ['siswa_id','=',$siswa->nisn],
+                                    ['periode_id','=',$request->periode],
+                                    ['rombel_id','=', $request->rombel],
+                                    ['mapel_id','=',$mapel->kode_mapel],
+                                    ['jenis','<>', 'pts'],
+                                    ['aspek','=','k3']
+                            ])->select(DB::raw('nilai, kd_id'))
+                            ->groupBy('nilais.kd_id', 'nilai')
+                            ->get();
+            // dd($nilai3);
             $nilais3 = [];
+            $nr3=[];
             foreach($nilai3 as $nilai) {
                 $nilais3[$nilai->kd_id] = $nilai->nilai;
+                array_push($nr3, $nilai->nilai);
             }
+
+            // dd(array_sum($nr3)/count($nr3));
 
             $n3max=0;
             $k3max='';
@@ -204,6 +232,7 @@ trait RaporTrait
 
             $deskripsi3 = $this->kata($n3max, $mapel->pivot->kkm).' '.($kd3_max->teks ?? '').'. '.$this->kata($n3min, $mapel->pivot->kkm).' '.($kd3_min->teks?? 'Cek KD');
             $rerata = (count($nilais3) > 0 ) ? array_sum(array_values($nilais3))/count($nilais3) : 0;
+            // $rerata = $nilais3;
 
             $n3 = [
                 'nilai' => $rerata,
@@ -499,20 +528,17 @@ trait RaporTrait
     {
         $kkm = ($kkm != 0) ? $kkm : 75;
         switch ($nilai) {
-            case ($this->huruf($nilai, $kkm) == "D"):
+            case ($nilai < $kkm):
                 return "Perlu Bimbingan Dalam ";
                 break;
-            case ($this->huruf($nilai, $kkm) == "C"):
-                return "Cukup Dalam ";
+            case ($nilai > $kkm):
+                return "Cukup Baik Dalam ";
                 break;
-            case ($this->huruf($nilai, $kkm) == "B"):
+            case ($nilai > ($kkm+5)):
                 return "Baik Dalam ";
                 break;
-            case ($this->huruf($nilai, $kkm) == "A"):
+            case ($nilai > ($kkm + 10)):
                 return "Sangat Baik Dalam ";
-                break;
-            default:
-                return "Tes";
                 break;
         }
     }
@@ -538,16 +564,19 @@ trait RaporTrait
     public function huruf($nilai, $kkm)
     {
         $kkm = ($kkm != 0) ? $kkm : 70;
-        if (is_null($nilai) || ($nilai >=0 && $nilai < $kkm)){
-            return "D";
-        } else if ($nilai >= $kkm && $nilai <= 79.99) {
-            return "C";
-        } else if ($nilai >= 80 && $nilai <= 89.99) {
-            return "B";
-        } else if ($nilai >= 90 && $nilai <= 100) {
-            return "A";
-        } else {
-            return "X";
+        switch ($nilai) {
+            case ($nilai < $kkm):
+                return "D";
+                break;
+            case ($nilai == $kkm ):
+                return "C";
+                break;
+            case ($nilai > $kkm && $nilai < 90):
+                return "B";
+                break;
+            case ($nilai > $kkm && $nilai >= 90):
+                return "A";
+                break;
         }
     }
 }

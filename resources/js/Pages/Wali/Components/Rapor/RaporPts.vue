@@ -48,7 +48,7 @@
 						<tr>
 							<td colspan="5" style="padding-left:20px;"><b>Muatan Wajib</b></td>
 						</tr>
-						<tr v-for="(mapel,i) in rapor.pts.wajib">
+						<tr v-for="(mapel,i) in rapor.pts.wajib" :key="i">
 							<td class="text-center">{{ mapel.id }}</td>
 							<td class="pl-5">{{ mapel.label }}</td>
 							<td class="text-center">{{ Math.round(mapel.nilai.nilai,0) }}</td>
@@ -58,7 +58,7 @@
 						<tr>
 							<td colspan="5" style="padding-left:20px;"><b>Muatan Lokal</b></td>
 						</tr>
-						<tr v-for="(mapel,i) in rapor.pts.mulok">
+						<tr v-for="(mapel,i) in rapor.pts.mulok" :key="i">
 							<td class="text-center">{{ mapel.id }}</td>
 							<td class="pl-5">{{ mapel.label }}</td>
 							<td class="text-center">{{ Math.round(mapel.nilai.nilai,0) }}</td>

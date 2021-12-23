@@ -65,12 +65,13 @@
 							<tr v-for="(mapel,i ) in rapor.pas.wajib" :key="i">
 								<td class="text-center">{{ mapel.id }}</td>
 								<td class="px-5">{{ mapel.label }}</td>
-								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ Math.round(mapel.nilai.k3.nilai,0) }}</td>
+								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{mapel.nilai.k3.nilai }}</td>
+								<!-- <td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ Math.round(mapel.nilai.k3.nilai,0) }}</td> -->
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ mapel.nilai.k3.predikat }}</td>
 								<td class="p-5"><span v-show="mapel.nilai.k3.nilai > 0">Ananda {{ siswa.nama }} {{ mapel.nilai.k3.deskripsi }}</span></td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k4.nilai)">{{ Math.round(mapel.nilai.k4.nilai,0) }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k4.nilai)">{{ mapel.nilai.k4.predikat }}</td>
-								<td class="p-5"><span v-show="mapel.nilai.k4.nilai > 0"> >Ananda {{ siswa.nama }} {{ mapel.nilai.k4.deskripsi }}</span></td>
+								<td class="p-5"><span v-show="mapel.nilai.k4.nilai > 0">Ananda {{ siswa.nama }} {{ mapel.nilai.k4.deskripsi }}</span></td>
 								
 							</tr>
 							<tr>
@@ -100,7 +101,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="e in rapor.ekskul">
+						<tr v-for="(e,i) in rapor.ekskul" :key="i">
 							<td class="p-5 text-center" width="3%" style="width:3%!important">{{ e ? e.id : '' }}</td><td class="p-5">{{ e ? e.ekskuls.label : '' }}</td><td class="p-5">{{ e ? e.ket : '' }}</td>
 						</tr>
 					</tbody>
@@ -125,7 +126,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="f in rapor.fisik">
+						<tr v-for="(f,i) in rapor.fisik" :key="i">
 							<td class="text-center">{{ f.id }}</td><td class="p-5">{{ f.label }}</td><td class="text-center">{{ f.sem1 }}</td><td class="text-center">{{ f.sem2 }}</td>
 						</tr>
 					</tbody>
