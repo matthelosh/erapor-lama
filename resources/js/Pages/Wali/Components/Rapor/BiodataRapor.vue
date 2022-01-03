@@ -135,7 +135,7 @@
 						</td>
 						<td width="10%"></td>
 						<td width="33%" style="text-align: center;">
-							{{ $page.props.sekolah.kab }}, ............................ 20 ... <br>
+							{{ $page.props.sekolah.kab }}, {{ tanggal }} <br>
 							Kepala Sekolah
 							<br>
 							<br>
@@ -172,6 +172,11 @@
 						background-image: url("/storage/img/siswas/${nisn}.jpg");background-size: contain;background-position:center center;
 				`
 				return style
+			},
+			tanggal() {
+				const periode = this.$page.props.periode_aktif.tapel
+				const tapel = periode.split('/')
+				return '12 Juli '+ tapel[0]
 			}
 		}
 	}
