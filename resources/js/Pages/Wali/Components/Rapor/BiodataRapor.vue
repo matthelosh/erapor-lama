@@ -139,8 +139,7 @@
 							Kepala Sekolah
 							<br>
 							<br>
-							<img :src="'/img/ttd/'+$page.props.sekolah.ks.nip+'.png'" width="100px">
-							<br>
+							<img :src="'/img/ttd/'+$page.props.sekolah.ks.nip+'.png'" width="175px">
 							<br>
 							<b><u>{{ $page.props.sekolah.ks.name }}</u></b><br>
 							NIP. {{ $page.props.sekolah.ks.nip }}
