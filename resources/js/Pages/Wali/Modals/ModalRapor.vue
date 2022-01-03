@@ -169,6 +169,22 @@
 								Rapor ${this.selectedSiswa.nama}
 							</title>
 							${css}
+							<style>
+								@media print {
+									@page {
+										size: 8.5in 13in portrait;
+									}
+									html, body {
+										margin: 0;
+										padding: 0;
+									}
+
+									table td {
+										font-size: 1.25em;
+									}
+
+								}
+							</style>
 						</head>
 						<body>
 							${html}
