@@ -65,7 +65,7 @@
 							<tr v-for="(mapel,i ) in rapor.pas.wajib" :key="i">
 								<td class="text-center">{{ mapel.id }}</td>
 								<td class="px-5">{{ mapel.label }}</td>
-								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{mapel.nilai.k3.nilai }}</td>
+								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{Math.round(mapel.nilai.k3.nilai,0) }}</td>
 								<!-- <td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ Math.round(mapel.nilai.k3.nilai,0) }}</td> -->
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ mapel.nilai.k3.predikat }}</td>
 								<td class="p-5"><span v-show="mapel.nilai.k3.nilai > 0">Ananda {{ siswa.nama }} {{ mapel.nilai.k3.deskripsi }}</span></td>
