@@ -179,10 +179,6 @@
 										padding: 0;
 									}
 
-									table td {
-										font-size: 1em;
-									}
-
 								}
 							</style>
 						</head>
