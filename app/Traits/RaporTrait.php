@@ -189,8 +189,8 @@ trait RaporTrait
                                     ['mapel_id','=',$mapel->kode_mapel],
                                     ['jenis','<>', 'pts'],
                                     ['aspek','=','k3']
-                            ])->select(DB::raw('nilai, kd_id'))
-                            ->groupBy('nilais.kd_id', 'nilai')
+                            ])->select(DB::raw('AVG(nilai) as nilai, kd_id'))
+                            ->groupBy('nilais.kd_id')
                             ->get();
             // dd($nilai3);
             $nilais3 = [];
