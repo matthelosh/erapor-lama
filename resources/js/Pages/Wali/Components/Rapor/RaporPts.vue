@@ -176,7 +176,7 @@
 				}).then( res => {
 					this.saran.show = false
 				}).catch( err => {
-					console.log(err.response)
+					// console.log(err.response)
 				})
 			}
 		},

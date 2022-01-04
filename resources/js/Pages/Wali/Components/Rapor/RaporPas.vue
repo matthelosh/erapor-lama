@@ -62,7 +62,7 @@
 							<tr>
 								<td colspan="8" class="pl-5"><h3>Muatan Wajib</h3></td>
 							</tr>
-							<tr v-for="(mapel,i ) in rapor.pas.wajib" :key="i">
+							<tr v-for="(mapel,i ) in wajibs" :key="i">
 								<td class="text-center">{{ mapel.id }}</td>
 								<td class="px-5">{{ mapel.label }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{Math.round(mapel.nilai.k3.nilai,0) }}</td>
@@ -184,7 +184,7 @@
 				<h3>H. Absensi</h3>
 				<table border="1" width="40%">
 					<tr>
-						<td class="p-5">Tanpa Ketarangan</td><td class="p-5">: {{ rapor.absensi ? rapor.absensi.a : '-' }} hari</td>
+						<td class="p-5">Tanpa Keterangan</td><td class="p-5">: {{ rapor.absensi ? rapor.absensi.a : '-' }} hari</td>
 					</tr>
 					<tr>
 						<td class="p-5">Ijin</td><td class="p-5">: {{ rapor.absensi ? rapor.absensi.i : '-'}} hari</td>
@@ -291,6 +291,9 @@
 			tanggal() {
 				moment.locale('id')
 				return moment(this.rapor.tanggal_rapor).format('Do MMMM YYYY')
+			},
+			wajibs(){
+				return _.orderBy(this.rapor.pas.wajib, "id")
 			}
 
 		}

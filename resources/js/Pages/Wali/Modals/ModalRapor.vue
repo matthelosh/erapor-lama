@@ -278,6 +278,7 @@
 					// console.log( res.data )
 					this.progress = false
 					this.pts = res.data.rapor
+					
 				}).catch( err => {
 					console.log( err.response)
 				})
@@ -294,10 +295,15 @@
 					}
 				}).then( res => {
 					this.progress = false
-					// console.log( res.data )
-					this.pas = res.data.rapor
+					let pas = res.data.rapor
+					var data = res.data.rapor.pas.wajib
+					var wajib = _.sortBy(data, "id")
+					// pas.wajib = wajib
+					this.pas = pas
+					this.pas.wajib = wajib
+					console.log(wajib)
 				}).catch( err => {
-					console.log( err.response)
+					console.log( err)
 				})
 			},
 			onTabChanged(e) {
