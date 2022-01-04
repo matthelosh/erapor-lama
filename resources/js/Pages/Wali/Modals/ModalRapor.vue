@@ -180,7 +180,7 @@
 									}
 
 									table td {
-										font-size: 1.25em;
+										font-size: 1em;
 									}
 
 								}
