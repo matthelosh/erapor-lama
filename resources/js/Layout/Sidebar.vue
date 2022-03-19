@@ -34,7 +34,7 @@
                             <v-list-item-title >{{menu.label}}</v-list-item-title>
                         </template>
                         <div v-for="(child, s) in menu.children" :key="s" >
-                            <inertia-link :href="rute(child.url)" class="inertia-link" >
+                            <inertia-link :href="'/'+rute(child.url)" class="inertia-link" >
                                 <v-list-item
                                     :class="(rute(child.url) == path ) ? 'active elevation-3' : ''"
                                     
@@ -51,7 +51,7 @@
                     </v-list-group>
                 </div>
                 <div v-else>
-                <inertia-link :href="rute(menu.url)" class="inertia-link" >
+                <inertia-link :href="'/'+rute(menu.url)" class="inertia-link" >
                     <v-list-item
                         :class="(rute(menu.url) == path )? 'active elevation-3': ''"
                         
@@ -134,7 +134,8 @@
             },
             rute(url) {
                 const roles = ['admin','wali','siswa']
-                var rute = (roles.includes(this.$page.props.role)) ? '/'+this.$page.props.role+url : '/mapel'+url
+                var rute = (roles.includes(this.$page.props.role)) ? this.$page.props.role+url : 'mapel'+url
+                // var rute = (roles.includes(this.$page.props.role)) ? +this.$page.props.role+url : 'mapel'+url
                 return rute
             },
             checkSubmenu(item) {

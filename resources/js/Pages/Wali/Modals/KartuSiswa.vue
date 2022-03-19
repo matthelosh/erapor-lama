@@ -29,7 +29,6 @@
 									<div
 										v-for="siswa in item"
 										:key="siswa.nisn"
-										max-
 										style="background: url('/storage/img/kartu/bg_kartu.png';background-repeat: no-repeat ; position: relative;width: 647px; height: 190px;"
 										cover
 										class="mx-auto my-5 d-print-block"

@@ -22,6 +22,12 @@ Route::group(['prefix' => 'user', 'middleware' => ['admin']], function() {
         Route::put('/{id}', [ UserController::class, 'reset'])->name('admin.user.reset');   
     });
 
+    // Administrasi
+    Route::group(['prefix' => 'kartu-uji'], function() {
+        Route::get('/', [PageController::class, 'page'])->name('admin.kartuji');
+    });
+
+
     // Guru
     Route::group(['prefix' => 'guru', 'middleware' => 'admin'], function() {
         Route::get('/', [PageController::class, 'page'])->name('admin.guru');
