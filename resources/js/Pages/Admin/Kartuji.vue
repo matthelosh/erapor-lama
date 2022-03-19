@@ -19,7 +19,7 @@
                             </v-toolbar>
                         </v-card-title>
                         <v-card-text>
-                            <v-sheet v-if="rombel" class="my-5" ref="sheet" id="kartu">
+                            <!-- <v-sheet v-if="rombel" class="my-5" ref="sheet" id="kartu">
                                 <div class="mainRow"
                                     style="display:flex;flex-wrap:wrap;"
                                 >
@@ -72,9 +72,12 @@
                                                     </tr>
                                                 </table>
                                                 <br>
+                                                <br>
+                                                <br>
                                                 <v-row>
-                                                    <v-col style="margin-left:50%; font-size: 0.7em;">
+                                                    <v-col style="margin-left:50%; font-size:1em;">
                                                         Kepala Sekolah
+                                                        <br>
                                                         <br>
                                                         <br>
                                                         <br>
@@ -84,9 +87,68 @@
                                                 </v-row>
                                             </v-card-text>
                                         </v-card>
+                                        <div v-if="(i+1)%6 == 0" style="page-break-after:always;" class="pageBreak">
+                                            ===================================================================
+                                        </div>
                                     </span>
+                                    
                                 </div>
-                            </v-sheet>
+                            </v-sheet> -->
+                            <span v-if="pages.length > 0" id="print">
+                               <v-sheet v-for="(page,i) in pages" :key="i" class="my-2 page" color="#efefef" :style="(i+1) == pages.length ? 'page-break-after:avoid;' : 'page-break-after:always;'">
+                                   <div v-for="(siswa,s) in page" :key="s" style="width:46%;display:inline-block;" class="kartu">
+                                       <div class="header" style="position:relative;border-bottom: 5px double black;padding: 10px;">
+                                           <img src="/img/malangkab.png" alt="Logo" width="50" style="position:absolute;" class="logo">
+                                           <h4 class="my-0 pa-0" style="line-height:1.3em;text-align:center;">
+                                                    KARTU PESERTA UJIAN <br>
+                                                    SD NEGERI 1 BEDALISODO <br>
+                                                    TAHUN PELAJARAN {{ $page.props.periode_aktif.tapel}}</h4>
+                                       </div>
+                                       <div class="data-siswa" style="padding: 0 10px;">
+                                            <h4 class="text-center" style="margin: 10px auto;">DATA PESERTA</h4>
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td style="width: 30%">No. Peserta</td>
+                                                        <td class="mx-2">:</td>
+                                                        <td class="pl-2">{{ siswa.nisn }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td class="mx-2">:</td>
+                                                        <td class="pl-2" style="vertical-align:top;">{{ siswa.nama }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tempat, Tgl Lahir</td>
+                                                        <td class="mx-2">:</td>
+                                                        <td class="pl-2">{{ siswa.tempat_lahir }}, {{siswa.tanggal_lahir}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Kelas</td>
+                                                        <td class="mx-2">:</td>
+                                                        <td class="pl-2" v-if="rombel">{{ rombel[0].label }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sekolah Asal</td>
+                                                        <td class="mx-2">:</td>
+                                                        <td class="pl-2">{{ $page.props.sekolah.nama_sekolah }}</td>
+                                                    </tr>
+                                                </table>
+                                       </div>
+                                       <br>
+                                       <div class="ttd">
+                                            <v-col style="margin-left:50%;font-size: 0.9em;position:relative;">
+                                                Kepala Sekolah
+                                                <img :src="'/img/ttd/'+$page.props.sekolah.ks.nip+'.png'" alt="ttd" style="position:absolute;bottom: 30px;left: 0;" width="150">
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <b><u>{{$page.props.sekolah.ks.name}}</u></b><br>
+                                                NIP. {{$page.props.sekolah.ks.nip}}
+                                            </v-col>
+                                       </div>
+                                   </div>
+                               </v-sheet>
+                            </span>
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -114,7 +176,7 @@ export default {
     }),
     methods: {
         cetak(){
-            let sheet = document.querySelector('#kartu').outerHTML
+            let sheet = document.querySelector('#print').outerHTML
             let style = "//localhost:8080/css/app.css"
             let html =`
                 <!doctype html>
@@ -122,38 +184,25 @@ export default {
                     <head>
                         <title>Ceak Kartu Ujian</title>
                         <style>
-                            .mainRow {
-                                display: flex;
-                                flex-direction:row;
+                            .kartu {
+                                margin: 10px;
+                                border: 2px solid black;
                             }
-                            .mainRow > .col-6{
-                                flex: 50%;
+                            table td {
+                                font-size: 0.9em;
                             }
                             .text-center {
                                 text-align: center;
                             }
-                            .logo {
-                                top: 20px;
-                                left: 10px;
-                            }
-                            .kartu {
-                                padding: 5px;
-                                margin: 5px;
-                            }
                             @media print {
-                                .mainRow < .col-6 {
-                                    display: inline-block;
-                                }
-                                .logo {
-                                    left: 0;
-                                    top: 5px;
-                                    width: 40px;
-                                }
-                                table td {
-                                    font-size: 0.9em;
+                                @page {
+                                    size: 8.5in 13in;
                                 }
                                 h4 {
-                                    font-size: 0.8em;
+                                    font-size: .9em;
+                                    margin-left: 10px;
+                                    margin-top: 0;
+                                    margin-bottom: 0;
                                 }
                             }
                         </style>
@@ -182,11 +231,27 @@ export default {
             })
         }
     },
+    computed: {
+        pages() {
+            if(this.rombel) {
+                let pages = _.chunk(this.rombel[0].siswas, 6)
+                return pages
+            } else {
+                return 'Rombel Belum dipilih'
+            }
+            
+        }
+    },
     mounted() {
         this.getRombels()
     }
 }
 </script>
 <style scoped>
-    
+    .kartu {
+        border: 1px solid black;
+        margin: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
 </style>
