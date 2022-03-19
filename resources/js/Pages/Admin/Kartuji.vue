@@ -8,7 +8,7 @@
                             <v-toolbar dense>
                                 <v-icon>mdi-card</v-icon>
                                 Kartu Ujian
-                                <v-spacer></v-spacer>
+                                <v-spacer class="my-1"></v-spacer>
                                 <v-select dense hide-details label="Rombel" outlined rounded
                                     :items="rombels"
                                     item-text="label"
@@ -23,13 +23,13 @@
                                 <div class="mainRow"
                                     style="display:flex;flex-wrap:wrap;"
                                 >
-                                    <div class="kartu"
-                                        style="width:45%; flex-grow:50%;margin:20px;box-sizing:border-box;" 
+                                    <span class="kartu"
+                                        style="width:47%; flex-grow:50%;margin: 5px 10px;box-sizing:border-box;" 
                                         v-for="(siswa,i) in rombel[0].siswas"
                                         :key="i"
                                         d-print-flex
                                     >
-                                        <v-card style="border: 1px solid black;padding:20px;">
+                                        <v-card style="border: 1px solid black;padding:10px;">
                                             <v-card-title class="text-center">
                                                 <v-row style="position:relative;display:flex; justify-content:start;">
                                                     <img src="/img/malangkab.png" width="50" style="position:absolute;" class="logo" />
@@ -43,7 +43,7 @@
                                             </v-card-title>
                                             <v-card-text>
                                                 <v-divider></v-divider>
-                                                <h2 class="text-center my-5">DATA PESERTA</h2>
+                                                <h4 class="text-center my-2">DATA PESERTA</h4>
                                                 <table width="100%">
                                                     <tr>
                                                         <td style="width: 30%">No. Peserta</td>
@@ -72,14 +72,9 @@
                                                     </tr>
                                                 </table>
                                                 <br>
-                                                <br>
-                                                <br>
-                                                <br>
                                                 <v-row>
-                                                    <v-col style="margin-left:50%;">
+                                                    <v-col style="margin-left:50%; font-size: 0.7em;">
                                                         Kepala Sekolah
-                                                        <br>
-                                                        <br>
                                                         <br>
                                                         <br>
                                                         <br>
@@ -89,7 +84,7 @@
                                                 </v-row>
                                             </v-card-text>
                                         </v-card>
-                                    </div>
+                                    </span>
                                 </div>
                             </v-sheet>
                         </v-card-text>
@@ -139,11 +134,26 @@ export default {
                             }
                             .logo {
                                 top: 20px;
-                                left: 20px;
+                                left: 10px;
+                            }
+                            .kartu {
+                                padding: 5px;
+                                margin: 5px;
                             }
                             @media print {
                                 .mainRow < .col-6 {
                                     display: inline-block;
+                                }
+                                .logo {
+                                    left: 0;
+                                    top: 5px;
+                                    width: 40px;
+                                }
+                                table td {
+                                    font-size: 0.9em;
+                                }
+                                h4 {
+                                    font-size: 0.8em;
                                 }
                             }
                         </style>
