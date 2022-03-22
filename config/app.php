@@ -119,6 +119,11 @@ return [
     |
     */
 
+    /*GOOGLE*/
+    'client_id' => env('GOOGLE_CLIENT_ID'),
+    'secret_id' => env('GOOGLE_SECRET_ID'),
+
+
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
@@ -162,6 +167,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -161,10 +161,11 @@ export default {
                     </body>
                 </html>
             `
-            let win = window.open('','','_blank')
+            let win = window.open('','','_blank','width=700,left=200,top=100')
             win.document.write(html)
             win.focus()
             win.print()
+            win.close()
         },
         getRombels() {
             this.loading = true

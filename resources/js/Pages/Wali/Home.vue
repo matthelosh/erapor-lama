@@ -21,6 +21,9 @@
                                 <v-row v-else>
                                     <h3>Selamat Datang {{ ($page.props.user.jk == 'l') ? 'Bapak' : 'Ibu' }} {{ $page.props.user.name }}</h3>
                                 </v-row>
+                                <v-row>
+                                    {{ folders }}
+                                </v-row>
                             </v-container>
                         </v-card-text>
                     </v-card>
@@ -39,7 +42,7 @@ export default {
         Layout, Rapor
     },
     props: {
-        page_title: String
+        page_title: String, folders: Array
     },
     data : () => ({
         siswasItem : [

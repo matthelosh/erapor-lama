@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +48,17 @@ Route::get('/login', function(){
         }
         return redirect('/'.$rute);
     }
-    return Inertia::render('Login', ['page' => 'login', 'page_title' => 'Login', /*'nouser' => $msg*/]);
+    $news = [
+        [
+            'id' => 1,
+            'title' => 'Fitur baru untuk mencetak kartu ujian',
+            'text' => 'Sekarang tidak perlu repot membuat kartu ujian dari aplikasi word ataupun excel. Rapor Saat ini menyediakan fitur cetak kartu ujian. Admin dapat mencetak kartu ujian sesuai dengan jenis ujian yang dilaksanakan di menu Adminsitrasi --> kartu Ujian.'
+        ],
+       
+    ];
+    return Inertia::render('Login', ['page' => 'login', 'page_title' => 'Login', 'news' => $news /*'nouser' => $msg*/]);
 })->name('login');
+
 
 
 // Route::group(['prefix' => $rute])
@@ -66,18 +76,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'checkRole']], f
     Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
     Route::get('/about', [ PageController::class, 'about'])->name('dashboard.about');
     Route::get('/profile', [ PageController::class, 'profile'])->name('dashboard.profile');
-    // $rute = (Auth::user()->role != 'admin' || Auth::user()->role != 'wali' ||  Auth::user()->role != 'siswa' ) ? 'mapel' : Auth::user()->role; 
-    // Route Admin
-    // Route::group(['prefix' => $rute], __DIR__.'/web/'.$rute.'.php');
-
-    // // Route Wali
-    // Route::group(['prefix' => 'wali'],  __DIR__.'/web/wali.php');
-
-    // // Route Guru Mapel
-    // Route::group(['prefix' => 'mapel'],  __DIR__.'/web/mapel.php');
-
-    // // Route Siswa/Wali
-    // Route::group(['prefix' => 'siswa'],  __DIR__.'/web/siswa.php');
 });
 
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');

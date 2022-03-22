@@ -217,10 +217,6 @@
 					html2canvas: { scale: 2},
 					jsPDF: { unit: 'in', format: [8.5, 13], orientation: 'portrait'}
 				}
-				// html2pdf().set(opt).from(content).save()
-				// let worker = html2pdf().set(options).from(content).toPdf().output('blob').then( (data: Blob) => {
-    //   							return data
-    // 						})
 
     			
 
@@ -232,17 +228,17 @@
 
 
 					axios({
-					method: 'post',
-					url: '/wali/rapor/savepdf',
-					data: formData,
-					headers: {
-					      'Content-Type': 'multipart/form-data'
-					    }
-					// processData: false,
-					// contentType: false
-				}).then( res => {
-					console.log(res)
-				})
+						method: 'post',
+						url: '/wali/rapor/savepdf',
+						data: formData,
+						headers: {
+							'Content-Type': 'multipart/form-data'
+							}
+						// processData: false,
+						// contentType: false
+					}).then( res => {
+						console.log(res)
+					})
 				})
 				
 			},

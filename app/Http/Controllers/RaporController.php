@@ -25,6 +25,10 @@ use Illuminate\Support\Facades\DB;
 use App\Traits\RaporTrait;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Hypweb\Flysystem\GoogleDrive\GoogleDriveAdapter;
+use League\Flysystem\Filesystem;
+use Google\Client;
+use App\Services\GdriveServices;
 
 
 class RaporController extends Controller
@@ -144,7 +148,7 @@ class RaporController extends Controller
         }
     }
 
-    public function savepdf(Request $request)
+    public function savepdf(Request $request, GdriveServices $gdriveServices)
     {
         try {
             // dd($request->all());
@@ -163,13 +167,21 @@ class RaporController extends Controller
                 'rombel_id' => $pecah[1].'-'.$pecah[2], 
                 'siswa_id' => $siswa[0], 
             ]
-        );
-
+            );
+            $path = $pecah[1].'/'.$pecah[1].'-'.$pecah[2].'/';
             Storage::putFileAs('public/arsip/'.$pecah[1].'/'.$pecah[1].'-'.$pecah[2].'/', $request->file('file'), $filename);
-            dd('Sukses');
-        } catch (Exception $e) {
+            $content = $request->file('file')->getContent();
+            // $tes = Storage::disk('google')->put('abc'.$filename, $content); 
+            $tes = $gdriveServices->upload($content,$filename);
+            // dd($tes);
+        } catch (\Exception $e) {
             dd($e);
         }
+    }
+
+    public function toGdrive($f)
+    {
+        
     }
     
 }

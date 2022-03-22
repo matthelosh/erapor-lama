@@ -51,6 +51,13 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+        'google' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_REFRESH_TOKEN'),
+            'folderId' => env('GOOGLE_FOLDER_ID'),
+        ]
 
     ],
 

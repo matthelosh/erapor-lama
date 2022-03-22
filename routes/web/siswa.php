@@ -36,9 +36,6 @@ Route::group(['prefix' => 'akademik'], function() {
 
 // Rapor
 Route::group(['prefix' => 'rapor'], function() {
-    Route::get('/', [PageController::class, 'page'])->name('wali.rapor'); 
-    Route::post('/cetak', [RaporController::class, 'cetak'])->name('wali.rapor.cetak'); 
-    Route::post('/pts', [RaporController::class, 'pts'])->name('wali.rapor.pts'); 
-    Route::post('/pas', [RaporController::class, 'pas'])->name('wali.rapor.pas'); 
-    Route::post('/{rombel}', [RaporController::class, 'index'])->name('walirapor.index');
+    Route::get('/', [PageController::class, 'page'])->name('siswa.rapor'); 
+    Route::post('/arsip', [ArsipController::class, 'index'])->name('siswa.rapor.index');
 });

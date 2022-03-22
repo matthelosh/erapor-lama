@@ -15,16 +15,25 @@
                         contain
                         />
                     </v-col>
-                   <!--  <v-col cols="12" sm="8" class="d-none d-sm-flex">
+                    <v-col cols="12" sm="8" class="d-none d-sm-flex">
                        <v-card width="100%">
-                            <v-card-text class="d-flex justify-center align-center py-10">
+                            <v-card-text >
                                 <div>
                                     <h1 class="mb-10">SELAMAT DATANG !</h1>
-                                    <p></p>
+                                    
+                                   <v-list>
+                                       <v-list-item><v-list-item-title>Terbaru</v-list-item-title></v-list-item>
+                                       <v-list-item
+                                            v-for="baru in news" 
+                                            :key="baru.id"
+                                       >
+                                            <v-list-item-title>{{baru.title}}</v-list-item-title>
+                                       </v-list-item>
+                                    </v-list>
                                 </div>
                             </v-card-text>
                        </v-card>
-                    </v-col> -->
+                    </v-col>
                     <v-col cols="12" sm="4">
                         <v-card  class="mx-auto ">
                             <v-img 
@@ -109,6 +118,7 @@
 // window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 export default {
     name: 'Login',
+    props: {news: Array},
     data: () => ({
         auth: {
 
