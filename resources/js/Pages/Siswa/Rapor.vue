@@ -12,7 +12,14 @@
 							<v-spacer></v-spacer>
 						</v-toolbar>
 						<v-card-text>
-
+							<v-data-table
+								:items="arsips"
+								:headers="headers"
+							>
+								<template v-slot:[`item.file`]="{item}">
+									<a :href="'/storage/arsip/'+item.rombel_id.substr(0,5)+'/'+item.rombel_id+'/'+item.filename" target="_blank">{{item.filename}}</a>
+								</template>
+							</v-data-table>
 						</v-card-text>
 					</v-card>
 				</v-col>
@@ -31,6 +38,12 @@ export default {
 	},
 	components: { Layout },
 	data: () =>({
+		arsips: [],
+		headers: [
+			{ text: 'Rombel', value: 'rombel_id' },
+			{ text: 'Jenis', value: 'jenis' },
+			{ text: 'Lihat', value: 'file' },
+		],
 	}),
 	methods:{
 		setDefaultFoto(event, siswa) {
@@ -42,8 +55,9 @@ export default {
 				method: 'post',
 				url: '/siswa/rapor/arsip'
 			}).then( res => {
-				console.log(res);
-			})
+				// console.log(res);
+				this.arsips = res.data.arsips
+			});
 		}
 	},
 	computed: {

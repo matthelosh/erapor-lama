@@ -5,7 +5,7 @@
             <v-card>
                 <v-card-text>
                     <v-alert color="info">
-                        <h3>Halo, Saya adalah..</h3>
+                        <h3>Halo, Saya aah..</h3>
                     </v-alert>
                 </v-card-text>
             </v-card>

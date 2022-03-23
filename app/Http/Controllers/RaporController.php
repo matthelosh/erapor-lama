@@ -156,8 +156,8 @@ class RaporController extends Controller
             $pecah = explode('-', $filename);
             $siswa = explode('.', $pecah[3]);
             Arsip::updateOrCreate([
-                'kode_rapor' => $pecah[1].$pecah[2].$siswa[0], 
-                'filename' => $filename,
+                'kode_rapor' => $pecah[0].'-'.$pecah[1].$pecah[2].$siswa[0], 
+                'filename' => $pecah[0].'-'.$pecah[3],
                 'jenis' => $pecah[0]
 
             ],
@@ -169,11 +169,11 @@ class RaporController extends Controller
             ]
             );
             $path = $pecah[1].'/'.$pecah[1].'-'.$pecah[2].'/';
-            Storage::putFileAs('public/arsip/'.$pecah[1].'/'.$pecah[1].'-'.$pecah[2].'/', $request->file('file'), $filename);
+            Storage::putFileAs('public/arsip/'.$pecah[1].'/'.$pecah[1].'-'.$pecah[2].'/', $request->file('file'), $pecah[0].'-'.$pecah[3]);
             $content = $request->file('file')->getContent();
-            // $tes = Storage::disk('google')->put('abc'.$filename, $content); 
-            $tes = $gdriveServices->upload($content,$filename);
-            // dd($tes);
+            // Upload PDF Ke Google Drive
+            $arsip = $gdriveServices->upload($content,$filename);
+            return response()->json(['success'=>true, 'msg' => $arsip],200);
         } catch (\Exception $e) {
             dd($e);
         }

@@ -9,6 +9,7 @@ use Inertia\Inertia;
 
 Route::get('/', [PageController::class, 'page'])->name('wali.home');
 Route::get('/about', [PageController::class, 'page'])->name('wali.about');
+Route::post('/about', [TesController::class, 'gdrive'])->name('wali.about.tes');
 
 
 Route::group(['prefix' => 'siswa'], function() {
