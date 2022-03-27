@@ -126,7 +126,6 @@ export default {
     methods: {
         cetak(){
             let sheet = document.querySelector('#print').outerHTML
-            let style = "//localhost:8080/css/app.css"
             let html =`
                 <!doctype html>
                 <html>
