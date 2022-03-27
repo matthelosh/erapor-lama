@@ -19,8 +19,9 @@
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "masbug/flysystem-google-drive-ext": "^1.0.0",
+        "masbug/flysystem-google-drive-ext": "^1.1",
         "nao-pon/flysystem-google-drive": "^1.1",
+        "symfony/mailer": "^5.4",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

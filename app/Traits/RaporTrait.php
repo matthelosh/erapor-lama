@@ -67,12 +67,14 @@ trait RaporTrait
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$kmax],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $kd_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$kmin],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             
@@ -120,12 +122,14 @@ trait RaporTrait
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$kmax],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')],
             ])->first();
 
             $kd_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$kmin],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')],
             ])->first();
 
             
@@ -222,12 +226,14 @@ trait RaporTrait
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k3max],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $kd3_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k3min],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $deskripsi3 = $this->kata($n3max, $mapel->pivot->kkm).' '.($kd3_max->teks ?? '').'. '.$this->kata($n3min, $mapel->pivot->kkm).' '.($kd3_min->teks?? 'Cek KD');
@@ -277,12 +283,14 @@ trait RaporTrait
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k4max],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $kd4_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k4min],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $deskripsi4 = $this->kata($n4max, $mapel->pivot->kkm).' '.($kd4_max->teks ?? '').'. '.$this->kata($n4min, $mapel->pivot->kkm).' '.($kd4_min->teks?? 'Cek KD');
@@ -338,12 +346,14 @@ trait RaporTrait
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k3max],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $kd3_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k3min],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $deskripsi3 = $this->kata($n3max, $mapel->pivot->kkm).' '.($kd3_max->teks ?? '').'. '.$this->kata($n3min, $mapel->pivot->kkm).' '.($kd3_min->teks?? 'Cek KD');
@@ -394,12 +404,14 @@ trait RaporTrait
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k4max],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $kd4_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k4min],
                 ['mapel_id','=',$mapel->kode_mapel],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $deskripsi4 = $this->kata($n4max, $mapel->pivot->kkm).' '.($kd4_max->teks ?? '').'. '.$this->kata($n4min, $mapel->pivot->kkm).' '.($kd4_min->teks?? 'Cek KD');
@@ -450,12 +462,14 @@ trait RaporTrait
             ['kelas_id','=','all'],
             ['kode_kd','=',$k1max],
             ['mapel_id','=','pabp'],
+            ['kurikulum_id','=', $request->session()->get('kurikulum')]
         ])->first();
         
         $kd1_min = Kd::where([
             ['kelas_id','=','all'],
             ['kode_kd','=',$k1min],
             ['mapel_id','=','pabp'],
+            ['kurikulum_id','=', $request->session()->get('kurikulum')]
         ])->first();
         // $mapel1 = Mapel::where([
         //     ['kode_mapel', '=','pabp'],
@@ -503,12 +517,14 @@ trait RaporTrait
             ['kelas_id','=','all'],
             ['kode_kd','=',$k2max],
             ['mapel_id','=','ppkn'],
+            ['kurikulum_id','=', $request->session()->get('kurikulum')]
         ])->first();
         
         $kd2_min = Kd::where([
             ['kelas_id','=','all'],
             ['kode_kd','=',$k2min],
             ['mapel_id','=','ppkn'],
+            ['kurikulum_id','=', $request->session()->get('kurikulum')]
         ])->first();
         
         $deskripsi2 = $this->kataSikap($n2max, 70).' '.($kd2_max->teks ?? '').'. '.$this->kataSikap($n2min, 70).' '.($kd2_min->teks?? 'Cek KD');

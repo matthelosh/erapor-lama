@@ -124,7 +124,7 @@ class NilaiController extends Controller
                         'jenis'=>$request['data']['jenis'],
                         'mapel_id'=> $request['data']['mapel_id'],
                         'kd_id'=> $request['data']['kd_id'],
-                        'ppn'=> $request['data']['ppn'],
+                        'ppn'=> $request['data']['ppn']??'ts',
                         'siswa_id' => $nilai['nisn'],
                         
                     ],

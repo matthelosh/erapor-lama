@@ -49,7 +49,7 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
+            'endpoint' => env('AWS_ENDPOINT', 'arsip-rapor-sdn1beda-31gemqrdeeydirmo8qrgmgsuu1j9naps1b-s3alias'),
         ],
         'google' => [
             'driver' => 'google',

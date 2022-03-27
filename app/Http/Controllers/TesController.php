@@ -28,4 +28,14 @@ class TesController extends Controller
             dd($th);
         }
     }
+
+    // public function gdrive()
+    // {
+    //     try {
+    //         $contents = Storage::disk('s3')->listContents('', true);
+    //         return response()->json(['success' => true, 'msg' => $contents], 200);
+    //     } catch (\Throwable $th) {
+    //         dd($th);
+    //     }
+    // }
 }

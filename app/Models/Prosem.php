@@ -10,7 +10,7 @@ class Prosem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'kelas', 'semester', 'mapel_id', 'mid', 'kd_id'
+        'kelas', 'semester', 'mapel_id',  'kd_id', 'rombel_id', 'ppn','agama','kurikulum_id'
     ];
 
     public function mapels()

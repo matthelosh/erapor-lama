@@ -59,6 +59,7 @@ class HandleInertiaRequests extends Middleware
             'level' => $request->user() ? $request->user()->level : null,
             'periode' => $request->session()->get('periode'),
             'sekolah' => $this->sekolah(),
+            'kurikulum' => $request->session()->get('kurikulum'),
             'periode_aktif' => $this->periode_aktif($request->session()->get('periode')),
             'rombel' => $this->rombel($request->user()->userid??null, $request->user() ? $request->user()->role : null, $request->session()->get('periode')),
             'rombels' => $this->rombels($request),
