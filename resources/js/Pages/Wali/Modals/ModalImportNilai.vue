@@ -155,7 +155,7 @@
                 // console.log(datas)
 				axios({
 					method: 'post',
-					url: '/dashboard/nilai/import', // Nanti Dinamis sesuai yang diimpor
+					url: '/wali/nilai/import', // Nanti Dinamis sesuai yang diimpor
 					data: {
                         siswas : datas,
                         periode_id: this.$page.props.periode,
