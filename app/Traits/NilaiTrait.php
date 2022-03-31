@@ -29,7 +29,7 @@ trait NilaiTrait
             $ds=[];
             // $nilais=[];
             $kelas = ($request->aspek == 'k1' || $request->aspek == 'k2') ? 'all' : substr($request->rombel, 6,1);
-            $kurikulum = ($request->aspek == 'k1' || $request->aspek == 'k2') ? 'k13' : 'k13d';
+            $kurikulum = 'k13d';
 
             $kds = Prosem::where([
                 ['semester','=', substr($request->session()->get('periode'), 4,1)],
@@ -42,16 +42,17 @@ trait NilaiTrait
             $siswas = $datas->siswas;
              $i=0;
             foreach($siswas as $siswa) {
-                array_push($ds, ['nisn' => $siswa->nisn, 'nama' => $siswa->nama, 'nilais' => []]);
+                
                 $nilais=[];
                 $n=0;
                 $nilai_default = ($request->aspek == 'k1' || $request->aspek == 'k2') ? 80 : 0;
+                array_push($ds, ['nisn' => $siswa->nisn, 'nama' => $siswa->nama, 'nilais' => []]);
                 foreach($kds as $kd) {
                     $kd_id = ($request->aspek == 'k4') ? str_replace('3.', '4.', $kd->kd_id) : $kd->kd_id;
                     array_push($nilais, ['kd_id' => $kd_id, 'nilai' => 0, 'ppn' => $kd->ppn]);
                     foreach($siswa->nilais as $nilai) {
                         if($nilais[$n]['kd_id'] === $nilai->kd_id) {
-                            $nilais[$n]['nilai'] = $nilai->nilai ;
+                            $nilais[$n]['nilai'] = $nilai->nilai ?? $nilai_default;
                         }
                     }
                     $n++;
