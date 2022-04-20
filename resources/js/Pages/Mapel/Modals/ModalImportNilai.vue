@@ -236,8 +236,10 @@
                     }
                     check.push( hdr.toLowerCase() )
                 }
+                // console.log(check)
                 var checks = this.dialog.headers.filter( value => check.includes(value))
-                checks.forEach(item => {
+                
+                check.forEach(item => {
                     headers.push({text: item.toUpperCase(), value: item})
                 })
                 if (headers.length > 2) {
@@ -252,7 +254,7 @@
                         text: 'Kolom KD tidak sesuai. Mohon cek Ulang'
                     }
                     
-                    return false
+                    return []
                 }
             },
             // checkHeaders ( headers ) {

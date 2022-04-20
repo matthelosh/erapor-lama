@@ -64,7 +64,8 @@ class RombelController extends Controller
     public function show(Request $request, $id)
     {
         try {
-            $rombel = Rombel::where('id',$id)->with('siswas')->first();
+            $where = str_contains($id, '-') ? 'kode_rombel' : 'id';
+            $rombel = Rombel::where($where,$id)->with('siswas')->first();
             
             return response()->json(['success' => true, 'members' => $rombel->siswas], 200);
         } catch (\Exception $e) {

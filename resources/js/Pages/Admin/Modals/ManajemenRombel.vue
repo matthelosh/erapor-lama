@@ -38,11 +38,18 @@
 				            							</v-btn>
 				            						</v-badge>
 				            					</v-col>
-				            					<v-col cols="8">
+				            					<v-col cols="3">
 				            						<input type="file" ref="filesiswa" class="d-none" @change="onFileSelected" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, *.csv, *.ods">
 				            						<v-btn @click.stop="impor" dense color="success"  rounded :loading="imporMembers.loading" >
 			            								<v-icon>mdi-microsoft-excel</v-icon> 
 			            								{{ imporMembers.label }}
+			            							</v-btn>
+				            						
+			            						</v-col>
+				            					<v-col cols="4">
+				            						<v-btn @click.stop="kopi(prevRombel)" dense color="success"  rounded :loading="imporMembers.loading" >
+			            								<v-icon>mdi-content-copy</v-icon> 
+			            								Dari {{ prevRombel }} 
 			            							</v-btn>
 				            						
 			            						</v-col>
@@ -134,7 +141,7 @@
 		components: { ConfirmDialog, ImporMember },
 		data: () => ({
 			imporMembers: {
-				label: 'Impor dari file',
+				label: 'Impor',
 				loading: false,
 			},
 			loadingmembers: false,
@@ -158,6 +165,23 @@
 			]
 		}),
 		methods: {
+			kopi(rombel) {
+				axios({
+					method: 'post',
+					url: '/admin/rombel/'+rombel
+				}).then( res => {
+					// console.log(res.data.members)
+					let members = res.data.members
+					this.imporMembers = {
+						loading: true,
+						show: true,
+						e: members,
+						rombel: this.dialog.rombel
+					}
+				}).catch( err => {
+					console.log( err.response)
+				})
+			},
 			closeImpor(){
 				this.imporMembers = {
 					show: false,
@@ -264,7 +288,17 @@
 				})
 			}
 		},
-		computed: {},
+		computed: {
+			prevRombel() {
+				let rombel = this.dialog.rombel.kode_rombel
+				let kode = rombel.split('-'),
+				periode = kode[0],
+				kelas = kode[1],
+				semester = kode[0].substr(4,1),
+				prevRombel = parseInt(semester) == 2 ? (parseInt(periode)-1)+'-'+kelas : null
+				return prevRombel
+			}
+		},
 		mounted(){
 			this.initialize()
 		}

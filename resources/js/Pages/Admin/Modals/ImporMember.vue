@@ -62,25 +62,29 @@
 				})
 			},
 			checkData() {
-                var files = this.dialog.e.files;
-                var reader = new FileReader;
-                reader.onload = ev => {
-                    var data = ev.target.result
-                    var workbook = XLSX.read(data, {type: 'binary'})
-                    var wsname = workbook.SheetNames[0]
-                    const ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname])
-                    const lists = []
+				if(!this.dialog.e.target){
+					this.newmembers = this.dialog.e
+					this.btnSimpan = true
+				} else {
+					var reader = new FileReader;
+					reader.onload = ev => {
+						var data = ev.target.result
+						var workbook = XLSX.read(data, {type: 'binary'})
+						var wsname = workbook.SheetNames[0]
+						const ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname])
+						const lists = []
 
-                    for ( var i = 0; i < ws.length; i++) {
-                        lists.push(ws[i])
-                    }
+						for ( var i = 0; i < ws.length; i++) {
+							lists.push(ws[i])
+						}
 
-                    this.newmembers = lists
-                    const a = workbook.Sheets[workbook.SheetNames[0]]
-                    const headers = this.getHeaders(a)
-                    this.headers = headers
-                }
-                reader.readAsBinaryString(this.dialog.e.target.files[0])
+						this.newmembers = lists
+						const a = workbook.Sheets[workbook.SheetNames[0]]
+						const headers = this.getHeaders(a)
+						this.headers = headers
+					}
+					reader.readAsBinaryString(this.dialog.e.target.files[0])
+				}
             },
             getHeaders(sheet) {
                 const headers = []

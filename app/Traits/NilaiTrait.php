@@ -73,6 +73,8 @@ trait NilaiTrait
     public function prosentase($request)
     {
         // dd($request->user());
+        // dd(\App\Models\Sekolah::find(1));
+
         
         $role = $request->user()->role;
         $periode = $request->session()->get('periode');
@@ -276,7 +278,9 @@ trait NilaiTrait
             }
         } else {
             $datas=[];
+            // dd($periode);
             $rombels = Rombel::where('periode_id', $periode)->get();
+            // dd($rombels);
             $nilais = [];
             $role = $request->role;
             if ($role == 'gor') {
