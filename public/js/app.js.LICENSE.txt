@@ -28,20 +28,20 @@
  */
 
 /*!
- * ApexCharts v3.26.0
- * (c) 2018-2021 Juned Chhipa
+ * ApexCharts v3.35.0
+ * (c) 2018-2022 ApexCharts
  * Released under the MIT License.
  */
 
 /*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
+ * Vue.js v2.6.14
+ * (c) 2014-2021 Evan You
  * Released under the MIT License.
  */
 
 /*!
- * html2canvas 1.3.2 <https://html2canvas.hertzen.com>
- * Copyright (c) 2021 Niklas von Hertzen <https://hertzen.com>
+ * html2canvas 1.4.1 <https://html2canvas.hertzen.com>
+ * Copyright (c) 2022 Niklas von Hertzen <https://hertzen.com>
  * Released under MIT License
  */
 
@@ -198,6 +198,8 @@
 
 /*! ../../presets/default */
 
+/*! ../../services/goto */
+
 /*! ../../services/goto/easing-patterns */
 
 /*! ../../styles/components/_selection-controls.sass */
@@ -333,6 +335,8 @@
 /*! ../comparable */
 
 /*! ../delayable */
+
+/*! ../detachable */
 
 /*! ../framework */
 
@@ -838,6 +842,10 @@
 
 /*! ./VNavigationDrawer.sass */
 
+/*! ./VOtpInput */
+
+/*! ./VOtpInput.sass */
+
 /*! ./VOverflowBtn */
 
 /*! ./VOverflowBtn.sass */
@@ -1062,6 +1070,8 @@
 
 /*! ./cs */
 
+/*! ./da */
+
 /*! ./de */
 
 /*! ./directives */
@@ -1190,6 +1200,8 @@
 
 /*! ./sr-Cyrl */
 
+/*! ./sr-Latn */
+
 /*! ./stack */
 
 /*! ./sv */
@@ -1227,6 +1239,8 @@
 /*! ./utils */
 
 /*! ./utils.js */
+
+/*! ./vi */
 
 /*! ./worker.js */
 
@@ -1284,8 +1298,6 @@
 
 /*! exports provided: BaseItemGroup, default */
 
-/*! exports provided: BaseSlideGroup, default */
-
 /*! exports provided: Breakpoint */
 
 /*! exports provided: CalendarEventOverlapModes */
@@ -1324,7 +1336,7 @@
 
 /*! exports provided: VAlert, default */
 
-/*! exports provided: VApp, VAppBar, VAppBarNavIcon, VAppBarTitle, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarCategory, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardActions, VCardSubtitle, VCardText, VCardTitle, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VLazy, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMain, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSkeletonLoader, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VThemeProvider, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VVirtualScroll, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VDialogTopTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
+/*! exports provided: VApp, VAppBar, VAppBarNavIcon, VAppBarTitle, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarCategory, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardActions, VCardSubtitle, VCardText, VCardTitle, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VLazy, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMain, VMenu, VMessages, VNavigationDrawer, VOtpInput, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSkeletonLoader, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VThemeProvider, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VVirtualScroll, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VDialogTopTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
 
 /*! exports provided: VApp, default */
 
@@ -1416,6 +1428,8 @@
 
 /*! exports provided: VNavigationDrawer, default */
 
+/*! exports provided: VOtpInput, default */
+
 /*! exports provided: VOverflowBtn, default */
 
 /*! exports provided: VOverlay, default */
@@ -1486,9 +1500,11 @@
 
 /*! exports provided: VWindow, VWindowItem, default */
 
-/*! exports provided: af, ar, bg, ca, ckb, cs, de, el, en, es, et, fa, fi, fr, hr, hu, he, id, it, ja, ko, lv, lt, nl, no, pl, pt, ro, ru, sk, sl, srCyrl, sv, th, tr, az, uk, zhHans, zhHant */
+/*! exports provided: af, ar, bg, ca, ckb, cs, da, de, el, en, es, et, fa, fi, fr, hr, hu, he, id, it, ja, ko, lv, lt, nl, no, pl, pt, ro, ru, sk, sl, srCyrl, srLatn, sv, th, tr, az, uk, vi, zhHans, zhHant */
 
 /*! exports provided: attachedRoot */
+
+/*! exports provided: calculateUpdatedOffset, calculateCenteredOffset, BaseSlideGroup, default */
 
 /*! exports provided: checkCollinear, getDistance, moveTo */
 
@@ -1502,7 +1518,7 @@
 
 /*! exports provided: createItemTypeNativeListeners, createItemTypeListeners */
 
-/*! exports provided: createSimpleFunctional, directiveConfig, addOnceEventListener, passiveSupported, addPassiveEventListener, getNestedValue, deepEqual, getObjectValueByPath, getPropertyFromItem, createRange, getZIndex, escapeHTML, filterObjectOnKeys, convertToUnit, kebabCase, isObject, keyCodes, remapInternalIcon, keys, camelize, arrayDiff, upperFirst, groupItems, wrapInArray, sortItems, defaultFilter, searchItems, getSlotType, debounce, throttle, getPrefixedScopedSlots, getSlot, clamp, padEnd, chunk, humanReadableFileSize, camelizeObjectKeys, mergeDeep, fillArray */
+/*! exports provided: createSimpleFunctional, directiveConfig, addOnceEventListener, passiveSupported, addPassiveEventListener, getNestedValue, deepEqual, getObjectValueByPath, getPropertyFromItem, createRange, getZIndex, escapeHTML, filterObjectOnKeys, convertToUnit, kebabCase, isObject, keyCodes, remapInternalIcon, keys, camelize, arrayDiff, upperFirst, groupItems, wrapInArray, sortItems, defaultFilter, searchItems, getSlotType, debounce, throttle, getPrefixedScopedSlots, getSlot, clamp, padEnd, chunk, humanReadableFileSize, camelizeObjectKeys, mergeDeep, fillArray, composedPath */
 
 /*! exports provided: createSimpleTransition, createJavascriptTransition */
 
@@ -1546,7 +1562,7 @@
 
 /*! exports provided: parse, genStyles, genVariations, lighten, darken */
 
-/*! exports provided: parseEvent, isEventOn, isEventStart, isEventOverlapping */
+/*! exports provided: parseEvent, isEventOn, isEventHiddenOn, isEventStart, isEventOverlapping */
 
 /*! exports provided: parsedCategoryText, getParsedCategories */
 
@@ -1630,6 +1646,10 @@
 
 /*!**************************!*\
   !*** ./src/locale/cs.ts ***!
+  \**************************/
+
+/*!**************************!*\
+  !*** ./src/locale/da.ts ***!
   \**************************/
 
 /*!**************************!*\
@@ -1748,6 +1768,10 @@
   !*** ./src/locale/uk.ts ***!
   \**************************/
 
+/*!**************************!*\
+  !*** ./src/locale/vi.ts ***!
+  \**************************/
+
 /*!***************************!*\
   !*** ./src/locale/ckb.ts ***!
   \***************************/
@@ -1782,6 +1806,10 @@
 
 /*!*******************************!*\
   !*** ./src/locale/sr-Cyrl.ts ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./src/locale/sr-Latn.ts ***!
   \*******************************/
 
 /*!*******************************!*\
@@ -2421,6 +2449,10 @@
   \*******************************************/
 
 /*!*******************************************!*\
+  !*** ./src/components/VOtpInput/index.ts ***!
+  \*******************************************/
+
+/*!*******************************************!*\
   !*** ./src/components/VParallax/index.ts ***!
   \*******************************************/
 
@@ -2769,6 +2801,10 @@
   \***********************************************/
 
 /*!***********************************************!*\
+  !*** ./src/components/VOtpInput/VOtpInput.ts ***!
+  \***********************************************/
+
+/*!***********************************************!*\
   !*** ./src/components/VOverlay/VOverlay.sass ***!
   \***********************************************/
 
@@ -2922,6 +2958,10 @@
 
 /*!*************************************************!*\
   !*** ./src/components/VMessages/VMessages.sass ***!
+  \*************************************************/
+
+/*!*************************************************!*\
+  !*** ./src/components/VOtpInput/VOtpInput.sass ***!
   \*************************************************/
 
 /*!*************************************************!*\
@@ -4174,7 +4214,7 @@
 /** @license
  *
  * jsPDF - PDF Document creation from JavaScript
- * Version 2.4.0 Built on 2021-09-14T10:30:30.230Z
+ * Version 2.5.1 Built on 2022-01-28T15:37:57.791Z
  *                      CommitID 00000000
  *
  * Copyright (c) 2010-2021 James Hall <james@parall.ax>, https://github.com/MrRio/jsPDF
