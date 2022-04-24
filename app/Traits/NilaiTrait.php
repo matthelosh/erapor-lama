@@ -25,9 +25,7 @@ trait NilaiTrait
                 // ['ppn',$operator,$ppn],
                 ['aspek','=',$request->aspek]
             ]))->first();
-            // dd($datas);
             $ds=[];
-            // $nilais=[];
             $kelas = ($request->aspek == 'k1' || $request->aspek == 'k2') ? 'all' : substr($request->rombel, 6,1);
             $kurikulum = 'k13d';
 
