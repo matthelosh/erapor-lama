@@ -59,10 +59,13 @@ class NilaiController extends Controller
     {
         $datas = $request->all();
         // dd($datas['siswas']);
+        $tes = [];
         try {
             foreach($datas['siswas'] as $siswa) {
+                $k=0;
                 foreach($siswa['nilais'] as $nilai)
                 {
+
                     if (isset($nilai['kd_id'])) {
                         Nilai::updateOrCreate(
                             [
@@ -73,7 +76,7 @@ class NilaiController extends Controller
                                 'jenis'=>$datas['jenis'],
                                 'mapel_id'=> $datas['mapel_id'],
                                 'kd_id'=> $nilai['kd_id'],
-                                'ppn'=> $nilai['ppn']??'ts',
+                                'ppn'=> '',
                                 'siswa_id' => $siswa['nisn'],
                             ],
                             [
@@ -81,8 +84,10 @@ class NilaiController extends Controller
                             ]
                         );
                     }
+                    $k++;
                 }
             }
+            // dd($tes);
             return response()->json(['success' => true, 'msg' => 'Data Nilai Diimpor'], 200);
         } catch ( \Exception $e)
         {
@@ -189,7 +194,7 @@ class NilaiController extends Controller
                 ['mapel_id' ,'=', $request->mapel],
                 ['semester' ,'=', $request->semester],
                 ['jenis' ,'=', $request->jenis],
-                ['ppn' ,'=', $request->ppn],
+                // ['ppn' ,'=', $request->ppn],
                 ['rombel_id' ,'=', $request->rombel],
                 ['kd_id' ,'=', $kd]
             ])->delete();

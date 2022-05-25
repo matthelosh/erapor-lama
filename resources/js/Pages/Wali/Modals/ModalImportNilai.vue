@@ -196,13 +196,14 @@
                         var data = ev.target.result
                         var workbook = XLSX.read(data, {type: 'binary'})
                         var wsname = workbook.SheetNames[0]
-                        const ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname])
+                        const ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname], {raw: false})
                         const lists = []
-
+                        console.log(ws)
                         for ( var i = 0; i < ws.length; i++) {
-                            // lists.push(ws[i])
+                        //     // lists.push(ws[i])
                             ws[i] = Object.keys(ws[i]).reduce((c,k) => (c[k.toLowerCase().trim()] = ws[i][k], c), {})
                             lists.push(ws[i])
+                        //     console.log(ws[i])
                         }
                         this.items = lists
                         const a = workbook.Sheets[wsname]

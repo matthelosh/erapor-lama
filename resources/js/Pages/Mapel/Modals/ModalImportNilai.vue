@@ -134,21 +134,24 @@
                 var datas = []
                 var i = 0
                 this.items.forEach((item, index) => {
-                    datas.push({nisn: item.nisn, nama: item.nama})
+                    // datas.push({nisn: item.nisn, nama: item.nama})
+                    datas[i] = {nisn: item.nisn, nama: item.nama}
                     var nilais = []
                     Object.keys(item).forEach(key => {
                         if(key != 'nisn' && key != 'nama') {
-                            var nilai = {}
+                            var nilai = null
                             this.dialog.kds.forEach(kd => {
                                 if(kd.kd_id == key) {
+                                    // Object.assign(nilai, {kd_id: key, nilai: item[key], ppn: kd.ppn})
                                     nilai = {kd_id: key, nilai: item[key], ppn: kd.ppn}   
+                                    // nilais.push({kd_id: key, nilai: item[key], ppn: kd.ppn})
                                 }
                             })
                             
-                            nilais.push(nilai)
+                            if (nilai) nilais.push(nilai)
                         }
                     })
-                    datas[index].nilais =nilais
+                    datas[i].nilais =nilais
                     i++
                 })
 

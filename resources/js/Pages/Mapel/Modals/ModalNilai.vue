@@ -43,7 +43,7 @@
                         v-for="(header,index) in headers"
                         v-slot:[`header.${header.value}`]="{header}"
                     >
-                        <span :key="header.text">{{header.text}}</span><br/>
+                        <span :key="header.text">{{header.text}}</span><br />
                         <v-btn v-if="index > 1 && index < (headers.length -1)" small color="warning" dense
                             @click.stop="editNilaiKD(header.text, header.index, header.ppn)"
                             :key="header.value" rounded>
@@ -207,16 +207,16 @@
             async deleteNilai(kd, index, ppn) {
                 // alert(ppn)
                 var k = kd.split('[')
-                if ( await this.$refs.confirm.open("HAPUS DATA", "Yakin menghapus data nilai "+k[0]+"?")) {
+                if ( await this.$refs.confirm.open("HAPUS DATA", "Yakin menghapus data nilai "+k[0]+" Rombel "+this.dialog.mapel.value+"?")) {
                     axios.delete('/mapel/nilai/'+k[0],{
                         data: {
                             _method: 'delete',
                             periode: this.$page.props.periode,
-                            mapel: this.dialog.mapel.value,
+                            mapel: this.$page.props.mapel.kode_mapel,
                             semester: this.$page.props.periode_aktif.semester,
                             jenis: this.dialog.jenis,
                             ppn: ppn,
-                            rombel: this.$page.props.rombel.kode_rombel
+                            rombel: this.dialog.mapel.value
                             }
                     }).then( res => {
                         this.snackbar = {
