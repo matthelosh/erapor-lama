@@ -199,7 +199,7 @@
                         var data = ev.target.result
                         var workbook = XLSX.read(data, {type: 'binary'})
                         var wsname = workbook.SheetNames[0]
-                        const ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname])
+                        const ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname], {raw: false})
                         const lists = []
 
                         for ( var i = 0; i < ws.length; i++) {
