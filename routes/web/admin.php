@@ -47,6 +47,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['admin']], function() {
         Route::post('/import', [SiswaController::class, 'import'])->name('admin.siswa.import');
         Route::post('/nonmembers', [SiswaController::class, 'nonmembers'])->name('admin.siswa.nonmembers');
         Route::put('/nonaktifkan', [SiswaController::class, 'inactivate'])->name('admin.siswa.inactivate');
+        Route::put('/{nisn}', [SiswaController::class, 'toggleActive'])->name('admin.siswa.toggleActive');
         Route::delete('/{id}', [SiswaController::class, 'destroy'])->name('admin.siswa.delete');
     });
 

@@ -35,7 +35,7 @@
                         <v-card-text>
                             <v-container>
                                 <v-row>
-                                    <v-col cols="5">
+                                    <v-col cols="4">
                                         <span v-if="$page.props.user.role == 'admin'" >{{ disabledCount }} siswa punya akun</span>
                                         <v-badge
                                             v-if="$page.props.user.role == 'admin'"
@@ -50,14 +50,15 @@
                                             </v-btn>
                                         </v-badge>
                                     </v-col>
-                                    <v-col cols="3">
+                                    <v-col cols="4">
                                         <div v-if="$page.props.user.role == 'admin'">
                                             <input type="file" ref="fileortu" class="d-none" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, *.csv, *.ods" @change="onFileOrtuPicked" />
                                             <v-btn color="success" @click="imporOrtu" rounded dense :loading="dialogImporOrtu.loading">
                                                 <v-icon>mdi-microsoft-excel</v-icon>
-                                                Impor Orang Tua
+                                                Impor Ortu
                                             </v-btn>
                                         </div>
+                                        <v-checkbox v-if="$page.props.user.role == 'admin'" label="Siswa Tdk Aktif" @change="reloadSiswa"></v-checkbox>   
                                         <v-btn v-if="$page.props.user.role == 'wali'" color="primary" rounded @click="cetakKartu">Cetak Kartu Siswa</v-btn>
                                     </v-col>
                                     <v-col cols="4">
@@ -65,6 +66,7 @@
                                     </v-col>
                                 </v-row>
                             </v-container>
+                            <v-divider class="my-3"></v-divider>
                             <v-data-table :headers="sheaders" :items="siswas" :search="search" :show-select="$page.props.user.role=='admin'" v-model="selectedsiswas" @toggle-select-all="selectAllToggle"> 
                                 <template v-slot:item.data-table-select="{ item, isSelected, select }">
                                     <v-simple-checkbox
@@ -96,14 +98,18 @@
                                     </div>
                                 </template>
                                 <template v-slot:item.options="{item}"> 
-                                    <span>
+                                    <v-container>
                                         <v-btn color="info" small @click.stop="ortu(item)" rounded>
                                             <v-icon >mdi-account-child-circle</v-icon>
                                         </v-btn>
                                         <v-btn color="error" small  @click.stop="deleteItem(item)" rounded v-if="$page.props.user.role == 'admin'">
                                             <v-icon >mdi-eraser</v-icon>
                                         </v-btn>
-                                    </span>
+                                        <v-btn :color="item.active ? 'success' : 'error'" small  @click.stop="toggleStatus(item)" rounded v-if="$page.props.user.role == 'admin'">
+                                            <v-icon>{{item.active ? 'mdi-check' : 'mdi-close'}}</v-icon>
+                                        </v-btn>
+                                        
+                                    </v-container>
                                 </template>
                             </v-data-table>
                         </v-card-text>
@@ -194,6 +200,7 @@
     import OrtuSiswa from './Modals/OrtuSiswa'
     // import KartuSiswa from './Modals/KartuSiswa'
     import ImporOrtu from './Modals/ImporOrtu'
+import axios from 'axios';
 // import CetakTable from '../Plugins/print';
     export default {
         name: 'Siswa',
@@ -222,6 +229,19 @@
             selectedsiswas: []
         }),
         methods: {
+            toggleStatus(item){
+                let active = item.active
+                axios({
+                    method: 'put',
+                    url: `/admin/siswa/${item.nisn}`,
+                }).then(res => {
+                    this.snackbar = { show: true, color: 'success', text: 'Siswa Sudah Diaktifkan'}
+                    this.getSiswas()
+                })
+            },
+            reloadSiswa(e){
+                this.getSiswas(e)
+            },
             closeImporOrtu() {
                 this.dialogImporOrtu = {
                     show: false,
@@ -297,7 +317,8 @@
                 // let headers = ['NIK', 'NISN', 'NIS', ]
                 Download.UnduhExcel(datas, title)
             },
-            getSiswas() {
+            getSiswas(status) {
+                
                 let role = this.$page.props.user.role
                 var sheaders = [
                     {value: 'index', text: 'No', sortable: false},
@@ -317,7 +338,7 @@
                 this.sheaders = sheaders
                 axios({
                     method: 'post',
-                    url: '/admin/siswa?role='+role
+                    url: '/admin/siswa?role='+role+'&statusSiswa='+ (status ? 0 : 1)
                 }).then(res => {
                     let siswas = []
                     res.data.siswas.forEach((siswa,index) => {

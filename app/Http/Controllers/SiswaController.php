@@ -23,11 +23,13 @@ class SiswaController extends Controller
     public function index(Request $request)
     {
         try {
+            $statusSiswa = $request->statusSiswa;
+            // dd($statusSiswa);
             switch($request->role){
                 case 'admin':
                     $siswas = Siswa::with('user', 'ortu')->with('rombel', function($q) use ($request) {
                         $q->where('periode_id', $request->session()->get('periode'));
-                    })->where('active', 1)->get();
+                    })->where('active', $statusSiswa)->get();
                     break;
                 case 'wali':
                     $rombel = 'App\Models\Rombel'::where([
@@ -71,6 +73,16 @@ class SiswaController extends Controller
         }
         
 
+    }
+
+    public function toggleActive(Request $request, $nisn)
+    {
+        try {
+            $siswa = Siswa::where('nisn', $nisn)->update(['active' => 1]);
+            return response()->json(['success' => true, 'msg' => 'Status siswa diubah'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'msg' => $e->getMessage()], 500);
+        }
     }
 
     public function inactivate(Request $request)
@@ -212,7 +224,7 @@ class SiswaController extends Controller
             Storage::putFileAs('public/img/siswas/', $foto, $siswa->nisn.'.jpg');
             return response()->json(['success' => true, 'msg' => 'Foto Disimpan']);
         } catch (\Exception $e) {
-            return json(['success' => false, 'msg' => $e->getMessage()], 500);
+            return response()->json(['success' => false, 'msg' => $e->getMessage()], 500);
         }
     }
 }
