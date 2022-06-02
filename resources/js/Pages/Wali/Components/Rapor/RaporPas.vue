@@ -7,7 +7,7 @@
 			<div class="biodata section">
 				<table width="100%">
 					<tr>
-						<td>Nama Peserta Didik</td><td>: {{ siswa.nama }}</td><td>Kelas</td><td>: {{ rapor.rombel.label }}</td>
+						<td>Nama Peserta Didik</td><td>: {{ siswa.nama }}</td><td>Kelas</td><td>: {{rapor.rombel.label}}</td>
 					</tr>
 					<tr>
 						<td>NISN/NIS</td><td>: {{ siswa.nisn }}/{{ siswa.nis }}</td><td>Semester</td><td>: {{ ($page.props.periode_aktif.semester == '1') ? 'I (GANJIL)' : 'II (GENAP)' }}</td>
@@ -62,8 +62,8 @@
 							<tr>
 								<td colspan="8" class="pl-5"><h3>Muatan Wajib</h3></td>
 							</tr>
-							<tr v-for="(mapel,i ) in wajibs" :key="i">
-								<td class="text-center">{{ mapel.id }}</td>
+							<tr v-for="(mapel,i ) in wajibs" :key="mapel.id">
+								<td class="text-center">{{ i+1 }}</td>
 								<td class="px-5">{{ mapel.label }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{Math.round(mapel.nilai.k3.nilai,0) }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ mapel.nilai.k3.predikat }}</td>
@@ -76,8 +76,8 @@
 							<tr>
 								<td colspan="8" class="pl-5"><h3>Muatan Lokal</h3></td>
 							</tr>
-							<tr v-for="(mapel,i ) in rapor.pas.mulok" :key="i">
-								<td class="text-center">{{ mapel.id }}</td>
+							<tr v-for="(mapel,i ) in muloks" :key="mapel.id">
+								<td class="text-center">{{ wajibs.length + 1 +i }}</td>
 								<td class="pl-5">{{ mapel.label }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ Math.round(mapel.nilai.k3.nilai,0) }}</td>
 								<td class="text-center" :class="cekkm(mapel.pivot.kkm, mapel.nilai.k3.nilai)">{{ mapel.nilai.k3.predikat }}</td>
@@ -126,7 +126,10 @@
 					</thead>
 					<tbody>
 						<tr v-for="(f,i) in rapor.fisik" :key="i">
-							<td class="text-center">{{ f.id }}</td><td class="p-5">{{ f.label }}</td><td class="text-center">{{ f.sem1 }}</td><td class="text-center">{{ f.sem2 }}</td>
+							<td class="text-center">{{ f.id }}</td>
+							<td class="p-5">{{ f.label }}</td>
+							<td class="text-center">{{ f.sem1 }} </td>
+							<td class="text-center">{{ f.sem2 }} </td>
 						</tr>
 					</tbody>
 				</table>
@@ -141,6 +144,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						<!-- <span v-if="rapor.hasOwnProperty('kesehatan')"> -->
 						<tr>
 							<td class="text-center p-5">1</td><td class="p-5">Pendengaran</td><td class="p-5">{{ rapor.kesehatan ? rapor.kesehatan.pendengaran : ''}}</td>
 						</tr>
@@ -153,6 +157,7 @@
 						<tr>
 							<td class="text-center p-5">4</td><td class="p-5">Lainnya</td><td class="p-5">{{ rapor.kesehatan ? rapor.kesehatan.lainnya : ''}}</td>
 						</tr>
+						<!-- </span> -->
 					</tbody>
 				</table>
 			</div>
@@ -165,6 +170,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						<!-- <span v-if="rapor.hasOwnProperty('prestasi')"> -->
 						<tr>
 							<td class="text-center p-5">1</td><td class="p-5">Akademik</td><td class="p-5">{{ rapor.prestasi ? rapor.prestasi.akademik : '-' }}</td>
 						</tr>
@@ -174,7 +180,7 @@
 						<tr>
 							<td class="text-center p-5">3</td><td class="p-5">Kesenian</td><td class="p-5">{{ rapor.prestasi ? rapor.prestasi.kesenian : '-' }}</td>
 						</tr>
-						
+						<!-- </span> -->
 					</tbody>
 				</table>
 
@@ -182,6 +188,7 @@
 			<div class="absensi section">
 				<h3>H. Absensi</h3>
 				<table border="1" width="40%">
+					<!-- <span v-if="rapor.hasOwnProperty('absensi')"> -->
 					<tr>
 						<td class="p-5">Tanpa Keterangan</td><td class="p-5">: {{ rapor.absensi ? rapor.absensi.a : '-' }} hari</td>
 					</tr>
@@ -191,7 +198,7 @@
 					<tr>
 						<td class="p-5">Sakit</td><td class="p-5">: {{ rapor.absensi ? rapor.absensi.s : '-' }} hari</td>
 					</tr>
-					
+					<!-- </span> -->
 				</table>
 			</div>
 			<div class="keputusan section" v-if="($page.props.periode_aktif.semester == '2')">
@@ -293,6 +300,9 @@
 			},
 			wajibs(){
 				return _.orderBy(this.rapor.pas.wajib, "id")
+			},
+			muloks() {
+				return _.orderBy(this.rapor.pas.mulok, "id")
 			}
 
 		}

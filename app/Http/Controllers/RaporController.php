@@ -102,14 +102,15 @@ class RaporController extends Controller
                 ['periode_id','LIKE',substr($request->session()->get('periode'), 0,4).'%'],
                 ['siswa_id','=', $siswa->nisn]
             ])->orderBy('periode_id')->get();
-            $i=1;
+            // $i=1;
             $tb = [];
             $bb = [];
             foreach($getfisik as $fi)
             {
-                $tb['sem'.$i] = $fi->tb;
-                $bb['sem'.$i] = $fi->bb;
-                $i++;
+                $sem = substr($fi->periode_id,-1);
+                $tb['sem'.$sem] = $fi->tb .' cm';
+                $bb['sem'.$sem] = $fi->bb .' kg';
+                // $i++;
             }
             // $fisik = $tb;
             // [

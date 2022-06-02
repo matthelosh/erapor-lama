@@ -297,7 +297,7 @@
 					// pas.wajib = wajib
 					this.pas = pas
 					this.pas.wajib = wajib
-					console.log(wajib)
+					// console.log(wajib)
 				}).catch( err => {
 					console.log( err)
 				})

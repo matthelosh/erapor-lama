@@ -327,7 +327,6 @@ import axios from 'axios';
                     {value: 'nis', text: 'NIS'},
                     {value: 'nama', text: 'Nama'},
                     {value: 'agama', text: 'Agama'},
-                    
                     {value: 'ortu.nama_ibu', text: 'Nama Ibu'},
                     {value: 'options', text: 'Opsi'},
                 ]
