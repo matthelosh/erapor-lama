@@ -101,7 +101,7 @@
 					</thead>
 					<tbody>
 						<tr v-for="(e,i) in rapor.ekskul" :key="i">
-							<td class="p-5 text-center" width="3%" style="width:3%!important">{{ e ? e.id : '' }}</td><td class="p-5">{{ e ? e.ekskuls.label : '' }}</td><td class="p-5">{{ e ? e.ket : '' }}</td>
+							<td class="p-5 text-center" width="3%" style="width:3%!important">{{ e ? i+1 : '' }}</td><td class="p-5">{{ e ? e.ekskuls.label : '' }}</td><td class="p-5">{{ e ? e.ket : '' }}</td>
 						</tr>
 					</tbody>
 				</table>
