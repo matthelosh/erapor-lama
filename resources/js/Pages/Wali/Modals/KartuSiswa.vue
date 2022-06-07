@@ -17,61 +17,61 @@
 						<v-row>
 							<v-col cols="9">
 								<div id="print">
-								<v-sheet 
-									v-for="(item, index) in items"
-									color="white"
-									:key="index"
-									elevation="1"
-									width="794"
-									height="auto"
-									padding="10"
-									class="p-20 text-center my-5 sheet">
-									<div
-										v-for="siswa in item"
-										:key="siswa.nisn"
-										style="background: url('/storage/img/kartu/bg_kartu.png';background-repeat: no-repeat ; position: relative;width: 647px; height: 190px;"
-										cover
-										class="mx-auto my-5 d-print-block"
-										relative
-									>
-										<v-row>
-											<v-col cols="6" style="position: relative; height: 190px;width: 323.5px; ">
-												<div style="position: relative;">
-												<table style="min-height: 120px;">
-													<tr>
-														<td></td>
-														<td colspan="3" style="padding-bottom: 15px;"><h3 style="margin-bottom: -5px">{{ $page.props.sekolah.nama_sekolah.toUpperCase() }}</h3>
-															<span style="font-size: 0.8em;text-transform: capitalize;">{{ $page.props.sekolah.alamat }}, {{ $page.props.sekolah.desa}}, {{$page.props.sekolah.kode_pos}}</span>
-														</td>
-													</tr>
-													<tr>
-														<td rowspan="4" style="vertical-align: top;padding-top: 5px;" width="20%">
-															<img :src="'/img/siswas/'+siswa.nisn+'.jpg'" alt="Foto" width="50px" @error="setDefaultFoto($event,siswa.jk)">
-														</td>
-														<td width="25%">NIS / NISN</td><td>:</td><td>{{ siswa.nis }} / <b>{{ siswa.nisn }}</b></td>
-													</tr>
-													<tr>
-														<td>Nama</td><td>:</td><td>{{ siswa.nama }}</td>
-													</tr>
-													<tr>
-														<td>Kelahiran</td><td>:</td><td>{{ siswa.tempat_lahir }}, {{ siswa.tanggal_lahir }}</td>
-													</tr>
-													<tr>
-														<td>Kontak</td><td>:</td><td>{{ siswa.hp }}</td>
-													</tr>
-												</table>
-												
-												
-												</div>
-												<h1 class="tahun" style="position:absolute;left: 40%; bottom: 7px; filter: opacity(40%) ;">2021</h1>
-												<img class="ttd" :src="'/img/ttd/'+$page.props.sekolah.ks.nip+'.png'" alt="TTD." width="50px" height="auto" style="position: absolute; left: 35px; bottom: 15px;" />
-												<vue-qrious mime="image/png" :value="siswa.nisn" :size="100" width="40" style="position: absolute; bottom:5px;right: 10px;" />
-											</v-col>
-											<v-col cols="6">
-											</v-col>
-										</v-row>
-									</div>
-								</v-sheet>
+									<v-sheet 
+										v-for="(item, index) in items"
+										color="white"
+										:key="index"
+										elevation="1"
+										width="794"
+										height="auto"
+										padding="10"
+										class="p-20 text-center my-5 sheet">
+										<div
+											v-for="siswa in item"
+											:key="siswa.nisn"
+											style="background: url('/storage/img/kartu/bg_kartu.png';background-repeat: no-repeat ; position: relative;width: 647px; height: 190px;"
+											cover
+											class="mx-auto my-5 d-print-block card"
+											relative
+										>
+											<v-row>
+												<v-col cols="6" style="position: relative; height: 190px;width: 323.5px; ">
+													<div style="position: relative;">
+													<table style="min-height: 120px;">
+														<tr>
+															<td></td>
+															<td colspan="3" style="padding-bottom: 15px;"><h3 style="margin-bottom: -5px">{{ $page.props.sekolah.nama_sekolah.toUpperCase() }}</h3>
+																<span style="font-size: 0.8em;text-transform: capitalize;">{{ $page.props.sekolah.alamat }}, {{ $page.props.sekolah.desa}}, {{$page.props.sekolah.kode_pos}}</span>
+															</td>
+														</tr>
+														<tr>
+															<td rowspan="4" style="vertical-align: top;padding-top: 5px;" width="20%">
+																<img :src="'/img/siswas/'+siswa.nisn+'.jpg'" alt="Foto" width="50px" @error="setDefaultFoto($event,siswa.jk)">
+															</td>
+															<td width="25%">NIS / NISN</td><td>:</td><td>{{ siswa.nis }} / <b>{{ siswa.nisn }}</b></td>
+														</tr>
+														<tr>
+															<td>Nama</td><td>:</td><td>{{ siswa.nama }}</td>
+														</tr>
+														<tr>
+															<td>Kelahiran</td><td>:</td><td>{{ siswa.tempat_lahir }}, {{ siswa.tanggal_lahir }}</td>
+														</tr>
+														<tr>
+															<td>Kontak</td><td>:</td><td>{{ siswa.hp }}</td>
+														</tr>
+													</table>
+													
+													
+													</div>
+													<h1 class="tahun" style="position:absolute;left: 40%; bottom: 7px; filter: opacity(40%) ;">2021</h1>
+													<img class="ttd" :src="'/img/ttd/'+$page.props.sekolah.ks.nip+'.png'" alt="TTD." width="50px" height="auto" style="position: absolute; left: 35px; bottom: 15px;" />
+													<vue-qrious mime="image/png" :value="siswa.nisn" :size="100" width="40" style="position: absolute; bottom:5px;right: 10px;" />
+												</v-col>
+												<v-col cols="6">
+												</v-col>
+											</v-row>
+										</div>
+									</v-sheet>
 								</div>
 							</v-col>
 							<v-col cols="3">
@@ -140,7 +140,18 @@
 								.sheet {
 									page-break-after: always;
 								}
-							}
+
+								@media print {
+									@page {
+										size: 215mm 330mm;
+									}
+									
+									.sheet {
+										page-break-after: always;
+									}
+
+								}
+							
 							</style>
 						</head>
 						<body>
@@ -162,7 +173,8 @@
 				var group = datas.length / 5
 				var items = []
 				for ( var i = 0; i < group; i++) {
-					items[i] = datas.slice(i, (i + 5))
+					let cur = i * 5
+					items[i] = _.slice(datas, cur, cur+5)
 				}
 				return items
 			}
