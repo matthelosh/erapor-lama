@@ -106,9 +106,9 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="saran seaction">
+			<div class="saran section">
 				<h3>D. Saran</h3>
-				<p>{{ rapor.saran ? rapor.saran.teks : '' }}</p>
+				<article class="saran-content" v-html="rapor.saran ? rapor.saran.teks : '-'"></article>
 			</div>
 			<div class="fisik section">
 				<h3>E. Tinggi Badan dan Berat badan</h3>
@@ -170,7 +170,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- <span v-if="rapor.hasOwnProperty('prestasi')"> -->
 						<tr>
 							<td class="text-center p-5">1</td><td class="p-5">Akademik</td><td class="p-5">{{ rapor.prestasi ? rapor.prestasi.akademik : '-' }}</td>
 						</tr>
@@ -322,7 +321,6 @@
 		margin-bottom:  10px;
 	}
 	.keputusan {
-		/*margin:  10px auto;*/
 		border-top:  5px double black;
 		border-bottom:  5px double black;
 	}
@@ -376,18 +374,10 @@
 		margin-top: 20px;
 		margin-left:  20px;
 	}
-	.title {
-		/*margin-top:  20px;*/
-	}
-	.box-saran {
-		border:  1px solid black;
-		padding: 20px;
-		box-sizing: border-box;
-	}
-	.box-saran p {
-		text-align: center;
-		font-weight:  800;
-		font-size: 14pt;
+	.saran article {
+		box-sizing:border-box;
+		padding: 10px;
+		border: 1px solid black;
 	}
 	.ttd-ks {
 		position: absolute;

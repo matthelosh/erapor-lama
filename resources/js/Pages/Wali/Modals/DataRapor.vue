@@ -96,7 +96,6 @@
  									<v-card-title>
 										Saran
 										<v-spacer></v-spacer>
-										<!-- <v-btn fab small color="error"><v-icon>mdi-plus</v-icon></v-btn> -->
 										<v-btn color="primary" @click="simpanSaran" rounded>Simpan</v-btn>
 									</v-card-title>
  									<v-card-text>
@@ -106,12 +105,15 @@
 										    color="error"
 										    class="my-auto"
 									    ></v-progress-circular>
- 										<v-textarea v-if="!saran.progress" label="Saran" v-model="saran.teks" outlined rows="4" solo hide-details></v-textarea>
+ 										<!-- <v-textarea v-if="!saran.progress" label="Saran" v-model="saran.teks" outlined rows="4" solo hide-details></v-textarea> -->
+										<tiptap-vuetify 
+											v-if="!saran.progress"
+											v-model="saran.teks"
+											:extensions="extensions"
+										>
 
+										</tiptap-vuetify>
  									</v-card-text>
- 									<!-- <v-card-actions class="d-flex justify-end px-4">
- 										<v-btn color="primary" @click="simpanSaran" rounded>Simpan</v-btn>
- 									</v-card-actions> -->
  								</v-card>
  							</v-col>
  							<v-col cols="12" sm="3">
@@ -136,9 +138,9 @@
 										    	<v-col cols="6">
 										    		<v-text-field v-model="fisik.bb" label="Berat(kg)" type="number" outlined rounded dense hide-details />
 										    	</v-col>
-										    	<!-- <v-col cols="12" class="d-flex justify-center">
+										    	<v-col cols="12" class="d-flex justify-center">
 										    		<v-btn color="primary" rounded @click="simpanFisik">Simpan</v-btn>
-										    	</v-col> -->
+										    	</v-col>
 										    </v-row>
 	 									</div>
  									</v-card-text>
@@ -307,7 +309,9 @@
 </template>
 
 <script>
+	import { TiptapVuetify, Heading, Bold, Italic, Strike, Underline, Code, Paragraph, BulletList, OrderedList, ListItem, Link, Blockquote, HardBreak, HorizontalRule, History } from 'tiptap-vuetify'
 	export default {
+		components: {TiptapVuetify},
 		name: 'DataRapor',
 		props: {
 			dialog: Object
@@ -327,6 +331,27 @@
 				selected: {}
 
 			},
+			extensions: [
+				History,
+				Blockquote,
+				Link,
+				Underline,
+				Strike,
+				Italic,
+				ListItem,
+				BulletList,
+				OrderedList,
+				[Heading, {
+					options: {
+					levels: [1, 2, 3]
+					}
+				}],
+				Bold,
+				Code,
+				HorizontalRule,
+				Paragraph,
+				HardBreak
+				],
 			saran: {
 				progress: false,
 				show: false,
