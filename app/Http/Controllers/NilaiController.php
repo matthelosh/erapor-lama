@@ -121,7 +121,7 @@ class NilaiController extends Controller
             {
                 Nilai::updateOrCreate(
                     [
-
+                        'id' => $nilai['id_nilai'] ?? null,
                         'periode_id'=> $request['data']['periode_id'],
                         'semester'=> $request['data']['semester'],
                         'rombel_id'=> $request['data']['rombel_id'],
@@ -129,11 +129,12 @@ class NilaiController extends Controller
                         'jenis'=>$request['data']['jenis'],
                         'mapel_id'=> $request['data']['mapel_id'],
                         'kd_id'=> $request['data']['kd_id'],
-                        'ppn'=> $request['data']['ppn']??'ts',
+                        
                         'siswa_id' => $nilai['nisn'],
                         
                     ],
                     [
+                        'ppn'=> $request['data']['ppn']??'ts',
                         'nilai' => $nilai['nilai']
                     ]
                 );

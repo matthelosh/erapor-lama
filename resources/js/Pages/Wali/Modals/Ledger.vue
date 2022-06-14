@@ -36,12 +36,14 @@
 										<tr>
 											<th>No</th><th>NISN/NIS</th><th>NAMA</th>
 											<th v-for="key in headers">{{ key }}</th>
+											<th>Rerata</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr v-for="(item) in nilais" :key="item.index">
 											<td>{{ item.index }}</td><td>{{ item.nisn }}</td><td>{{ item.nama }}</td>
 											<td v-for="nilai in item.nilais">{{ Math.round(nilai,0) }}</td>
+											<td>{{ Math.round(Object.values(item.nilais).reduce((a,b) => a+b) / Object.keys(item.nilais).length)}}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -88,8 +90,11 @@
 					})
 					res.data.nilais.forEach((item,index) => {
 						item.index = index+1
+						item.rerata = null
 						nilais.push(item)
 					})
+
+
 					this.nilais = nilais
 					// console.log(res.data.nilais)
 				}).catch( err => {

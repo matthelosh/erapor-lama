@@ -94,9 +94,9 @@
                                         </v-list-item>
                                     </v-list-item-group>
                                     <v-list-item-group>
-                                        <template v-for="(siswa, index) in nilaimobiles">
+                                        <template v-for="(siswa, index) in nilaimobiles" >
                                             <v-list-item 
-                                                :key="siswa.nisn" 
+                                                :key="siswa.nisn"
                                             >
                                                 <v-list-item-avatar>
                                                     <img :src="'/storage/img/siswas/'+siswa.nisn+'.jpg'" @error="setDefaultFoto($event, siswa)" class="foto" />
@@ -152,7 +152,7 @@
                             </v-list-item-action>
                         </v-list-item>
                         <v-list-item-group >
-                            <template v-for="(item,i) in nilais">
+                            <template v-for="(item,i) in nilais" >
                                 <v-list-item :key="i">
                                     <div style="min-width:80%;" id="vListContent">
                                         <v-list-item-content>
@@ -433,6 +433,7 @@
                    if(siswa.nilais[index].kd_id == k[0]) {
                        var $nilai = (siswa.nilais[index].nilai > 0 ? siswa.nilais[index].nilai : ( this.dialog.aspek == 'k1' || this.dialog.aspek == 'k2') ? 80 : 0)
                        nilais.push({
+                           id_nilai: siswa.nilais[index].id,
                            nisn: siswa.nisn,
                            nama: siswa.nama,
                            kd_id: kd,
