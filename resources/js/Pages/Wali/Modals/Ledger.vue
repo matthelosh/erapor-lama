@@ -75,7 +75,7 @@
 				this.progress = true
 				axios({
 					method: 'post',
-					url: '/dashboard/nilai/ledger',
+					url: '/wali/nilai/ledger',
 					data: {
 						siswa_id: this.siswa,
 						rombel_id: this.$page.props.rombel.kode_rombel

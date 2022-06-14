@@ -448,10 +448,6 @@
 				})
 
 
-				// var pos = this.dialog.siswas.map(e => {
-				// 	return e.nisn
-				// }).indexOf(this.dialog.siswa.nisn)
-				// console.log(pos)
 			},
 			showFormEkskul(edit,item) {
 				if (edit == null) {
