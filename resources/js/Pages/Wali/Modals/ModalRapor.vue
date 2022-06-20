@@ -87,6 +87,17 @@
 					<v-col cols="3">
 						<v-card>
 							<v-card-text>
+								<v-select 
+									dense
+									label="Periode" 
+									rounded 
+									solo 
+									:items="[
+										{value: '21221', text: '2021 - 2022 Ganjil'},
+										{value: '21222', text: '2021 - 2022 Genap'},
+									]"
+									v-model="selectedPeriode"
+									></v-select>
 								<v-autocomplete 
 									hide-details 
 									v-model="siswa"
@@ -151,7 +162,8 @@
 			pts: {},
 			pas: {},
 			teks: "Halo",
-			progress: false
+			progress: false,
+			selectedPeriode: null
 		}),
 		methods: {
 			print() {
@@ -262,12 +274,14 @@
 			getPTS(){
 				// console.log(this.$page.props.rombel)
 				this.progress = true
+				let rombel = this.$page.props.rombel.kode_rombel.split('-')
+				let selectedRombel = this.periode+'-'+rombel[1]
 				axios({
 					method: 'post',
 					url: '/wali/rapor/pts',
 					data: {
-						rombel: this.$page.props.rombel.kode_rombel,
-						periode: this.$page.props.periode,
+						rombel: selectedRombel,
+						periode: this.periode,
 						siswa_id: this.siswa
 					}
 				}).then( res => {
@@ -281,12 +295,14 @@
 			},
 			getPAS(){
 				this.progress = true
+				let rombel = this.$page.props.rombel.kode_rombel.split('-')
+				let selectedRombel = this.periode+'-'+rombel[1]
 				axios({
 					method: 'post',
 					url: '/wali/rapor/pas',
 					data: {
-						rombel: this.$page.props.rombel.kode_rombel,
-						periode: this.$page.props.periode,
+						rombel: selectedRombel,
+						periode: this.periode,
 						siswa_id: this.siswa
 					}
 				}).then( res => {
@@ -297,6 +313,7 @@
 					// pas.wajib = wajib
 					this.pas = pas
 					this.pas.wajib = wajib
+					this.pas.periode = this.periode
 					// console.log(wajib)
 				}).catch( err => {
 					console.log( err)
@@ -322,7 +339,11 @@
 			selectedSiswa() {
 				let siswas =  this.dialog.siswas.filter( item => (item.nisn == this.siswa))
 				return siswas[0]
+			},
+			periode() {
+				return this.selectedPeriode ? this.selectedPeriode : this.$page.props.periode
 			}
+			
 		},
 		created() {
 			this.siswa = this.dialog.siswa.nisn

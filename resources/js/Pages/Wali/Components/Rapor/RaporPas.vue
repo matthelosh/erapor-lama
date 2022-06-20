@@ -10,7 +10,7 @@
 						<td>Nama Peserta Didik</td><td>: {{ siswa.nama }}</td><td>Kelas</td><td>: {{rapor.rombel.label}}</td>
 					</tr>
 					<tr>
-						<td>NISN/NIS</td><td>: {{ siswa.nisn }}/{{ siswa.nis }}</td><td>Semester</td><td>: {{ ($page.props.periode_aktif.semester == '1') ? 'I (GANJIL)' : 'II (GENAP)' }}</td>
+						<td>NISN/NIS</td><td>: {{ siswa.nisn }}/{{ siswa.nis }}</td><td>Semester</td><td>: {{ (rapor.periode.substr(-1) == '1') ? 'I (GANJIL)' : 'II (GENAP)' }}</td>
 					</tr>
 					<tr>
 						<td>Nama Sekolah</td><td>: {{ rapor.sekolah.nama_sekolah }}</td><td>Tahun Pelajaran</td><td>: {{ $page.props.periode_aktif.tapel }}</td>
@@ -200,8 +200,8 @@
 					<!-- </span> -->
 				</table>
 			</div>
-			<div class="keputusan section" v-if="($page.props.periode_aktif.semester == '2')">
-				<h3>I. Keputusan</h3>
+			<div class="keputusan section" v-if="(rapor.periode.substr(-1) == '2')">
+				<h3>I. Keputusan {{rapor.periode}}</h3>
 				<article>
 					<!-- <h4>Keputusan:</h4> -->
 					<p>Berdasarkan pada pencapaian kompetensi, peserta didik dinyatakan:</p>
