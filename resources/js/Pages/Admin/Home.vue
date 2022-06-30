@@ -20,6 +20,7 @@
                                 </v-row>
                                 <v-row v-else>
                                     <h3>Selamat Datang {{ ($page.props.user.jk == 'l') ? 'Bapak' : 'Ibu' }} {{ $page.props.user.name }}</h3>
+                                    <p>{{$page.props.serverIp}}</p>
                                 </v-row>
                             </v-container>
                         </v-card-text>

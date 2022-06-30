@@ -46,6 +46,7 @@ class HandleInertiaRequests extends Middleware
         $user = $this->user($request);
         return array_merge(parent::share($request), [
             'appName' => config('app.name'),
+            'serverIp' => $request->server('SERVER_ADDR'),
 
             'user' => fn () => $user ? $user->userable : null,
             // 'user' => fn () => $request->user() ? $request->user()->with('userable')->only('id', 'nip', 'name', 'username', 'email', 'jk', 'hp', 'alamat', 'level', 'role') : null,
