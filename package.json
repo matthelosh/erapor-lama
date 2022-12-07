@@ -39,7 +39,7 @@
         "vue-apexcharts": "^1.6.0",
         "vue-capture": "^0.1.7",
         "vue-qrious": "^1.6.0",
-        "vuetify": "^2.4.6",
+        "vuetify": "^2.6.12",
         "xlsx": "^0.17.3"
     }
 }
