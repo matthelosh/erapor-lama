@@ -27,7 +27,7 @@ trait NilaiTrait
             ]))->first();
             $ds=[];
             $kelas = ($request->aspek == 'k1' || $request->aspek == 'k2') ? 'all' : substr($request->rombel, 6,1);
-            $kurikulum = 'k13d';
+            $kurikulum = 'k13';
 
             $kds = Prosem::where([
                 ['semester','=', substr($request->session()->get('periode'), 4,1)],
