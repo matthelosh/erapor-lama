@@ -26,14 +26,14 @@ trait NilaiTrait
                 ['aspek','=',$request->aspek]
             ]))->first();
             $ds=[];
-            $kelas = ($request->aspek == 'k1' || $request->aspek == 'k2') ? 'all' : substr($request->rombel, 6,1);
+            $kelas = ($request->mapel == 'pabp' || $request->mapel == 'ppkn') ? 'all' : substr($request->rombel, 6,1);
             $kurikulum = 'k13';
 
             $kds = Prosem::where([
                 ['semester','=', substr($request->session()->get('periode'), 4,1)],
                 ['kelas','=', $kelas],
                 ['mapel_id','=',$request->mapel],
-                ['kurikulum_id','=', $kurikulum]
+                // ['kurikulum_id','=', $kurikulum]
                 // ['ppn',$operator,$ppn],
             ])->orderBy('kd_id')->get();
             // dd($kds);
@@ -109,7 +109,7 @@ trait NilaiTrait
                 if ($mapel->kode_mapel === 'pabp' ) {
                     $kds_pabp = Prosem::where([
                         ['semester','=',$semester],
-                        ['kelas','=',$request->session()->get('rombel') ? $request->session()->get('rombel')->kelas_id : 'all'],
+                        ['kelas','=', 'all'],
                         ['mapel_id','=', 'pabp'],
                         ['kurikulum_id','=', 'k13']
                         // ['ppn', '=','ts']
@@ -124,7 +124,7 @@ trait NilaiTrait
                     $kds_ppkn = Prosem::where([
                         ['semester','=',$semester],
                         // ['kelas','=','all'],
-                        ['kelas','=',$request->session()->get('rombel') ? $request->session()->get('rombel')->kelas_id : 'all'],
+                        ['kelas','=', 'all'],
                         ['mapel_id','=', 'ppkn'],
                         // ['ppn', '=','ts']
                     ])->get();

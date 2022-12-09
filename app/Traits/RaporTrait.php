@@ -443,39 +443,19 @@ trait RaporTrait
         {
             $nilai_k1[$nilai->kd_id] = $nilai->nilai??0;
         }
-        $n1max=0;
-        $k1max='';
-        $n1min=0;
-        $k1min='';
+        $deskripsi1 = '';
         foreach($nilai_k1 as $k=>$n) 
         {
-            if($n > $n1max) {
-                $n1max = $n;
-                $k1max = $k;
-            } 
-            if($n1min == 0 || $n1min > $n) {
-                $n1min = $n;
-                $k1min = $k;
-            }
-        }
-        $kd1_max = Kd::where([
-            ['kelas_id','=','all'],
-            ['kode_kd','=',$k1max],
-            ['mapel_id','=','pabp'],
-            ['kurikulum_id','=', $request->session()->get('kurikulum')]
-        ])->first();
-        
-        $kd1_min = Kd::where([
-            ['kelas_id','=','all'],
-            ['kode_kd','=',$k1min],
-            ['mapel_id','=','pabp'],
-            ['kurikulum_id','=', $request->session()->get('kurikulum')]
-        ])->first();
-        // $mapel1 = Mapel::where([
-        //     ['kode_mapel', '=','pabp'],
 
-        // ])
-        $deskripsi1 = $this->kataSikap($n1max, 70).' '.($kd1_max->teks ?? '').'. '.$this->kataSikap($n1min, 70).' '.($kd1_min->teks?? 'Cek KD');
+            $kd = Kd::where([
+                ['kelas_id','=','all'],
+                ['kode_kd','=',$k],
+                ['mapel_id','=','pabp'],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+            ])->first();
+
+            $deskripsi1 .= $this->kataSikap($n, 70)." ".$kd->teks .(count($nilai_k1) > 1 ? ', ':'');
+        }
         $rerata1 = (count($nilai_k1) > 0) ? array_sum(array_values($nilai_k1)) / count($nilai_k1) : 0;
         $pas['sikap']['spiritual'] = [
             'id' => 1,
@@ -498,40 +478,25 @@ trait RaporTrait
         {
             $nilai_k2[$nilai->kd_id] = $nilai->nilai??0;
         }
-        $n2max=0;
-        $k2max='';
-        $n2min=0;
-        $k2min='';
+        $deskripsi2 = '';
+
+
         foreach( $nilai_k2 as $k=>$n ) 
         {
-            if($n > $n2max) {
-                $n2max = $n;
-                $k2max = $k;
-            } 
-            if($n2min == 0 || $n2min > $n){
-                $n2min = $n;
-                $k2min = $k;
-            }
+
+            $kd = Kd::where([
+                ['kelas_id','=','all'],
+                ['kode_kd','=',$k],
+                ['mapel_id','=','ppkn'],
+                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+            ])->first();
+
+            $deskripsi2 .= $this->kataSikap($n, 70)." ".$kd->teks .(count($nilai_k2) > 1 ? ', ':'');
         }
-        $kd2_max = Kd::where([
-            ['kelas_id','=','all'],
-            ['kode_kd','=',$k2max],
-            ['mapel_id','=','ppkn'],
-            ['kurikulum_id','=', $request->session()->get('kurikulum')]
-        ])->first();
-        
-        $kd2_min = Kd::where([
-            ['kelas_id','=','all'],
-            ['kode_kd','=',$k2min],
-            ['mapel_id','=','ppkn'],
-            ['kurikulum_id','=', $request->session()->get('kurikulum')]
-        ])->first();
-        
-        $deskripsi2 = $this->kataSikap($n2max, 70).' '.($kd2_max->teks ?? '').'. '.$this->kataSikap($n2min, 70).' '.($kd2_min->teks?? 'Cek KD');
         $rerata2 = (count($nilai_k2) > 0) ? array_sum(array_values($nilai_k2)) / count($nilai_k2) : 0;
         $pas['sikap']['sosial'] = [
             'id' => 2,
-            'label' => 'Spiritual',
+            'label' => 'Sosial',
             'nilai' => $rerata2,
             'deskripsi' => $deskripsi2
         ];
@@ -563,16 +528,16 @@ trait RaporTrait
         $kkm = ($kkm != 0) ? $kkm : 75;
         switch ($nilai) {
             case ($nilai < $kkm):
-                return "perlu bimbingan dalam ";
+                return "perlu bimbingan dalam aspek ";
                 break;
             case ($nilai >= $kkm):
-                return "cukup";
+                return "cukup dalam aspek ";
                 break;
             case ($nilai > ($kkm+5)):
-                return " ";
+                return " baik dalam aspek ";
                 break;
             case ($nilai > ($kkm + 10)):
-                return "Sangat ";
+                return "Sangat baik dalam aspek ";
                 break;
         }
     }
