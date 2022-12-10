@@ -25,12 +25,25 @@ trait NilaiTrait
             $ds=[];
             $kelas = (($request->mapel == 'pabp' && $request->aspek == 'k1') || ($request->mapel == 'ppkn' && $request->aspek == 'k2')) ? 'all' : substr($request->rombel, 6,1);
             $kurikulum = 'k13';
+            // $kd_id = ($request->mapel == 'pabp' && $request->aspek == 'k1') ? '1.%' : ($request->mapel == 'ppkn' && $request->aspek == 'k2') ? '2.%' : ();
+            switch($request->aspek) 
+            {
+                case "k1":
+                    $kd_id = '1.%';
+                    break;
+                case "k2":
+                    $kd_id = '2.%';
+                    break;
+                default:
+                    $kd_id = '3.%';
+                    break;
+            }
 
             $kds = Prosem::where([
                 ['semester','=',substr($request->session()->get('periode'), 4,1)],
                 ['kelas','=',$kelas],
                 ['mapel_id','=', $request->mapel],
-                ['kd_id','LIKE',substr($request->aspek,1,1).'%'],
+                ['kd_id','LIKE', $kd_id],
                 ['kurikulum_id','=','k13']
             ])->orderBy('kd_id','ASC')->get();
             $siswas = $datas->siswas;
