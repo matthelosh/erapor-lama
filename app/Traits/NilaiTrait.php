@@ -14,29 +14,25 @@ trait NilaiTrait
     public function nilais($request)
     {
         try {
-            // dd($request->ppn === 'null');
             $ppn = ($request->ppn != 'null') ?  $request->ppn : '%';
             $operator = ($request->ppn != 'null') ? '=': 'LIKE';
-            // dd($ppn,$operator);
             $datas = Rombel::where('kode_rombel', $request->rombel)->with('siswas.nilais', fn($q) => $q->where([
                 ['mapel_id','=', $request->mapel],
                 ['rombel_id','=', $request->rombel],
                 ['jenis','=', $request->jenis],
-                // ['ppn',$operator,$ppn],
                 ['aspek','=',$request->aspek]
             ]))->first();
             $ds=[];
-            $kelas = ($request->mapel == 'pabp' || $request->mapel == 'ppkn') ? 'all' : substr($request->rombel, 6,1);
+            $kelas = (($request->mapel == 'pabp' && $request->aspek == 'k1') || ($request->mapel == 'ppkn' && $request->aspek == 'k2')) ? 'all' : substr($request->rombel, 6,1);
             $kurikulum = 'k13';
 
             $kds = Prosem::where([
-                ['semester','=', substr($request->session()->get('periode'), 4,1)],
-                ['kelas','=', $kelas],
-                ['mapel_id','=',$request->mapel],
-                // ['kurikulum_id','=', $kurikulum]
-                // ['ppn',$operator,$ppn],
-            ])->orderBy('kd_id')->get();
-            // dd($kds);
+                ['semester','=',substr($request->session()->get('periode'), 4,1)],
+                ['kelas','=',$kelas],
+                ['mapel_id','=', $request->mapel],
+                ['kd_id','LIKE',substr($request->aspek,1,1).'%'],
+                ['kurikulum_id','=','k13']
+            ])->orderBy('kd_id','ASC')->get();
             $siswas = $datas->siswas;
              $i=0;
             foreach($siswas as $siswa) {
@@ -58,22 +54,16 @@ trait NilaiTrait
                 $ds[$i]['nilais']=$nilais;
                 $i++;
             }
-            // dd($kds);
             return $ds;
            
 
         } catch (\Exception $e) {
-        //    dd($e->getMessage());
             return $e->getMessage();
         }
     }
 
     public function prosentase($request)
     {
-        // dd($request->user());
-        // dd(\App\Models\Sekolah::find(1));
-
-        
         $role = $request->user()->role;
         $periode = $request->session()->get('periode');
         $semester= substr($periode,4,1);
@@ -83,7 +73,6 @@ trait NilaiTrait
                 ['guru_id','=', $request->user()->userid],
                 ['periode_id', '=', $request->session()->get('periode')]
             ])->with('siswas')->first();
-            // dd($rombel);
             $kelas = Kelas::where('kode_kelas', $rombel->kelas_id)->with('mapels', function($q) {
                 $q->select('kode_mapel', 'label', 'nama_mapel')->orderBy('mapels.id');
             })->first();
@@ -91,11 +80,8 @@ trait NilaiTrait
         
             $pais = [];
             
-            // $kelas= $rombel->kelas_id;
-
             foreach($kelas->mapels as $mapel)
             {
-                // array_push($datas, $mapel->kode_mapel);
                 $datas[$mapel->kode_mapel]['label'] = $mapel->label;
                 $datas[$mapel->kode_mapel]['kode'] = $mapel->kode_mapel;
                 $kds = Prosem::where([
@@ -153,15 +139,10 @@ trait NilaiTrait
                 $datas[$mapel->kode_mapel]['nh4']['jml_kd'] = $kds->count();
                 $datas[$mapel->kode_mapel]['nh4']['kds'] = $kds;
 
-                // $datas[$mapel->kode_mapel]['nh3_as']['jml_kd'] = $kd_as->count();
-                // $datas[$mapel->kode_mapel]['nh3_as']['kds'] = $kd_as;
-                // $datas[$mapel->kode_mapel]['nh4_as']['jml_kd'] = $kd_as->count();
-                // $datas[$mapel->kode_mapel]['nh4_as']['kds'] = $kd_as;
                 $datas[$mapel->kode_mapel]['nts']['jml_kd'] = $kd_ts->count();
                 $datas[$mapel->kode_mapel]['nts']['kds'] = $kd_ts;
                 $datas[$mapel->kode_mapel]['nas']['jml_kd'] = $kd_as->count();
                 $datas[$mapel->kode_mapel]['nas']['kds'] = $kd_as;
-                // dd($kds_pabp);
                 foreach( $kds as $kd)
                 {
 
@@ -202,14 +183,6 @@ trait NilaiTrait
                         // ['kd_id','=', $kd->kd_id]
                     ])->select('kd_id')->groupBy('kd_id')->get();
 
-                    // $nilai_uh3_as = Nilai::where([
-                    //     ['periode_id','=', $request->session()->get('periode')],
-                    //     ['mapel_id', '=', $mapel->kode_mapel],
-                    //     ['rombel_id','=', $rombel->kode_rombel],
-                    //     ['jenis', '=','uh'],
-                    //     ['ppn', '=','as'],
-
-                    // ])->select('kd_id')->groupBy('kd_id')->get();
 
                     $nilai_uh4 = Nilai::where([
                         ['periode_id','=', $request->session()->get('periode')],
@@ -221,16 +194,6 @@ trait NilaiTrait
                         // ['ppn', '=','ts'],
                         // ['kd_id','=', $kd->kd_id]
                     ])->select('kd_id')->groupBy('kd_id')->get();
-
-                    // $nilai_uh4_as = Nilai::where([
-                    //     ['periode_id','=', $request->session()->get('periode')],
-                    //     ['mapel_id', '=', $mapel->kode_mapel],
-                    //     ['rombel_id','=', $rombel->kode_rombel],
-                    //     ['jenis', '=','uh'],
-                    //     ['aspek','=','k4'],
-                    //     ['ppn', '=','as'],
-
-                    // ])->select('kd_id')->groupBy('kd_id')->get();
                     
                     $nilai_ts = Nilai::where([
                         ['periode_id','=', $request->session()->get('periode')],
