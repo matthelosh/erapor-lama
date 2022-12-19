@@ -37,7 +37,7 @@ trait RaporTrait
                 ['periode_id','=',$request->periode],
                 ['rombel_id','=', $request->rombel],
                 ['mapel_id','=',$mapel->kode_mapel],
-                ['ppn','=', 'ts'],
+                // ['ppn','=', 'ts'],
                 ['aspek','=','k3']
             ]);
             $rerata = $nilai_pts_wajib->avg('nilai');

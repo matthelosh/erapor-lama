@@ -271,12 +271,12 @@
 				// 	console.log( err.response)
 				// })
 			},
-			getPTS(){
+			async getPTS(){
 				// console.log(this.$page.props.rombel)
 				this.progress = true
 				let rombel = this.$page.props.rombel.kode_rombel.split('-')
 				let selectedRombel = this.periode+'-'+rombel[1]
-				axios({
+				await axios({
 					method: 'post',
 					url: '/wali/rapor/pts',
 					data: {
