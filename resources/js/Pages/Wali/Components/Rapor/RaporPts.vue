@@ -253,8 +253,8 @@
 	}
 	.ttd-ks {
 		position: absolute;
-		width: 170px;
-		margin-top:  -10px;
-		margin-left:  -85px;
+		width: 100px;
+		margin-top:  -20px;
+		margin-left:  -55px;
 	}
 </style>
