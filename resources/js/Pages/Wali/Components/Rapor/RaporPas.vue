@@ -228,7 +228,7 @@
 							<span style="text-transform: capitalize;">{{ rapor.sekolah.kab }}, {{ tanggal }}</span><br>
 							Guru Kelas,<br>
 							<br>
-							<br>
+							<img :src="'/img/ttd/'+rapor.rombel.walis.nip+'.png'" class="ttd-ks" />
 							<br>
 							<br>
 							<b><u>{{ rapor.rombel.walis.name }}</u></b><br>
