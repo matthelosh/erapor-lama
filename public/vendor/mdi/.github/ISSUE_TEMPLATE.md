@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Disclaimer:
 Hi there, thanks for contributing! Before anything else, please ensure you didn't mean to create an issue on the main MaterialDesign repo instead.
 If this is intentional, just erase this message. Thanks!
@@ -6,4 +5,3 @@ If this is intentional, just erase this message. Thanks!
 Disclaimer:
 Hi there, thanks for contributing! Before anything else, please ensure you didn't mean to create an issue on the main MaterialDesign repo instead.
 If this is intentional, just erase this message. Thanks!
->>>>>>> 2b16341c8a7132e0f674f61c3aaeb3918e03211a

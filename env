@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 APP_NAME="Rapor SD Negeri 1 Bedalisodo"
 =======
 APP_NAME=Laravel
->>>>>>> 2b16341c8a7132e0f674f61c3aaeb3918e03211a
 APP_ENV=local
 APP_KEY=base64:Mr23zopHOVTUXdD0t/uF+Qv/zCWcaXjxqUBSoPCiPxo=
 APP_DEBUG=true

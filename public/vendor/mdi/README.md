@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 > *Note:* Please use the main [MaterialDesign](https://github.com/Templarian/MaterialDesign/issues) repo to report issues. This repo is for distribution of the Webfont files only.
 
 # Webfont - Material Design Icons

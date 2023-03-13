@@ -17,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-<<<<<<< HEAD
-
 Route::get('tes', function(Request $request) {
     return response()->json(['data' => 'Tes'], 200);
 });
-=======
->>>>>>> 2b16341c8a7132e0f674f61c3aaeb3918e03211a
