@@ -299,7 +299,7 @@ trait RaporTrait
                 // ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
-            $deskripsi4 = $this->kata($n4max, $mapel->pivot->kkm).' '.($kd4_max->teks ?? '').'. '.$this->kata($n4min, $mapel->pivot->kkm).' '.($kd4_min->teks?? 'Cek KD '.$k4min.' '.$n4min.' '.$mapel->kode_mapel.'-'.$kd4_min.'-'.$nilai_h4->count().'-'.$tes);
+            $deskripsi4 = $this->kata($n4max, $mapel->pivot->kkm).' '.($kd4_max->teks ?? '').'. '.$this->kata($n4min, $mapel->pivot->kkm).' '.($kd4_min->teks?? 'Cek KD '.$k4min.' '.$n4min.' '.$mapel->kode_mapel.'-'.$kd4_min.'-'.$nilai_h4->count());
             $rerata4 = (count($nilais4) > 0) ? array_sum(array_values($nilais4))/count($nilais4) : 0;
 
             $n4 = [
