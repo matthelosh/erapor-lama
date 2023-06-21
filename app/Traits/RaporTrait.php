@@ -79,7 +79,7 @@ trait RaporTrait
 
             
 
-            $deskripsi = 'Ananda ' . $siswa->nama .' '.$this->kata($nmax, $mapel->pivot->kkm).' '.($kd_max->teks ?? '').', '.$this->kata($nmin, $mapel->pivot->kkm).' '.($kd_min->teks?? 'Cek KD');
+            $deskripsi = 'Ananda ' . $siswa->nama .' '.$this->kata($nmax, $mapel->pivot->kkm).' '.($kd_max->teks ?? '').', '.$this->kata($nmin, $mapel->pivot->kkm).' '.($kd_min->teks?? 'Cek KD'.$kmin);
 
             $ptswajib = [
                 'nilai' => $rerata,
@@ -134,7 +134,7 @@ trait RaporTrait
 
             
 
-            $deskripsi = 'Ananda ' . $siswa->nama .' '.$this->kata($nmax, $mapel->pivot->kkm).' '.($kd_max->teks ?? '').', '.$this->kata($nmin, $mapel->pivot->kkm).' '.($kd_min->teks?? 'Cek KD');
+            $deskripsi = 'Ananda ' . $siswa->nama .' '.$this->kata($nmax, $mapel->pivot->kkm).' '.($kd_max->teks ?? '').', '.$this->kata($nmin, $mapel->pivot->kkm).' '.($kd_min->teks?? 'Cek KD '. $kmin);
 
             $ptsmulok = [
                 'nilai' => $rerata,
@@ -205,38 +205,42 @@ trait RaporTrait
             }
 
             // dd(array_sum($nr3)/count($nr3));
+            $n3max=max($nilais3);
+            $k3max=array_search($n3max, $nilais3);
+            $n3min=min($nilais3);
+            $k3min=array_search($n3min, $nilais3);
 
-            $n3max=0;
-            $k3max='';
-            $n3min=0;
-            $k3min='';
+            // $n3max=0;
+            // $k3max='';
+            // $n3min=0;
+            // $k3min='';
 
-            foreach($nilais3 as $k=>$n)
-            {
-                if($n > $n3max) {
-                    $n3max = $n;
-                    $k3max = $k;
-                } else {
-                    $n3min = $n;
-                    $k3min = $k;
-                }
-            }
+            // foreach($nilais3 as $k=>$n)
+            // {
+            //     if($n > $n3max) {
+            //         $n3max = $n;
+            //         $k3max = $k;
+            //     } else {
+            //         $n3min = $n;
+            //         $k3min = $k;
+            //     }
+            // }
 
             $kd3_max = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k3max],
                 ['mapel_id','=',$mapel->kode_mapel],
-                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+                // ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $kd3_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k3min],
                 ['mapel_id','=',$mapel->kode_mapel],
-                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+                // ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
-            $deskripsi3 = $this->kata($n3max, $mapel->pivot->kkm).' '.($kd3_max->teks ?? '').'. '.$this->kata($n3min, $mapel->pivot->kkm).' '.($kd3_min->teks?? 'Cek KD');
+            $deskripsi3 = $this->kata($n3max, $mapel->pivot->kkm).' '.($kd3_max->teks ?? '').'. '.$this->kata($n3min, $mapel->pivot->kkm).' '.($kd3_min->teks?? 'Cek KD '.$k3min);
             $rerata = (count($nilais3) > 0 ) ? array_sum(array_values($nilais3))/count($nilais3) : 0;
             // $rerata = $nilais3;
 
@@ -256,28 +260,30 @@ trait RaporTrait
                 ['jenis','=', 'uh'],
                 ['aspek','=','k4']
             ])->groupBy('kd_id')->get(['kd_id', DB::raw('AVG(nilai) AS nilai')]);
-
+            
+            // $nilais = '';
             $nilais4 = [];
             foreach($nilai_h4 as $nilai)
             {
                 $nilais4[$nilai->kd_id] = $nilai->nilai??0;
+                
             }
 
-            $n4max=0;
-            $k4max='';
-            $n4min=0;
-            $k4min='';
+            $n4max=max($nilais4);
+            $k4max=array_search($n4max, $nilais4);
+            $n4min=min($nilais4);
+            $k4min=array_search($n4min, $nilais4);
 
-            foreach($nilais4 as $k=>$n)
-            {
-                if($n > $n4max) {
-                    $n4max = $n;
-                    $k4max = $k;
-                } else {
-                    $n4min = $n;
-                    $k4min = $k;
-                }
-            }
+            // foreach($nilais4 as $k=>$n)
+            // {
+            //     if($n > $n4max) {
+            //         $n4max = $n;
+            //         $k4max = $k;
+            //     } else {
+            //         $n4min = $n;
+            //         $k4min = $k;
+            //     }
+            // }
 
             $kd4_max = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
@@ -290,10 +296,10 @@ trait RaporTrait
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k4min],
                 ['mapel_id','=',$mapel->kode_mapel],
-                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+                // ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
-            $deskripsi4 = $this->kata($n4max, $mapel->pivot->kkm).' '.($kd4_max->teks ?? '').'. '.$this->kata($n4min, $mapel->pivot->kkm).' '.($kd4_min->teks?? 'Cek KD');
+            $deskripsi4 = $this->kata($n4max, $mapel->pivot->kkm).' '.($kd4_max->teks ?? '').'. '.$this->kata($n4min, $mapel->pivot->kkm).' '.($kd4_min->teks?? 'Cek KD '.$k4min.' '.$n4min.' '.$mapel->kode_mapel.'-'.$kd4_min.'-'.$nilai_h4->count().'-'.$tes);
             $rerata4 = (count($nilais4) > 0) ? array_sum(array_values($nilais4))/count($nilais4) : 0;
 
             $n4 = [
@@ -325,38 +331,42 @@ trait RaporTrait
             foreach($nilai3 as $nilai){
                 $nilais3[$nilai->kd_id] = $nilai->nilai;
             }
+            $n3max=max($nilais3);
+            $k3max=array_search($n3max, $nilais3);
+            $n3min=min($nilais3);
+            $k3min=array_search($n3min, $nilais3);
 
-            $n3max=0;
-            $k3max='';
-            $n3min=0;
-            $k3min='';
+            // $n3max=0;
+            // $k3max='';
+            // $n3min=0;
+            // $k3min='';
 
-            foreach($nilais3 as $k=>$n)
-            {
-                if($n > $n3max) {
-                    $n3max = $n;
-                    $k3max = $k;
-                } else {
-                    $n3min = $n;
-                    $k3min = $k;
-                }
-            }
+            // foreach($nilais3 as $k=>$n)
+            // {
+            //     if($n > $n3max) {
+            //         $n3max = $n;
+            //         $k3max = $k;
+            //     } else {
+            //         $n3min = $n;
+            //         $k3min = $k;
+            //     }
+            // }
 
             $kd3_max = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k3max],
                 ['mapel_id','=',$mapel->kode_mapel],
-                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+                // ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $kd3_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k3min],
                 ['mapel_id','=',$mapel->kode_mapel],
-                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+                // ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
-            $deskripsi3 = $this->kata($n3max, $mapel->pivot->kkm).' '.($kd3_max->teks ?? '').'. '.$this->kata($n3min, $mapel->pivot->kkm).' '.($kd3_min->teks?? 'Cek KD');
+            $deskripsi3 = $this->kata($n3max, $mapel->pivot->kkm).' '.($kd3_max->teks ?? '').'. '.$this->kata($n3min, $mapel->pivot->kkm).' '.($kd3_min->teks?? 'Cek KD '.$k3min);
             // $rerata = (count($nilais3) > 0 ) ? array_sum(array_values($nilais3))/count($nilais3) : 0;
             $rerata3 = count($nilais3) > 0 ? array_sum(array_values($nilais3)) / count($nilais3) : 0;
 
@@ -384,37 +394,37 @@ trait RaporTrait
                 $nilais4[$nilai->kd_id] = $nilai->nilai??0;
             }
 
-            $n4max=0;
-            $k4max='';
-            $n4min=0;
-            $k4min='';
+            $n4max=max($nilais4);
+            $k4max=array_search($n4max, $nilais4);
+            $n4min=min($nilais4);
+            $k4min=array_search($n4min, $nilais4);
 
-            foreach($nilais4 as $k=>$n)
-            {
-                if($n > $n4max) {
-                    $n4max = $n;
-                    $k4max = $k;
-                } else {
-                    $n4min = $n;
-                    $k4min = $k;
-                }
-            }
+            // foreach($nilais4 as $k=>$n)
+            // {
+            //     if($n > $n4max) {
+            //         $n4max = $n;
+            //         $k4max = $k;
+            //     } else {
+            //         $n4min = $n;
+            //         $k4min = $k;
+            //     }
+            // }
 
             $kd4_max = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k4max],
                 ['mapel_id','=',$mapel->kode_mapel],
-                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+                // ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
             $kd4_min = Kd::where([
                 ['kelas_id','=',$kelas->kode_kelas],
                 ['kode_kd','=',$k4min],
                 ['mapel_id','=',$mapel->kode_mapel],
-                ['kurikulum_id','=', $request->session()->get('kurikulum')]
+                // ['kurikulum_id','=', $request->session()->get('kurikulum')]
             ])->first();
 
-            $deskripsi4 = $this->kata($n4max, $mapel->pivot->kkm).' '.($kd4_max->teks ?? '').'. '.$this->kata($n4min, $mapel->pivot->kkm).' '.($kd4_min->teks?? 'Cek KD');
+            $deskripsi4 = $this->kata($n4max, $mapel->pivot->kkm).' '.($kd4_max->teks ?? '').'. '.$this->kata($n4min, $mapel->pivot->kkm).' '.($kd4_min->teks?? 'Cek KD '.$k4min);
             $rerata4 = (count($nilais4) > 0) ? array_sum(array_values($nilais4))/count($nilais4) : 0;
 
             $n4 = [

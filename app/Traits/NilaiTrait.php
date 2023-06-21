@@ -24,7 +24,7 @@ trait NilaiTrait
             ]))->first();
             $ds=[];
             $kelas = (($request->mapel == 'pabp' && $request->aspek == 'k1') || ($request->mapel == 'ppkn' && $request->aspek == 'k2')) ? 'all' : substr($request->rombel, 6,1);
-            $kurikulum = 'k13';
+            $kurikulum = 'k13d';
             // $kd_id = ($request->mapel == 'pabp' && $request->aspek == 'k1') ? '1.%' : ($request->mapel == 'ppkn' && $request->aspek == 'k2') ? '2.%' : ();
             switch($request->aspek) 
             {
@@ -44,7 +44,7 @@ trait NilaiTrait
                 ['kelas','=',$kelas],
                 ['mapel_id','=', $request->mapel],
                 ['kd_id','LIKE', $kd_id],
-                ['kurikulum_id','=','k13']
+                ['kurikulum_id','=','k13d']
             ])->orderBy('kd_id','ASC')->get();
             $siswas = $datas->siswas;
              $i=0;
@@ -101,7 +101,7 @@ trait NilaiTrait
                     ['semester','=',$semester],
                     ['kelas','=',$kelas->kode_kelas],
                     ['mapel_id','=',$mapel->kode_mapel],
-                    ['kurikulum_id','=', 'k13']
+                    ['kurikulum_id','=', 'k13d']
                 ])->get();
                 // dd($kelas);
 
@@ -110,7 +110,7 @@ trait NilaiTrait
                         ['semester','=',$semester],
                         ['kelas','=', 'all'],
                         ['mapel_id','=', 'pabp'],
-                        ['kurikulum_id','=', 'k13']
+                        ['kurikulum_id','=', 'k13d']
                         // ['ppn', '=','ts']
                     ])->get();
 
@@ -137,14 +137,14 @@ trait NilaiTrait
                     ['semester','=',$semester],
                     ['kelas','=',$kelas->kode_kelas],
                     ['mapel_id','=',$mapel->kode_mapel],
-                    ['kurikulum_id','=', 'k13']
+                    ['kurikulum_id','=', 'k13d']
                     // ['ppn', '=','ts']
                 ])->get();
                 $kd_as = Prosem::where([
                     ['semester','=',$semester],
                     ['kelas','=',$kelas->kode_kelas],
                     ['mapel_id','=',$mapel->kode_mapel],
-                    ['kurikulum_id','=', 'k13']
+                    ['kurikulum_id','=', 'k13d']
                     // ['ppn', '=','as']
                 ])->get();
                 $datas[$mapel->kode_mapel]['nh3']['jml_kd'] = $kds->count();
@@ -298,7 +298,7 @@ trait NilaiTrait
                         ['kelas','=','all'],
                         ['mapel_id', '=', 'pabp' ],
                         // ['agama','=', 'all']
-                        ['kurikulum_id','=', 'k13']
+                        ['kurikulum_id','=', 'k13d']
                     ])->get();
 
                     $dinilai = Nilai::where([
@@ -319,7 +319,7 @@ trait NilaiTrait
                     ['kelas','=',$rombel->kelas_id],
                     ['mapel_id', '=', $mapel ],
                     // ['agama','=', $agama]
-                    ['kurikulum_id','=', 'k13']
+                    ['kurikulum_id','=', 'k13d']
                 ])->get();
 
                 $kdts =  Prosem::where([
@@ -327,7 +327,7 @@ trait NilaiTrait
                     ['kelas','=',$rombel->kelas_id],
                     ['mapel_id', '=', $mapel ],
                     // ['agama','=', $agama],
-                    ['kurikulum_id','=', 'k13']
+                    ['kurikulum_id','=', 'k13d']
                     // ['ppn','=', 'ts']
                 ])->get();
 
