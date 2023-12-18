@@ -150,6 +150,7 @@ trait RaporTrait
 
 	   public function getPAS($request, $kelas, $siswa)
     {
+        try {
         // dd($siswa->nisn);
         // $nilais = Nilai::find(7857);
 
@@ -262,12 +263,15 @@ trait RaporTrait
             ])->groupBy('kd_id')->get(['kd_id', DB::raw('AVG(nilai) AS nilai')]);
             
             // $nilais = '';
-            $nilais4 = [];
-            foreach($nilai_h4 as $nilai)
-            {
-                $nilais4[$nilai->kd_id] = $nilai->nilai??0;
-                
+            $nilais4 = ['4.1' => 0];
+            if(count($nilai_h4) > 0) {
+                foreach($nilai_h4 as $nilai)
+                {
+                    $nilais4[$nilai->kd_id] = $nilai->nilai??0;
+                    
+                }
             }
+            // dd(count($nilai_h4));
 
             $n4max=max($nilais4);
             $k4max=array_search($n4max, $nilais4);
@@ -388,12 +392,13 @@ trait RaporTrait
                 ['aspek','=','k4']
             ])->groupBy('kd_id')->get(['kd_id', DB::raw('AVG(nilai) AS nilai')]);
 
-            $nilais4 = [];
-            foreach($nilai_h4 as $nilai)
-            {
-                $nilais4[$nilai->kd_id] = $nilai->nilai??0;
+            $nilais4 = ['4.1' => 0];
+            if(count($nilai_h4) > 0) {
+                foreach($nilai_h4 as $nilai)
+                {
+                    $nilais4[$nilai->kd_id] = $nilai->nilai??0;
+                }
             }
-
             $n4max=max($nilais4);
             $k4max=array_search($n4max, $nilais4);
             $n4min=min($nilais4);
@@ -513,6 +518,9 @@ trait RaporTrait
 
         $pas = $pas;
         return $pas;
+        } catch(\Exception $e) {
+            throw(['status' => 'Error', 'msg' => $e->getMessage()]);
+        }
     }
 
     public function kata($nilai, $kkm)

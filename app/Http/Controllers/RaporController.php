@@ -145,7 +145,7 @@ class RaporController extends Controller
                 ]
             ],200);
         } catch (\Exception $e) {
-            dd($e);
+            return response()->json(['success' => false, 'msg' => $e->getMessage()], 500);
         }
     }
 
