@@ -199,6 +199,7 @@ trait RaporTrait
                             ->get();
             // dd($nilai3);
             $nilais3 = [];
+            // dd($nilais3);
             $nr3=[];
             foreach($nilai3 as $nilai) {
                 $nilais3[$nilai->kd_id] = $nilai->nilai;
@@ -206,9 +207,9 @@ trait RaporTrait
             }
 
             // dd(array_sum($nr3)/count($nr3));
-            $n3max=max($nilais3);
+            $n3max=count($nilais3) > 0 ? max($nilais3) : 0;
             $k3max=array_search($n3max, $nilais3);
-            $n3min=min($nilais3);
+            $n3min=count($nilais3) > 0 ? min($nilais3) : 0;
             $k3min=array_search($n3min, $nilais3);
 
             // $n3max=0;
@@ -261,21 +262,23 @@ trait RaporTrait
                 ['jenis','=', 'uh'],
                 ['aspek','=','k4']
             ])->groupBy('kd_id')->get(['kd_id', DB::raw('AVG(nilai) AS nilai')]);
-            
+            // dd($nilai_h4);
             // $nilais = '';
-            $nilais4 = ['4.1' => 0];
+            $nilais4 = [];
             if(count($nilai_h4) > 0) {
                 foreach($nilai_h4 as $nilai)
                 {
-                    $nilais4[$nilai->kd_id] = $nilai->nilai??0;
+                    if($nilai->nilai > 0) {
+                        $nilais4[$nilai->kd_id] = $nilai->nilai;
+                    }
                     
                 }
             }
             // dd(count($nilai_h4));
-
-            $n4max=max($nilais4);
+            
+            $n4max= count($nilais4) > 0 ? max($nilais4) : 0;
             $k4max=array_search($n4max, $nilais4);
-            $n4min=min($nilais4);
+            $n4min= count($nilais4) > 0 ? min($nilais4) : 0;
             $k4min=array_search($n4min, $nilais4);
 
             // foreach($nilais4 as $k=>$n)
@@ -312,6 +315,7 @@ trait RaporTrait
                 'deskripsi' => $deskripsi4,
                 'kkm' => $mapel->pivot->kkm
             ];
+            // dd($nilais4);
 
             $pas['rerata'][] = $n3['nilai'];
             $pas['wajib'][$mapel->kode_mapel]['nilai'] = ['k3' => $n3, 'k4' => $n4];
@@ -335,9 +339,9 @@ trait RaporTrait
             foreach($nilai3 as $nilai){
                 $nilais3[$nilai->kd_id] = $nilai->nilai;
             }
-            $n3max=max($nilais3);
+            $n3max=count($nilais3) > 0 ? max($nilais3) : 0;
             $k3max=array_search($n3max, $nilais3);
-            $n3min=min($nilais3);
+            $n3min=count($nilais3) > 0 ? min($nilais3) : 0;
             $k3min=array_search($n3min, $nilais3);
 
             // $n3max=0;
